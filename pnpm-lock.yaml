@@ -11,6 +11,9 @@ importers:
       '@rollup/plugin-typescript':
         specifier: ^12.1.2
         version: 12.1.2(rollup@4.31.0)(tslib@2.8.1)(typescript@5.7.3)
+      '@tsconfig/node22':
+        specifier: ^22.0.0
+        version: 22.0.0
       rollup:
         specifier: ^4.31.0
         version: 4.31.0
@@ -140,6 +143,9 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@tsconfig/node22@22.0.0':
+    resolution: {integrity: sha512-twLQ77zevtxobBOD4ToAtVmuYrpeYUh3qh+TEp+08IWhpsrIflVHqQ1F1CiPxQGL7doCdBIOOCF+1Tm833faNg==}
+
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
 
@@ -266,6 +272,8 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.31.0':
     optional: true
+
+  '@tsconfig/node22@22.0.0': {}
 
   '@types/estree@1.0.6': {}
 
