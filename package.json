@@ -4,6 +4,7 @@
   "description": "Translate Inkscape SVGs to Motion Canvas layout of components",
   "main": "dist/index.js",
   "types": "dist/index.d.js",
+  "bin": "dist/bin.js",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
@@ -21,6 +22,7 @@
     "@rollup/plugin-typescript": "^12.1.2",
     "@tsconfig/node22": "^22.0.0",
     "rollup": "^4.31.0",
+    "rollup-plugin-preserve-shebangs": "^0.2.0",
     "tslib": "^2.8.1",
     "typescript": "^5.7.3"
   }
