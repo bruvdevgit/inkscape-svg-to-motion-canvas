@@ -15,9 +15,11 @@ class _FsWrapper {
   constructor() {
   }
 
-  prefixPathWithCallerPath(p: PathLike) {
-    return `${path.dirname(process.argv[1])}${p}`;
-  }
+  // TODO: delete me
+  //prefixPathWithCallerPath(p: PathLike) {
+  //  //return `${path.dirname(process.argv[1])}${p}`;
+  //  return `${__dirname}${p}`;
+  //}
 
   async createDirIfNonExistant(dirName: string) {
     try {
