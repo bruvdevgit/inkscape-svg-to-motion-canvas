@@ -21,8 +21,10 @@
   "author": "Siya",
   "license": "ISC",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-typescript": "^12.1.2",
     "@tsconfig/node22": "^22.0.0",
+    "@types/node": "^22.10.5",
     "npmversion": "^2.0.5",
     "rollup": "^4.31.0",
     "rollup-plugin-preserve-shebangs": "^0.2.0",
@@ -30,6 +32,7 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
-    "@types/node": "^22.10.5"
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "caller-callsite": "^5.0.0"
   }
 }
