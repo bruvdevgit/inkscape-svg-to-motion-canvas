@@ -42,14 +42,8 @@ class _FsWrapper {
 
   async readFile(
     path: PathLike | fsImport.FileHandle,
-    options?:
-      | ({
-        encoding?: null | undefined;
-        flag?: OpenMode | undefined;
-      } & Abortable)
-      | null,
   ) {
-    return await fsImport.readFile(path, options);
+    return await fsImport.readFile(path, 'utf8');
   }
 }
 
