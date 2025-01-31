@@ -1,6 +1,6 @@
 {
   "name": "inkscape-svg-to-motion-canvas",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Translate Inkscape SVGs to Motion Canvas layout of components",
   "main": "dist/index.js",
   "types": "dist/index.d.js",
@@ -9,7 +9,8 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pretest": "pnpm run build"
+    "pretest": "pnpm run build",
+    "bump": "npmversion --increment patch"
   },
   "keywords": [
     "MotionCanvas",
@@ -24,6 +25,8 @@
     "rollup": "^4.31.0",
     "rollup-plugin-preserve-shebangs": "^0.2.0",
     "tslib": "^2.8.1",
-    "typescript": "^5.7.3"
-  }
+    "typescript": "^5.7.3",
+    "npmversion": "^2.0.5"
+  },
+  "dependencies": {}
 }
