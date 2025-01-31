@@ -11,7 +11,8 @@ console.log('in bin.js');
   const fs = createFsWrapper();
   let callerPath = cwd();
   //const content = await fs.readFile(`${callerPath}/inkscapeSVGToMotionCanvas.config.ts`);
+  //const content = loadTsConfig<CodegenConfig>("inkscapeSVGToMotionCanvas.config.ts");
+  const content = require(`${callerPath}/inkscapeSVGToMotionCanvas.config.ts`);
 
-  const content = loadTsConfig<CodegenConfig>("inkscapeSVGToMotionCanvas.config.ts");
   console.log('->>>> ', content);
 })();
