@@ -34,7 +34,7 @@ class _FsWrapper {
 
   async writeFile(file: fsImport.FileHandle | PathLike,
     data: string | Uint8Array) {
-    await fsImport.writeFile(
+    return await fsImport.writeFile(
       file,
       data);
   }
@@ -49,7 +49,7 @@ class _FsWrapper {
       } & Abortable)
       | null,
   ) {
-    await fsImport.readFile(path, options);
+    return await fsImport.readFile(path, options);
   }
 }
 
