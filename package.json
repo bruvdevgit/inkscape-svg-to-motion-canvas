@@ -1,6 +1,6 @@
 {
   "name": "inkscape-svg-to-motion-canvas",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Translate Inkscape SVGs to Motion Canvas layout of components",
   "main": "dist/index.js",
   "types": "dist/index.d.js",
@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "pretest": "pnpm run build",
     "bump": "npmversion --increment patch",
-    "publish":"npm run build && npm version patch && npm publish"
+    "publish": "npm run build && npm version patch && npm publish"
   },
   "keywords": [
     "MotionCanvas",
