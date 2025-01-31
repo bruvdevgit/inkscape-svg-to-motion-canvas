@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      config-file-ts:
+        specifier: 0.2.8-rc1
+        version: 0.2.8-rc1
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: ^28.0.2
@@ -350,6 +354,9 @@ packages:
 
   commondir@1.0.1:
     resolution: {integrity: sha512-W9pAhw0ja1Edb5GVdIF1mjZw/ASI0AlShXM83UUGe2DVr5TdAPEA1OA8m/g8zWp9x6On7gqufY+FatDbC3MDQg==}
+
+  config-file-ts@0.2.8-rc1:
+    resolution: {integrity: sha512-GtNECbVI82bT4RiDIzBSVuTKoSHufnU7Ce7/42bkWZJZFLjmDF2WBpVsvRkhKCfKBnTBb3qZrBwPpFBU/Myvhg==}
 
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
@@ -1077,6 +1084,11 @@ snapshots:
   color-name@1.1.4: {}
 
   commondir@1.0.1: {}
+
+  config-file-ts@0.2.8-rc1:
+    dependencies:
+      glob: 10.4.5
+      typescript: 5.7.3
 
   cross-spawn@7.0.6:
     dependencies:
