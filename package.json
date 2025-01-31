@@ -23,11 +23,13 @@
   "devDependencies": {
     "@rollup/plugin-typescript": "^12.1.2",
     "@tsconfig/node22": "^22.0.0",
+    "npmversion": "^2.0.5",
     "rollup": "^4.31.0",
     "rollup-plugin-preserve-shebangs": "^0.2.0",
     "tslib": "^2.8.1",
-    "typescript": "^5.7.3",
-    "npmversion": "^2.0.5"
+    "typescript": "^5.7.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@types/node": "^22.10.5"
+  }
 }
