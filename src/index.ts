@@ -3,7 +3,8 @@ type InkscapeSVGOptions = {
     inkscapeSVGSrc: string
   },
   output: {
-    viewAdderFunctionName: string
+    viewAdderFunctionName: string,
+    directoryPath: string,
   },
 }
 export type CodegenConfig = {
