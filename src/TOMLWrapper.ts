@@ -1,17 +1,17 @@
 
-import TOML, { DocumentOptions, ParseOptions, SchemaOptions, ToJSOptions } from 'yaml'
+import TOML from 'toml';
 
 export interface TOMLWrapper {
   // define the same api as _TOMLWrapper
-  parse(src: string, options?: ParseOptions & DocumentOptions & SchemaOptions & ToJSOptions): any;
+  parse(src: string): any;
 }
 
 class _TOMLWrapper implements TOMLWrapper {
   constructor() {
   }
 
-  parse(src: string, options?: ParseOptions & DocumentOptions & SchemaOptions & ToJSOptions): any {
-    return TOML.parse(src, options);
+  parse(src: string): any {
+    return TOML.parse(src);
   }
 }
 

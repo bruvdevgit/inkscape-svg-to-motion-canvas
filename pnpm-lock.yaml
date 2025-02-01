@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      toml:
+        specifier: ^3.0.0
+        version: 3.0.0
       yaml:
         specifier: ^2.7.0
         version: 2.7.0
@@ -268,6 +271,9 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
+  toml@3.0.0:
+    resolution: {integrity: sha512-y/mWCZinnvxjTKYhJ+pYxwD0mRLVvOtdS2Awbgxln6iEnt4rk0yBxeSBHkGJcPucRiG0e55mwWp+g/05rsrd6w==}
+
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
@@ -474,6 +480,8 @@ snapshots:
   sourcemap-codec@1.4.8: {}
 
   supports-preserve-symlinks-flag@1.0.0: {}
+
+  toml@3.0.0: {}
 
   tslib@2.8.1: {}
 
