@@ -16,5 +16,5 @@ console.log('in bin.js');
   //const content = require(`${callerPath}/inkscapeSVGToMotionCanvas.config.ts`);
   //const content = loadTsConfig<CodegenConfig>(`${callerPath}/inkscapeSVGToMotionCanvas.config.ts`);
 
-  console.log('->>>> ', config);
+  console.log('->>>> ', JSON.stringify(config, null, 4));
 })();
