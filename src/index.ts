@@ -1,6 +1,6 @@
 type InkscapeSVGOptions = {
   input: {
-    inkscapeSVGSrc: string
+    filePath: string
   },
   output: {
     viewAdderFunctionName: string,

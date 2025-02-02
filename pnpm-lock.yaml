@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      myzod:
+        specifier: ^1.12.0
+        version: 1.12.0
       toml:
         specifier: ^3.0.0
         version: 3.0.0
@@ -238,6 +241,9 @@ packages:
   magic-string@0.30.17:
     resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
 
+  myzod@1.12.0:
+    resolution: {integrity: sha512-ZI7y/npvDdS1YyNOmybevrhw3D/DOkd1w7RM5AyGDEumJYjL0k6LzrW2Nf2fINH2HUaZTAHwyu2LzxnDJJ03Cw==}
+
   path-parse@1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
 
@@ -428,6 +434,8 @@ snapshots:
   magic-string@0.30.17:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
+
+  myzod@1.12.0: {}
 
   path-parse@1.0.7: {}
 

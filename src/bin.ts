@@ -2,8 +2,8 @@
 
 import { createFsWrapper } from "./FsWrapper";
 import { cwd } from 'node:process';
-import { CodegenConfig } from ".";
 import { createTOMLWrapper } from "./TOMLWrapper";
+import mainConfigSchema from "./mainConfigSchema";
 
 console.log('in bin.js');
 (async () => {
@@ -16,5 +16,5 @@ console.log('in bin.js');
   //const content = require(`${callerPath}/inkscapeSVGToMotionCanvas.config.ts`);
   //const content = loadTsConfig<CodegenConfig>(`${callerPath}/inkscapeSVGToMotionCanvas.config.ts`);
 
-  console.log('->>>> ', JSON.stringify(config, null, 4));
+  console.log('->>>> ', mainConfigSchema.parse(config));
 })();
