@@ -3,7 +3,10 @@
 import { createFsWrapper } from "./FsWrapper";
 import { cwd } from 'node:process';
 import { createTOMLWrapper } from "./TOMLWrapper";
-import mainConfigSchema from "./mainConfigSchema";
+import mainConfigSchema, { MainConfig } from "./mainConfigSchema";
+import chokidar from 'chokidar';
+
+const log = console.log.bind(console);
 
 console.log('in bin.js');
 (async () => {
@@ -11,10 +14,20 @@ console.log('in bin.js');
   const tomlParser = createTOMLWrapper();
   let callerPath = cwd();
   const content = await fs.readFile(`${callerPath}/inkscapeSVGToMotionCanvasConfig.toml`);
-  const config = tomlParser.parse(content);
+  const tomlContent = tomlParser.parse(content);
+  const config = mainConfigSchema.parse(tomlContent);
 
   //const content = require(`${callerPath}/inkscapeSVGToMotionCanvas.config.ts`);
   //const content = loadTsConfig<CodegenConfig>(`${callerPath}/inkscapeSVGToMotionCanvas.config.ts`);
+  //
 
-  console.log('->>>> ', mainConfigSchema.parse(config));
+  const inputFilePath = config.inkscapeSVGs[0].input.filePath;
+
+  const watcher = chokidar.watch(inputFilePath, {
+    persistent: true
+  });
+  watcher
+    .on('change', path => log(`File ${path} has been changed`))
+
+
 })();
