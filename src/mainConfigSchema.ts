@@ -3,11 +3,11 @@ import myzod, { Infer } from 'myzod';
 const mainConfigSchema = myzod.object({
   inkscapeSVGs: myzod.array(myzod.object({
     input: myzod.object({
-      filePath: myzod.string().pattern(/^[a-z]:((\\|\/)[a-z0-9\s_@\-^!#$%&+={}\[\]]+)+\.svg$/i),
+      filePath: myzod.string().pattern(/^(.+)\/([^\/]+)\.svg$/gm),
     }),
     output: myzod.object({
-      viewAdderFunctionName: myzod.string().pattern(/^[$A-Z_][0-9A-Z_$]*$/i),
-      directoryPath: myzod.string().pattern(/^[a-z]:((\\|\/)[a-z0-9\s_@\-^!#$%&+={}\[\]]+)+$/i),
+      viewAdderFunctionName: myzod.string().pattern(/^[$A-Za-z_]?[$0-9A-Za-z_]*$/gm),
+      directoryPath: myzod.string().pattern(/^(.+)\/([^\/]+)$/gm),
     }),
   })),
 });
