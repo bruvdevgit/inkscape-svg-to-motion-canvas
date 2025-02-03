@@ -5,7 +5,6 @@ import { cwd } from 'node:process';
 import { createTOMLWrapper } from "./TOMLWrapper";
 import mainConfigSchema, { MainConfig } from "./mainConfigSchema";
 import chokidar from 'chokidar';
-import { makeDirectory } from 'make-dir';
 import { rectsTsxCode } from "./temp";
 
 const log = console.log.bind(console);
@@ -35,7 +34,7 @@ console.log('in bin.js');
     .on('change', async path => {
       log(`File ${path} has been changed`);
       //const inputFileContent = await fs.readFile(path);
-      await makeDirectory(outputDirectoryPath);
+      await fs.makeDirectory(outputDirectoryPath);
       await fs.writeFile(outputFilePath, rectsTsxCode);
     });
 

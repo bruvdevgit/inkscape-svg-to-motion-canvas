@@ -1,35 +1,22 @@
-import { Abortable } from 'node:events';
-import { OpenMode, PathLike } from 'node:fs';
+import { makeDirectory, Options as MakeDirectoryOptions } from 'make-dir';
+import { PathLike } from 'node:fs';
 import * as fsImport from 'node:fs/promises';
-import * as path from 'path';
 
 export interface FsWrapper {
-  formatPathStrFromScriptLocation(p: PathLike): void;
+  makeDirectory(path: string, options?: MakeDirectoryOptions): Promise<string>;
   writeFile(file: fsImport.FileHandle | PathLike,
     data: string | Uint8Array): Promise<void>;
-
-  createDirIfNonExistant(dirName: string): Promise<void>;
+  readFile(
+    path: PathLike | fsImport.FileHandle,
+  ): Promise<string>;
 }
 
-class _FsWrapper {
+class _FsWrapper implements FsWrapper {
   constructor() {
   }
 
-  // TODO: delete me
-  //prefixPathWithCallerPath(p: PathLike) {
-  //  //return `${path.dirname(process.argv[1])}${p}`;
-  //  return `${__dirname}${p}`;
-  //}
-
-  async createDirIfNonExistant(dirName: string) {
-    try {
-      // check if the dir exists
-      await fsImport.access(dirName, fsImport.constants.F_OK);
-    }
-    catch (err) {
-      // if the dir doesn't exist, create it
-      await fsImport.mkdir(dirName, { recursive: true });
-    }
+  async makeDirectory(path: string, options?: MakeDirectoryOptions): Promise<string> {
+    return await makeDirectory(path, options);
   }
 
   async writeFile(file: fsImport.FileHandle | PathLike,
@@ -39,14 +26,13 @@ class _FsWrapper {
       data);
   }
 
-
   async readFile(
     path: PathLike | fsImport.FileHandle,
-  ) {
+  ): Promise<string> {
     return await fsImport.readFile(path, 'utf8');
   }
 }
 
-export function createFsWrapper() {
+export function createFsWrapper(): FsWrapper {
   return new _FsWrapper();
 }
