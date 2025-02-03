@@ -33,6 +33,6 @@ class _FsWrapper implements FsWrapper {
   }
 }
 
-export function createFsWrapper(): FsWrapper {
+export function initFsWrapper(): FsWrapper {
   return new _FsWrapper();
 }

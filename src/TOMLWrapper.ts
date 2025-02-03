@@ -15,6 +15,6 @@ class _TOMLWrapper implements TOMLWrapper {
   }
 }
 
-export function createTOMLWrapper(): TOMLWrapper {
+export function initTOMLWrapper(): TOMLWrapper {
   return new _TOMLWrapper();
 }
