@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-import { createFsWrapper } from "./FsWrapper";
+import { initFsWrapper } from "./FsWrapper";
 import { cwd } from 'node:process';
-import { createTOMLWrapper } from "./TOMLWrapper";
-import mainConfigSchema, { MainConfig } from "./mainConfigSchema";
+import { initTOMLWrapper } from "./TOMLWrapper";
+import { initMainConfigSchema } from "./MainConfigSchema";
 import chokidar from 'chokidar';
 import { rectsTsxCode } from "./temp";
 
@@ -11,8 +11,10 @@ const log = console.log.bind(console);
 
 console.log('in bin.js');
 (async () => {
-  const fs = createFsWrapper();
-  const tomlParser = createTOMLWrapper();
+  const fs = initFsWrapper();
+  const tomlParser = initTOMLWrapper();
+  const mainConfigSchema = initMainConfigSchema();
+
   let callerPath = cwd();
   const content = await fs.readFile(`${callerPath}/inkscapeSVGToMotionCanvasConfig.toml`);
   const tomlContent = tomlParser.parse(content);

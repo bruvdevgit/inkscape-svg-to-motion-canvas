@@ -1,4 +1,5 @@
 import myzod, { Infer } from 'myzod';
+import { ObjectOptions, PathOptions } from 'myzod/libs/types';
 
 const mainConfigSchema = myzod.object({
   inkscapeSVGs: myzod.array(myzod.object({
@@ -19,4 +20,19 @@ const mainConfigSchema = myzod.object({
 });
 
 export type MainConfig = Infer<typeof mainConfigSchema>;
-export default mainConfigSchema;
+
+export interface MainConfigSchema {
+  parse(value?: unknown,
+    parseOpts?: ObjectOptions<any> & PathOptions): MainConfig;
+}
+
+class _MainConfigSchema implements MainConfigSchema {
+  parse(value?: unknown,
+    parseOpts?: ObjectOptions<any> & PathOptions): MainConfig {
+    return mainConfigSchema.parse(value, parseOpts);
+  }
+}
+
+export function initMainConfigSchema(): MainConfigSchema {
+  return new _MainConfigSchema();
+}
