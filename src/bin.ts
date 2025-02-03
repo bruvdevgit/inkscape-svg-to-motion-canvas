@@ -3,8 +3,8 @@
 import { initFsWrapper } from "./FsWrapper";
 import { initTOMLWrapper } from "./TOMLWrapper";
 import { initMainConfigSchema } from "./MainConfigSchema";
-import chokidar from 'chokidar';
 import { rectsTsxCode } from "./temp";
+import { initChokidarWrapper } from "./chokidar/ChokidarWrapper";
 
 const log = console.log.bind(console);
 
@@ -27,12 +27,12 @@ console.log('in bin.js');
   const outputDirectoryPath = config.inkscapeSVGs[0].output.directoryPath;
   const outputFilePath = `${outputDirectoryPath}/${config.inkscapeSVGs[0].output.viewAdderFunctionName}.tsx`;
 
-  const watcher = chokidar.watch(inputFilePath, {
+  const watcher = initChokidarWrapper().watch(inputFilePath, {
     persistent: true
   });
 
   watcher
-    .on('change', async path => {
+    .on('change', async (path: string) => {
       log(`File ${path} has been changed`);
       //const inputFileContent = await fs.readFile(path);
       await fs.makeDirectory(outputDirectoryPath);
