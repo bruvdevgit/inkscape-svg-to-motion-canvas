@@ -1,6 +1,7 @@
 import { makeDirectory, Options as MakeDirectoryOptions } from 'make-dir';
 import { PathLike } from 'node:fs';
 import * as fsImport from 'node:fs/promises';
+import { cwd } from 'node:process';
 
 export interface FsWrapper {
   makeDirectory(path: string, options?: MakeDirectoryOptions): Promise<string>;
@@ -9,6 +10,8 @@ export interface FsWrapper {
   readFile(
     path: PathLike | fsImport.FileHandle,
   ): Promise<string>;
+  // current working directory
+  cwd(): string;
 }
 
 class _FsWrapper implements FsWrapper {
@@ -30,6 +33,9 @@ class _FsWrapper implements FsWrapper {
     path: PathLike | fsImport.FileHandle,
   ): Promise<string> {
     return await fsImport.readFile(path, 'utf8');
+  }
+  cwd(): string {
+    return cwd();
   }
 }
 

@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import { initFsWrapper } from "./FsWrapper";
-import { cwd } from 'node:process';
 import { initTOMLWrapper } from "./TOMLWrapper";
 import { initMainConfigSchema } from "./MainConfigSchema";
 import chokidar from 'chokidar';
@@ -15,7 +14,7 @@ console.log('in bin.js');
   const tomlParser = initTOMLWrapper();
   const mainConfigSchema = initMainConfigSchema();
 
-  let callerPath = cwd();
+  let callerPath = fs.cwd();
   const content = await fs.readFile(`${callerPath}/inkscapeSVGToMotionCanvasConfig.toml`);
   const tomlContent = tomlParser.parse(content);
   const config = mainConfigSchema.parse(tomlContent);
