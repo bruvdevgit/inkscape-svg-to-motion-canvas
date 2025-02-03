@@ -14,7 +14,7 @@ class _FSWatcherWrapper implements FSWatcherWrapper {
   }
 
   on(eventName: string | symbol, listener: (path: string) => any): this {
-    this.on(eventName, listener);
+    this.fsWatcherDep.on(eventName, listener as never);
     return this;
   }
 }
