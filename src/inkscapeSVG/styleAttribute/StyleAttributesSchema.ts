@@ -3,16 +3,16 @@ import { ObjectOptions, PathOptions } from 'myzod/libs/types';
 
 //TODO: get more specific with these
 export const _styleAttributesSchema = myzod.object({
-  fill: myzod.string().optional(),
+  fill: myzod.string(),
   'fill-opacity': myzod.string().optional(),
-  stroke: myzod.string().optional(),
-  'stroke-width': myzod.string().optional(),
-  'stroke-linecap': myzod.string().optional(),
-  'stroke-linejoin': myzod.string().optional(),
-  'stroke-miterlimit': myzod.string().optional(),
+  stroke: myzod.string(),
+  'stroke-width': myzod.string(),
+  'stroke-linecap': myzod.string(),
+  'stroke-linejoin': myzod.string(),
+  'stroke-miterlimit': myzod.string(),
   'stroke-dasharray': myzod.string().optional(),
   'stroke-opacity': myzod.string().optional(),
-  'paint-order': myzod.string().optional(),
+  'paint-order': myzod.string(),
 });
 
 export type StyleAttributesFromSchema = Infer<typeof _styleAttributesSchema>;

@@ -2,9 +2,11 @@ import { Comment, Declaration } from "inline-style-parser";
 import { initInlineStyleParserWrapper, InlineStyleParserWrapper } from "../../wrappers/InlineStyleParserWrapper";
 import { initStyleAttributesSchema, StyleAttributesSchema } from "./StyleAttributesSchema";
 
+// These fields match StyleAttributesFromSchema but with
+// some fields being here number type instead of string type
 export interface StyleAttributes {
   fill: string;
-  fillOpacity: number;
+  fillOpacity?: number;
   stroke: string;
   strokeWidth: number;
   strokeLinecap: string;
@@ -16,7 +18,7 @@ export interface StyleAttributes {
 }
 
 export interface StyleAttributeParser {
-  parse(styleLine: string): Partial<StyleAttributes>;
+  parse(styleLine: string): StyleAttributes;
 }
 
 export class _StyleAttributeParser implements StyleAttributeParser {
@@ -27,7 +29,7 @@ export class _StyleAttributeParser implements StyleAttributeParser {
   }
 
 
-  parse(styleLine: string): Partial<StyleAttributes> {
+  parse(styleLine: string): StyleAttributes {
     const parsed: (Declaration | Comment)[]
       = this.deps.inlineStyleParser.parse(styleLine);
 
@@ -46,10 +48,10 @@ export class _StyleAttributeParser implements StyleAttributeParser {
       fill: obj.fill,
       fillOpacity: obj['fill-opacity'] != null ? Number(obj['fill-opacity']) : undefined,
       stroke: obj.stroke,
-      strokeWidth: obj['stroke-width'] != null ? Number(obj['stroke-width']) : undefined,
+      strokeWidth: Number(obj['stroke-width']),
       strokeLinecap: obj?.['stroke-linecap'],
       strokeLinejoin: obj['stroke-linejoin'],
-      strokeMiterlimit: obj['stroke-miterlimit'] != null ? Number(obj['stroke-miterlimit']) : undefined,
+      strokeMiterlimit: Number(obj['stroke-miterlimit']),
       strokeDasharray: obj['stroke-dasharray'],
       strokeOpacity: obj['stroke-opacity'] != null ? Number(obj['stroke-opacity']) : undefined,
       paintOrder: obj['paint-order'],
