@@ -1,5 +1,5 @@
 import { Comment, Declaration } from "inline-style-parser";
-import { initInlineStyleParserWrapper, InlineStyleParserWrapper } from "./InlineStyleParserWrapper";
+import { initInlineStyleParserWrapper, InlineStyleParserWrapper } from "../../wrappers/InlineStyleParserWrapper";
 import { initStyleAttributesSchema, StyleAttributesSchema } from "./StyleAttributesSchema";
 
 export interface StyleAttributes {
