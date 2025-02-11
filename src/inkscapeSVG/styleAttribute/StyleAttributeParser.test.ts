@@ -5,14 +5,7 @@ import { StyleAttributesSchema } from './StyleAttributesSchema';
 import { testData } from './testData';
 import { InlineStyleParserWrapper } from '../../wrappers/InlineStyleParserWrapper';
 
-// workaround because tap.same does not count an undefined property as the same
-// as a property explicitly defined and assigned undefined as a value
-function removeUndefinedFields(obj: Object) {
-  return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != undefined));
-}
-
 t.test('parse correctly parses', t => {
-
   for (let i = 0; i < 31; i++) {
     const inlineStyleParser = Substitute.for<InlineStyleParserWrapper>();
     const styleAttributesSchema = Substitute.for<StyleAttributesSchema>();
@@ -21,7 +14,6 @@ t.test('parse correctly parses', t => {
       inlineStyleParser,
       styleAttributesSchema,
     });
-
 
     inlineStyleParser
       .parse(testData[i].source)
@@ -42,7 +34,7 @@ t.test('parse correctly parses', t => {
       .parse(testData[i].schemaOutput);
     // - end verify internal function calls -
 
-    t.same(removeUndefinedFields(found), wanted, `at idx: ${i}`);
+    t.same(found, wanted, `at idx: ${i}`);
   }
 
   t.end();

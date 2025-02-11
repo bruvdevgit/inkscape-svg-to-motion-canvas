@@ -46,14 +46,14 @@ export class _StyleAttributeParser implements StyleAttributeParser {
 
     return {
       fill: obj.fill,
-      fillOpacity: obj['fill-opacity'] != null ? Number(obj['fill-opacity']) : undefined,
+      ...(obj['fill-opacity'] != null ? { fillOpacity: Number(obj['fill-opacity']) } : {}),
       stroke: obj.stroke,
       strokeWidth: Number(obj['stroke-width']),
       strokeLinecap: obj?.['stroke-linecap'],
       strokeLinejoin: obj['stroke-linejoin'],
       strokeMiterlimit: Number(obj['stroke-miterlimit']),
-      strokeDasharray: obj['stroke-dasharray'],
-      strokeOpacity: obj['stroke-opacity'] != null ? Number(obj['stroke-opacity']) : undefined,
+      ...(obj['stroke-dasharray'] != null ? { strokeDasharray: obj['stroke-dasharray'] } : {}),
+      ...(obj['stroke-opacity'] != null ? { strokeOpacity: Number(obj['stroke-opacity']) } : {}),
       paintOrder: obj['paint-order'],
     }
   }
