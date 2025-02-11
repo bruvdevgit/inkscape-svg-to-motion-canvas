@@ -1,12 +1,14 @@
 import t from 'tap'
 import { _StyleAttributeParser } from './StyleAttributeParser';
 import { Substitute } from '@fluffy-spoon/substitute';
-import { InlineStyleParserWrapper } from './InlineStyleParserWrapper';
 import { StyleAttributesSchema } from './StyleAttributesSchema';
 import { testData } from './testData';
+import { InlineStyleParserWrapper } from '../../wrappers/InlineStyleParserWrapper';
 
-function removeEmpty(obj: Object) {
-  return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null && v != undefined));
+// workaround because tap.same does not count an undefined property as the same
+// as a property explicitly defined and assigned undefined as a value
+function removeUndefinedFields(obj: Object) {
+  return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != undefined));
 }
 
 t.test('parse correctly parses', t => {
@@ -29,12 +31,18 @@ t.test('parse correctly parses', t => {
       .returns(testData[i].schemaOutput);
 
     let found = styleAttributesParser.parse(testData[i].source);
-    // workaround because tap.same does not count an undefined property as the same
-    // as a property explicitly defined and assigned undefined as a value
-    found = removeEmpty(found);
     const wanted = testData[i].final;
 
-    t.same(removeEmpty(found), wanted, `at idx: ${i}`);
+    // - start verify internal function calls -
+    inlineStyleParser
+      .received()
+      .parse(testData[i].source);
+    styleAttributesSchema
+      .received()
+      .parse(testData[i].schemaOutput);
+    // - end verify internal function calls -
+
+    t.same(removeUndefinedFields(found), wanted, `at idx: ${i}`);
   }
 
   t.end();
