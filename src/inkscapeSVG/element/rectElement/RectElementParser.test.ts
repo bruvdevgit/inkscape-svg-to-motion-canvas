@@ -5,11 +5,6 @@ import { RectElementAttributesSchema } from './RectElementAttributesSchema';
 import { StyleAttributeParser } from '../../styleAttribute/StyleAttributeParser';
 import { InitRectElementFn, RectElement, RectElementProps } from './RectElement';
 import { rects } from './testData';
-import { isDeepStrictEqual } from 'node:util';
-
-function removeUndefinedFields(obj: Object) {
-  return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != undefined));
-}
 
 t.test('parse correctly parses', t => {
   for (let i = 0; i < rects.length; i++) {
@@ -18,13 +13,19 @@ t.test('parse correctly parses', t => {
       .parse(rects[i].svgsonNode.attributes)
       .returns(rects[i].attributes);
 
-    const initRectElementFn: InitRectElementFn = (init: RectElementProps) => {
-      const expected = rects[i].props;
-      const found = removeUndefinedFields(init);
-      if (!isDeepStrictEqual(found, expected))
-        throw RangeError(`at i=${i} initRectElementFn was called in an unexpected way     Expected => ${JSON.stringify(expected, null, 4)}     Found => ${JSON.stringify(found, null, 4)}`);
-      return rects[i].props as RectElementProps;
-    };
+    // A "Jacket" is a concept I made up:
+    // It's an object that's made just to have the function
+    // of interest as its one and only method. Then,
+    // because I can have that object implement an interface,
+    // I can use @fluffy-spoon/substitute to mock the function
+    // of interest.
+    interface InitRectElementFnJacket {
+      fn: InitRectElementFn,
+    }
+    const initRectElementFnJacket = Substitute.for<InitRectElementFnJacket>();
+    initRectElementFnJacket
+      .fn(rects[i].props)
+      .returns(rects[i].props as RectElementProps);
 
     const svgElementStyleAttributeParser = Substitute.for<StyleAttributeParser>();
     svgElementStyleAttributeParser
@@ -33,7 +34,7 @@ t.test('parse correctly parses', t => {
 
     const rectElementParser = new _RectElementParser({
       svgRectElementSchema,
-      initRectElementFn,
+      initRectElementFn: initRectElementFnJacket.fn,
       svgElementStyleAttributeParser,
     });
 
@@ -41,6 +42,9 @@ t.test('parse correctly parses', t => {
     const wanted: RectElement = rects[i].props;
 
     // - start verify internal function calls -
+    initRectElementFnJacket.received()
+      .fn(rects[i].props);
+
     svgRectElementSchema
       .received()
       .parse(rects[i].svgsonNode.attributes);
