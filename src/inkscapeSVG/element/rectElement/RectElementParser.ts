@@ -72,5 +72,5 @@ export const initRectElementParser: InitElementParserFn
     initRectElementFn: initRectElement,
     svgElementStyleAttributeParser: initStyleAttributeParser(),
   });
-/* c8 ignore start */
+/* c8 ignore stop */
 

@@ -1,22 +1,39 @@
 import t from 'tap';
 import { _ElementParserFactory } from './ElementParserFactory';
-import { initRectElementParser } from './rectElement/RectElementParser';
+import { ElementParser, InitElementParserFn } from './ElementParser';
+import Substitute from '@fluffy-spoon/substitute';
+import { rectSVGSvgson } from '../testData';
 
 //function removeUndefinedFields(obj: Object) {
 //  return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != undefined));
 //}
 
-t.test('constructor correctly assigns props to same-name fields', t => {
+t.test('constructor correctly returns a rect element parser', t => {
+  const rectElements = rectSVGSvgson.children[2].children;
+  const rectElementParser = Substitute.for<ElementParser>();
+  interface InitElementParserFnJacket {
+    fn: InitElementParserFn
+  }
+  const initRectElementParserFnJacket = Substitute.for<InitElementParserFnJacket>();
+  initRectElementParserFnJacket.fn().returns(rectElementParser);
 
-  //const initRectElementParser = () => ElementParser;
-  //
-  //const rectElement = new _ElementParserFactory({
-  //  initRectElementParserFn,
-  //});
-  //
-  //rectElement.init();
+  const rectElement = new _ElementParserFactory({
+    initRectElementParserFn: initRectElementParserFnJacket.fn,
+  });
 
-  t.pass();
+  t.equal(rectElement.rectElementParser, null);
+  for (let i = 0; i < rectElements.length; i++) {
+    const found = rectElement.init(
+      rectSVGSvgson.children[2].children[1]
+    );
+    const wanted = rectElementParser;
+
+    t.not(rectElement.rectElementParser, null);
+
+    t.same(found, wanted);
+    t.same(rectElement.rectElementParser, wanted);
+
+  }
   t.end();
 });
 
