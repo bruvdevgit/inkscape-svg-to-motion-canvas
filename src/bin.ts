@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import { initFsWrapper } from "./FsWrapper";
-import { initTOMLWrapper } from "./TOMLWrapper";
+import { initFsWrapper } from "./wrappers/FsWrapper";
+import { initTOMLWrapper } from "./wrappers/TOMLWrapper";
 import { initMainConfigSchema } from "./MainConfigSchema";
 import { rectsTsxCode } from "./temp";
-import { initChokidarWrapper } from "./chokidar/ChokidarWrapper";
+import { initChokidarWrapper } from "./wrappers/ChokidarWrapper";
 
 const log = console.log.bind(console);
 
