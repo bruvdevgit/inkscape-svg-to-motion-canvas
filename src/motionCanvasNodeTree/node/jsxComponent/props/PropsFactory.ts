@@ -5,13 +5,13 @@ import {
   Props as JSXComponentProps,
 } from "./Props";
 
-export interface JSXComponentPropsFactory {
+export interface PropsFactory {
   init(
     fields: JSXComponentPropField[]): JSXComponentProps;
 }
 
-export class _JSXComponentPropsFactory
-  implements JSXComponentPropsFactory {
+export class _PropsFactory
+  implements PropsFactory {
 
   constructor(public deps: {
     initJSXComponentProps: InitJSXComponentPropsFn,
@@ -22,9 +22,9 @@ export class _JSXComponentPropsFactory
   }
 }
 
-export type InitJSXComponentPropsFactoryFn = () => JSXComponentPropsFactory;
+export type InitJSXComponentPropsFactoryFn = () => PropsFactory;
 
 export const initJSXComponentPropsFactoryFn: InitJSXComponentPropsFactoryFn =
-  () => new _JSXComponentPropsFactory({
+  () => new _PropsFactory({
     initJSXComponentProps: initJSXComponentPropsFn
   });

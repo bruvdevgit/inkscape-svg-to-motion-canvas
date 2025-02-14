@@ -1,5 +1,5 @@
 import t from 'tap';
-import { _JSXComponentPropsFactory } from './PropsFactory';
+import { _PropsFactory } from './PropsFactory';
 import { _Props, InitPropsFn, PropField } from './Props';
 import Substitute from '@fluffy-spoon/substitute';
 
@@ -9,7 +9,7 @@ t.test('constructor correctly constructs a Props instance', t => {
   }
   const initJSXComponentProps = Substitute.for<InitPropsFnJacket>();
 
-  const factory = new _JSXComponentPropsFactory({
+  const factory = new _PropsFactory({
     initJSXComponentProps: initJSXComponentProps.fn,
   });
 
