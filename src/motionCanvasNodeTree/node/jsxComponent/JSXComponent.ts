@@ -27,7 +27,9 @@ export class _JSXComponent implements JSXComponent {
     str += this.props.toStringLines(indentStr).join('\n');
 
     str += '\n>';
-    str += this.children.map(child => child.toString()).join('\n');
+    if (this.children.length > 0)
+      str += '\n';
+    str += this.children.map(child => child.toFileContentString()).join('\n');
     str += `\n</${this.name}>`;
     return str;
   }
