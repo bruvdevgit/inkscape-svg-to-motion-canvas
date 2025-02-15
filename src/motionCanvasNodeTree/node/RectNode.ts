@@ -4,7 +4,7 @@ import { PropsFactory as JSXComponentPropsFactory } from "./jsxComponent/props/P
 import { Node as MotionCanvasNode } from "./Node";
 import { PropField as JSXComponentPropField } from "./jsxComponent/props/Props";
 
-export interface RectNodeProps {
+export interface RectNodeFields {
   //ref={greenFillAndStrokeRectXLongSharpCorners}
   refName: string;
 
@@ -18,7 +18,7 @@ export interface RectNodeProps {
 }
 
 export interface RectNode
-  extends MotionCanvasNode, RectNodeProps {
+  extends MotionCanvasNode, RectNodeFields {
   children: MotionCanvasNode[];
 }
 
@@ -39,7 +39,7 @@ export class _RectNode implements RectNode {
       jsxComponentFactory: JSXComponentFactory,
       jsxComponentPropsFactory: JSXComponentPropsFactory,
     },
-    init: RectNodeProps,
+    init: RectNodeFields,
     public children: MotionCanvasNode[]) {
     Object.assign(this, init);
   }
@@ -93,7 +93,7 @@ export function initNode(
     jsxComponentFactory: JSXComponentFactory,
     jsxComponentPropsFactory: JSXComponentPropsFactory,
   },
-  init: RectNodeProps,
+  init: RectNodeFields,
   children: MotionCanvasNode[],
 ): RectNode {
   return new _RectNode(deps, init, children);

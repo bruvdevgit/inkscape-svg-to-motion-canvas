@@ -1,6 +1,6 @@
 import t from 'tap';
 import Substitute from '@fluffy-spoon/substitute';
-import { RectNode, RectNodeProps, _RectNode } from './RectNode';
+import { RectNode, RectNodeFields, _RectNode } from './RectNode';
 import { JSXComponentFactory } from './jsxComponent/JSXComponentFactory';
 import { PropsFactory as JSXComponentPropsFactory } from './jsxComponent/props/PropsFactory';
 import { JSXComponent } from './jsxComponent/JSXComponent';
@@ -83,7 +83,7 @@ t.test('toJSXComponent correctly builds JSXComponent with no children', t => {
       stroke: '#1300ff',
       lineWidth: 0.942981,
       radius: 22.310024,
-    } as RectNodeProps,
+    } as RectNodeFields,
     [] as RectNode[]
   );
 
