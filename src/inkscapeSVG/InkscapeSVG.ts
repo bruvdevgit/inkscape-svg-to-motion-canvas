@@ -8,14 +8,14 @@ export interface ViewBox {
   width: number;
 }
 
-export interface InkscapeSVGProps {
+export interface InkscapeSVGFields {
   elements: InkscapeSVGElement[];
   width: number;
   height: number;
   viewBox: ViewBox;
 }
 
-export interface InkscapeSVG extends InkscapeSVGProps {
+export interface InkscapeSVG extends InkscapeSVGFields {
 }
 
 export class _InkscapeSVG implements InkscapeSVG {
@@ -29,15 +29,15 @@ export class _InkscapeSVG implements InkscapeSVG {
     height: 0, width: 0,
   };
 
-  constructor(init: InkscapeSVGProps) {
+  constructor(init: InkscapeSVGFields) {
     Object.assign(this, init);
   }
 }
 
-export type InitInkscapeSVGFn = (init: InkscapeSVGProps) => InkscapeSVG;
+export type InitInkscapeSVGFn = (init: InkscapeSVGFields) => InkscapeSVG;
 
 export const initInkscapeSVG: InitInkscapeSVGFn
-  = (init: InkscapeSVGProps) => new _InkscapeSVG(init);
+  = (init: InkscapeSVGFields) => new _InkscapeSVG(init);
 
 /* c8 ignore start */
 export function parseToInkscapeSVG(

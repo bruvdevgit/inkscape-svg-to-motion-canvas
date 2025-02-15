@@ -1,6 +1,6 @@
 import { INode } from "svgson";
 import { _RectElement } from "./element/rectElement/RectElement";
-import { InkscapeSVG, InkscapeSVGProps, ViewBox } from "./InkscapeSVG";
+import { InkscapeSVG, InkscapeSVGFields, ViewBox } from "./InkscapeSVG";
 
 export const rectSVGString = `
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -585,7 +585,7 @@ export const rectSVGSvgson: INode = {
   ]
 };
 
-export const rectInkscapeSVG: InkscapeSVGProps = {
+export const rectInkscapeSVG: InkscapeSVGFields = {
   width: 1920,
   height: 1080,
   viewBox: {

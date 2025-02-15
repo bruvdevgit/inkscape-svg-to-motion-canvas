@@ -2,7 +2,7 @@ import t from 'tap'
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
 import { rectSVGString, rectSVGSvgson, rectInkscapeSVG } from './testData';
 import { SvgsonWrapper } from '../wrappers/SvgsonWrapper';
-import { InitInkscapeSVGFn, InkscapeSVGProps } from './InkscapeSVG';
+import { InitInkscapeSVGFn, InkscapeSVGFields } from './InkscapeSVG';
 import { InkscapeSVGAttributesSchema } from './InkscapeSVGAttributesSchema';
 import { ElementParserFactory } from './element/ElementParserFactory';
 import { _InkscapeSVGParser } from './InkscapeSVGParser';
@@ -61,7 +61,7 @@ t.test('parse correctly parses', t => {
       height: rectInkscapeSVG.height,
       width: rectInkscapeSVG.width,
       viewBox: rectInkscapeSVG.viewBox,
-    } as InkscapeSVGProps)
+    } as InkscapeSVGFields)
     .returns(rectInkscapeSVG);
 
   let found = inkscapeSVGParser.parse(rectSVGString);
