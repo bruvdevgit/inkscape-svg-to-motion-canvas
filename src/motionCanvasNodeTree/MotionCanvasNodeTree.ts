@@ -1,11 +1,7 @@
 import { Node as MotionCanvasNode } from "./node/Node";
 
-export interface MotionCanvasNodeTreeProps {
+export interface MotionCanvasNodeTree {
   toFileContentString(): string;
-}
-
-export interface MotionCanvasNodeTree
-  extends MotionCanvasNodeTreeProps {
 }
 
 export class _MotionCanvasNodeTree implements MotionCanvasNodeTree {
