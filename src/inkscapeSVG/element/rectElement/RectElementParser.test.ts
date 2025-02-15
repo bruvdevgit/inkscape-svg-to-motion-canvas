@@ -3,7 +3,7 @@ import { _RectElementParser } from './RectElementParser';
 import { Substitute } from '@fluffy-spoon/substitute';
 import { RectElementAttributesSchema } from './RectElementAttributesSchema';
 import { StyleAttributeParser } from '../../styleAttribute/StyleAttributeParser';
-import { InitRectElementFn, RectElement, RectElementProps } from './RectElement';
+import { InitRectElementFn, RectElement, RectElementFields } from './RectElement';
 import { rects } from './testData';
 
 t.test('parse correctly parses', t => {
@@ -25,7 +25,7 @@ t.test('parse correctly parses', t => {
     const initRectElementFnJacket = Substitute.for<InitRectElementFnJacket>();
     initRectElementFnJacket
       .fn(rects[i].props)
-      .returns(rects[i].props as RectElementProps);
+      .returns(rects[i].props as RectElementFields);
 
     const svgElementStyleAttributeParser = Substitute.for<StyleAttributeParser>();
     svgElementStyleAttributeParser

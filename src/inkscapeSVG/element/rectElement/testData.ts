@@ -1,13 +1,13 @@
 import { INode } from "svgson";
 import { RectElementAttributes } from "./RectElementAttributesSchema";
 import { StyleAttributes } from "../../styleAttribute/StyleAttributeParser";
-import { RectElementProps } from "./RectElement";
+import { RectElementFields } from "./RectElement";
 
 export const rects: {
   svgsonNode: INode,
   attributes: RectElementAttributes,
   styleAttributes: StyleAttributes,
-  props: RectElementProps,
+  props: RectElementFields,
 }[] = [
     {
       svgsonNode: {

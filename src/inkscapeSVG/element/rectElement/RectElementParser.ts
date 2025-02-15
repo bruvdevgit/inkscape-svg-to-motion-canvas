@@ -1,6 +1,6 @@
 import { INode } from "svgson";
 import { RectElementAttributesSchema } from "./RectElementAttributesSchema";
-import { initRectElement, InitRectElementFn, RectElement, RectElementProps } from "./RectElement";
+import { initRectElement, InitRectElementFn, RectElement, RectElementFields } from "./RectElement";
 import { ElementParser } from "../ElementParser";
 import { initRectElementAttributesSchema } from "./RectElementAttributesSchema";
 import { InitElementParserFn } from "../ElementParser";
@@ -40,7 +40,7 @@ export class _RectElementParser implements ElementParser {
       paintOrder,
     } = this.deps.svgElementStyleAttributeParser.parse(style);
 
-    let props: RectElementProps = {
+    let props: RectElementFields = {
       id,
       label,
       x: +x,

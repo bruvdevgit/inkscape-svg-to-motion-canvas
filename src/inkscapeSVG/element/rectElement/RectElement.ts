@@ -1,6 +1,6 @@
 import { StyleAttributes } from "../../styleAttribute/StyleAttributeParser";
 
-export interface RectElementProps extends StyleAttributes {
+export interface RectElementFields extends StyleAttributes {
   label: string;
   id: string;
   x: number;
@@ -12,7 +12,7 @@ export interface RectElementProps extends StyleAttributes {
 }
 
 export interface RectElement
-  extends RectElementProps {
+  extends RectElementFields {
 
   // toMotionCanvasComponent(): 
 }
@@ -39,13 +39,13 @@ export class _RectElement implements RectElement {
   strokeOpacity?: number = 0;
   paintOrder: string = '';
 
-  constructor(init: RectElementProps) {
+  constructor(init: RectElementFields) {
     Object.assign(this, init);
   }
 
 }
 
-export type InitRectElementFn = (init: RectElementProps) => RectElement;
+export type InitRectElementFn = (init: RectElementFields) => RectElement;
 
 export const initRectElement: InitRectElementFn
-  = (init: RectElementProps) => new _RectElement(init);
+  = (init: RectElementFields) => new _RectElement(init);
