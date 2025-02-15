@@ -46,6 +46,7 @@ export class _RectNode implements RectNode {
 
   toJSXComponent(): JSXComponent {
     return this.deps.jsxComponentFactory.init({
+      commentLabel: this.refName,
       name: "Rect",
       props: this.deps.jsxComponentPropsFactory.init([
         {

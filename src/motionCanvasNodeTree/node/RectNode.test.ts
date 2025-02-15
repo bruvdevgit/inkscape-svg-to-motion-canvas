@@ -55,6 +55,7 @@ t.test('toJSXComponent correctly builds JSXComponent with no children', t => {
     .returns({ ...resultJSXComponentProps });
 
   const resultJSXComponent = {
+    commentLabel: 'brownFillAndStrokeRectSquareCircular',
     name: "Rect",
     props: resultJSXComponentProps,
     children: [],
@@ -63,6 +64,7 @@ t.test('toJSXComponent correctly builds JSXComponent with no children', t => {
 
   jsxComponentFactory
     .init({
+      commentLabel: 'brownFillAndStrokeRectSquareCircular',
       name: "Rect",
       props: { ...resultJSXComponentProps },
       children: [],
@@ -100,6 +102,7 @@ t.test('toJSXComponent correctly builds JSXComponent with no children', t => {
   jsxComponentFactory
     .received()
     .init({
+      commentLabel: 'brownFillAndStrokeRectSquareCircular',
       name: "Rect",
       props: { ...resultJSXComponentProps },
       children: [],

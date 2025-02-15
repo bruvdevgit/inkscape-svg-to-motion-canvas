@@ -1,6 +1,7 @@
 import { Props as JSXComponentProps } from "./props/Props";
 
 export interface JSXComponentFields {
+  commentLabel?: string;
   name: string;
   props: JSXComponentProps;
   children: JSXComponent[];
@@ -11,18 +12,23 @@ export interface JSXComponent extends JSXComponentFields {
 }
 
 export class _JSXComponent implements JSXComponent {
+  commentLabel?: string;
   props: JSXComponentProps;
   name: string;
   children: JSXComponent[];
 
-  constructor(public fields: JSXComponentFields) {
+  constructor(fields: JSXComponentFields) {
+    this.commentLabel = fields.commentLabel;
     this.props = fields.props;
     this.name = fields.name;
     this.children = fields.children;
   }
 
   toFileContentString(): string {
-    let str = `<${this.name}\n`;
+    let str = this.commentLabel != undefined
+      ? `{/* ${this.commentLabel} */}\n` : '';
+
+    str += `<${this.name}\n`;
     const indentStr = '\t';
     str += this.props.toStringLines(indentStr).join('\n');
 
