@@ -1,8 +1,8 @@
 import { JSXComponent, JSXComponentFields } from "./jsxComponent/JSXComponent";
 import { initJSXComponentFactoryFn, JSXComponentFactory } from "./jsxComponent/JSXComponentFactory";
-import { initJSXComponentPropsFactoryFn, PropsFactory as JSXComponentPropsFactory } from "./jsxComponent/props/PropsFactory";
+import { initJSXComponentPropFactoryFn, PropFactory as JSXComponentPropFactory } from "./jsxComponent/prop/PropFactory";
 import { Node as MotionCanvasNode } from "./Node";
-import { PropField as JSXComponentPropField } from "./jsxComponent/props/Props";
+import { PropField as JSXComponentPropField } from "./jsxComponent/prop/Prop";
 
 export interface RectNodeFields {
   //ref={greenFillAndStrokeRectXLongSharpCorners}
@@ -37,7 +37,7 @@ export class _RectNode implements RectNode {
   constructor(
     public deps: {
       jsxComponentFactory: JSXComponentFactory,
-      jsxComponentPropsFactory: JSXComponentPropsFactory,
+      jsxComponentPropFactory: JSXComponentPropFactory,
     },
     init: RectNodeFields,
     public children: MotionCanvasNode[]) {
@@ -48,43 +48,44 @@ export class _RectNode implements RectNode {
     return this.deps.jsxComponentFactory.init({
       commentLabel: this.refName,
       name: "Rect",
-      props: this.deps.jsxComponentPropsFactory.init([
-        {
+      props: [
+        this.deps.jsxComponentPropFactory.init({
           key: 'ref',
           value: this.refName,
           removeQuotesFromValue: true,
-        } as JSXComponentPropField,
-        {
+          turnValueToCamelCase: true,
+        } as JSXComponentPropField),
+        this.deps.jsxComponentPropFactory.init({
           key: 'width',
           value: this.width,
-        } as JSXComponentPropField,
-        {
+        } as JSXComponentPropField),
+        this.deps.jsxComponentPropFactory.init({
           key: 'height',
           value: this.height,
-        } as JSXComponentPropField,
-        {
+        } as JSXComponentPropField),
+        this.deps.jsxComponentPropFactory.init({
           key: 'topLeft',
           value: [...this.topLeft],
-        } as JSXComponentPropField,
-        {
+        } as JSXComponentPropField),
+        this.deps.jsxComponentPropFactory.init({
           key: 'fill',
           value: this.fill,
-        } as JSXComponentPropField,
-        {
+        } as JSXComponentPropField),
+        this.deps.jsxComponentPropFactory.init({
           key: 'stroke',
           value: this.stroke,
-        } as JSXComponentPropField,
-        {
+        } as JSXComponentPropField),
+        this.deps.jsxComponentPropFactory.init({
           key: 'lineWidth',
           value: this.lineWidth,
-        } as JSXComponentPropField,
+        } as JSXComponentPropField),
         ...(this.radius != undefined ?
-          [{
+          [this.deps.jsxComponentPropFactory.init({
             key: 'radius',
             value: this.radius,
-          } as JSXComponentPropField] : [])
+          } as JSXComponentPropField)] : [])
       ]
-      ),
+      ,
       children: this.children.map(child => child.toJSXComponent()),
     } as JSXComponentFields);
   }
@@ -100,5 +101,5 @@ export const initRectNode: InitRectNode = (
   children: MotionCanvasNode[],
 ) => new _RectNode({
   jsxComponentFactory: initJSXComponentFactoryFn(),
-  jsxComponentPropsFactory: initJSXComponentPropsFactoryFn(),
+  jsxComponentPropFactory: initJSXComponentPropFactoryFn(),
 }, init, children);

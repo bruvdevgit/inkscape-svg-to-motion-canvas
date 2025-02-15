@@ -1,9 +1,9 @@
-import { Props as JSXComponentProps } from "./props/Props";
+import { Prop as JSXComponentProp } from "./prop/Prop";
 
 export interface JSXComponentFields {
   commentLabel?: string;
   name: string;
-  props: JSXComponentProps;
+  props: JSXComponentProp[];
   children: JSXComponent[];
 }
 
@@ -13,7 +13,7 @@ export interface JSXComponent extends JSXComponentFields {
 
 export class _JSXComponent implements JSXComponent {
   commentLabel?: string;
-  props: JSXComponentProps;
+  props: JSXComponentProp[];
   name: string;
   children: JSXComponent[];
 
@@ -30,7 +30,7 @@ export class _JSXComponent implements JSXComponent {
 
     str += `<${this.name}\n`;
     const indentStr = '\t';
-    str += this.props.toStringLines(indentStr).join('\n');
+    str += this.props.map(prop => prop.toStringLine(indentStr)).join('\n');
 
     str += '\n>';
     if (this.children.length > 0)

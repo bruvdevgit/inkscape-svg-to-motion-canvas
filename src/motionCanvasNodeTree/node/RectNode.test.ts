@@ -1,72 +1,99 @@
 import t from 'tap';
-import Substitute from '@fluffy-spoon/substitute';
+import Substitute, { SubstituteOf } from '@fluffy-spoon/substitute';
 import { RectNode, RectNodeFields, _RectNode } from './RectNode';
 import { JSXComponentFactory } from './jsxComponent/JSXComponentFactory';
-import { PropsFactory as JSXComponentPropsFactory } from './jsxComponent/props/PropsFactory';
+import { PropFactory as JSXComponentPropFactory } from './jsxComponent/prop/PropFactory';
 import { JSXComponent } from './jsxComponent/JSXComponent';
-import { Props as JSXComponentProps } from './jsxComponent/props/Props';
-import { PropField as JSXComponentPropField } from './jsxComponent/props/Props';
+import { Prop as JSXComponentProp } from './jsxComponent/prop/Prop';
+import { PropField as JSXComponentPropField } from './jsxComponent/prop/Prop';
 
 t.test('toJSXComponent correctly builds JSXComponent with no children', t => {
   const jsxComponentFactory = Substitute.for<JSXComponentFactory>();
-  const jsxComponentPropsFactory = Substitute.for<JSXComponentPropsFactory>();
+  const jsxComponentPropFactory = Substitute.for<JSXComponentPropFactory>();
 
-  const resultJSXComponentProps
-    = Substitute.for<JSXComponentProps>();
+  const items: {
+    field: JSXComponentPropField,
+    prop: SubstituteOf<JSXComponentProp>
+  }[] = [
+      {
+        field: {
+          key: 'ref',
+          value: 'brown-fill-and-stroke-rect-square-circular',
+          removeQuotesFromValue: true,
+          turnValueToCamelCase: true,
+        } as JSXComponentPropField,
+        prop: Substitute.for<JSXComponentProp>(),
+      },
+      {
+        field: {
+          key: 'width',
+          value: 44.620049,
+        } as JSXComponentPropField,
+        prop: Substitute.for<JSXComponentProp>(),
+      },
+      {
+        field: {
+          key: 'height',
+          value: 44.620049,
+        } as JSXComponentPropField,
+        prop: Substitute.for<JSXComponentProp>(),
+      },
+      {
+        field: {
+          key: 'topLeft',
+          value: [7.3198218, 218.05432],
+        } as JSXComponentPropField,
+        prop: Substitute.for<JSXComponentProp>(),
+      },
+      {
+        field: {
+          key: 'fill',
+          value: '#c87137',
+        } as JSXComponentPropField,
+        prop: Substitute.for<JSXComponentProp>(),
+      },
+      {
+        field: {
+          key: 'stroke',
+          value: '#1300ff',
+        } as JSXComponentPropField,
+        prop: Substitute.for<JSXComponentProp>(),
+      },
+      {
+        field: {
+          key: 'lineWidth',
+          value: 0.942981,
+        } as JSXComponentPropField,
+        prop: Substitute.for<JSXComponentProp>(),
+      },
+      {
+        field: {
+          key: 'radius',
+          value: 22.310024,
+        } as JSXComponentPropField,
+        prop: Substitute.for<JSXComponentProp>(),
+      },
+    ];
 
-  const jsxComponentPropsFactoryInitArg: JSXComponentPropField[] = [
-    {
-      key: 'ref',
-      value: 'brownFillAndStrokeRectSquareCircular',
-      removeQuotesFromValue: true,
-    } as JSXComponentPropField,
-    {
-      key: 'width',
-      value: 44.620049,
-    } as JSXComponentPropField,
-    {
-      key: 'height',
-      value: 44.620049,
-    } as JSXComponentPropField,
-    {
-      key: 'topLeft',
-      value: [7.3198218, 218.05432],
-    } as JSXComponentPropField,
-    {
-      key: 'fill',
-      value: '#c87137',
-    } as JSXComponentPropField,
-    {
-      key: 'stroke',
-      value: '#1300ff',
-    } as JSXComponentPropField,
-    {
-      key: 'lineWidth',
-      value: 0.942981,
-    } as JSXComponentPropField,
-    {
-      key: 'radius',
-      value: 22.310024,
-    } as JSXComponentPropField,
-  ];
-
-  jsxComponentPropsFactory
-    .init(jsxComponentPropsFactoryInitArg)
-    .returns({ ...resultJSXComponentProps });
+  for (let i = 0; i < items.length; i++) {
+    jsxComponentPropFactory
+      .init({ ...items[i].field })
+      .returns({ ...items[i].prop });
+  };
 
   const resultJSXComponent = {
-    commentLabel: 'brownFillAndStrokeRectSquareCircular',
+    commentLabel: 'brown-fill-and-stroke-rect-square-circular',
     name: "Rect",
-    props: resultJSXComponentProps,
+    props: items.map(item => item.prop),
     children: [],
     toFileContentString: () => 'return',
   } as JSXComponent;
 
   jsxComponentFactory
     .init({
-      commentLabel: 'brownFillAndStrokeRectSquareCircular',
+      commentLabel: 'brown-fill-and-stroke-rect-square-circular',
       name: "Rect",
-      props: { ...resultJSXComponentProps },
+      props: [...items.map(item => ({ ...item.prop }))],
       children: [],
     })
     .returns({ ...resultJSXComponent });
@@ -74,10 +101,10 @@ t.test('toJSXComponent correctly builds JSXComponent with no children', t => {
   const rectNode = new _RectNode(
     {
       jsxComponentFactory,
-      jsxComponentPropsFactory,
+      jsxComponentPropFactory,
     },
     {
-      refName: 'brownFillAndStrokeRectSquareCircular',
+      refName: 'brown-fill-and-stroke-rect-square-circular',
       width: 44.620049,
       height: 44.620049,
       topLeft: [7.3198218, 218.05432],
@@ -89,24 +116,25 @@ t.test('toJSXComponent correctly builds JSXComponent with no children', t => {
     [] as RectNode[]
   );
 
-
-
   const found = rectNode.toJSXComponent();
   const wanted = { ...resultJSXComponent };
 
   // start test internal calls
-  jsxComponentPropsFactory
-    .received()
-    .init([...jsxComponentPropsFactoryInitArg]);
+  for (let i = 0; i < items.length; i++) {
+    jsxComponentPropFactory
+      .received()
+      .init({ ...items[i].field });
+  };
 
   jsxComponentFactory
     .received()
     .init({
-      commentLabel: 'brownFillAndStrokeRectSquareCircular',
+      commentLabel: 'brown-fill-and-stroke-rect-square-circular',
       name: "Rect",
-      props: { ...resultJSXComponentProps },
+      props: [...items.map(item => ({ ...item.prop }))],
       children: [],
     });
+
   // end test internal calls
 
   t.same(found, wanted);
