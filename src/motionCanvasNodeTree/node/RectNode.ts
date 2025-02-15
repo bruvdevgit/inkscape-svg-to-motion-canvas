@@ -1,6 +1,6 @@
 import { JSXComponent, JSXComponentFields } from "./jsxComponent/JSXComponent";
-import { JSXComponentFactory } from "./jsxComponent/JSXComponentFactory";
-import { PropsFactory as JSXComponentPropsFactory } from "./jsxComponent/props/PropsFactory";
+import { initJSXComponentFactoryFn, JSXComponentFactory } from "./jsxComponent/JSXComponentFactory";
+import { initJSXComponentPropsFactoryFn, PropsFactory as JSXComponentPropsFactory } from "./jsxComponent/props/PropsFactory";
 import { Node as MotionCanvasNode } from "./Node";
 import { PropField as JSXComponentPropField } from "./jsxComponent/props/Props";
 
@@ -14,7 +14,7 @@ export interface RectNodeFields {
   fill: string;
   stroke: string;
   lineWidth: number;
-  radius: number;
+  radius?: number;
 }
 
 export interface RectNode
@@ -32,7 +32,7 @@ export class _RectNode implements RectNode {
   fill: string = '';
   stroke: string = '';
   lineWidth: number = 0;
-  radius: number = 0;
+  radius?: number;
 
   constructor(
     public deps: {
@@ -77,10 +77,11 @@ export class _RectNode implements RectNode {
           key: 'lineWidth',
           value: this.lineWidth,
         } as JSXComponentPropField,
-        {
-          key: 'radius',
-          value: this.radius,
-        } as JSXComponentPropField,
+        ...(this.radius != undefined ?
+          [{
+            key: 'radius',
+            value: this.radius,
+          } as JSXComponentPropField] : [])
       ]
       ),
       children: this.children.map(child => child.toJSXComponent()),
@@ -88,13 +89,15 @@ export class _RectNode implements RectNode {
   }
 }
 
-export function initNode(
-  deps: {
-    jsxComponentFactory: JSXComponentFactory,
-    jsxComponentPropsFactory: JSXComponentPropsFactory,
-  },
+export type InitRectNode = (
   init: RectNodeFields,
   children: MotionCanvasNode[],
-): RectNode {
-  return new _RectNode(deps, init, children);
-}
+) => RectNode;
+
+export const initRectNode: InitRectNode = (
+  init: RectNodeFields,
+  children: MotionCanvasNode[],
+) => new _RectNode({
+  jsxComponentFactory: initJSXComponentFactoryFn(),
+  jsxComponentPropsFactory: initJSXComponentPropsFactoryFn(),
+}, init, children);

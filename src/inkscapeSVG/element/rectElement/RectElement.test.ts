@@ -1,11 +1,20 @@
 import t from 'tap';
+import Substitute from '@fluffy-spoon/substitute';
 import { _RectElement } from './RectElement';
 import { rects } from './testData';
+import { InitRectNode } from '../../../motionCanvasNodeTree/node/RectNode';
 
 t.test('constructor correctly assigns props to same-name fields', t => {
   for (let i = 0; i < rects.length; i++) {
 
-    const rectElement = new _RectElement(rects[i].props);
+    interface InitRectNodeJacket {
+      fn: InitRectNode
+    }
+    const initMotionCanvasRectNodeFnJacket = Substitute.for<InitRectNodeJacket>();
+
+    const rectElement = new _RectElement({
+      initMotionCanvasRectNodeFn: initMotionCanvasRectNodeFnJacket.fn,
+    }, rects[i].props);
 
     // all the fields found on `rects[i].props`
     // are also found on `rectElement`
@@ -18,3 +27,8 @@ t.test('constructor correctly assigns props to same-name fields', t => {
   t.end();
 });
 
+t.test('toMotionCanvasComponentNode correctly translates to MotionCanvasComponentNode', t => {
+  // TODO
+  t.pass();
+  t.end();
+});

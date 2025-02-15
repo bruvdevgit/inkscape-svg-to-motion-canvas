@@ -1,3 +1,5 @@
+import { Node as MotionCanvasNode } from "../../../motionCanvasNodeTree/node/Node";
+import { initRectNode, InitRectNode, RectNodeFields } from "../../../motionCanvasNodeTree/node/RectNode";
 import { StyleAttributes } from "../../styleAttribute/StyleAttributeParser";
 
 export interface RectElementFields extends StyleAttributes {
@@ -14,7 +16,7 @@ export interface RectElementFields extends StyleAttributes {
 export interface RectElement
   extends RectElementFields {
 
-  // toMotionCanvasComponent(): 
+  toMotionCanvasComponentNode(children: MotionCanvasNode[]): MotionCanvasNode;
 }
 
 export class _RectElement implements RectElement {
@@ -39,8 +41,25 @@ export class _RectElement implements RectElement {
   strokeOpacity?: number = 0;
   paintOrder: string = '';
 
-  constructor(init: RectElementFields) {
+  constructor(public deps: {
+    initMotionCanvasRectNodeFn: InitRectNode,
+  }, init: RectElementFields) {
     Object.assign(this, init);
+  }
+
+  toMotionCanvasComponentNode(children: MotionCanvasNode[]): MotionCanvasNode {
+    return this.deps.initMotionCanvasRectNodeFn({
+      refName: this.label,
+      width: this.width,
+      height: this.height,
+      topLeft: [this.x, this.y],
+      fill: this.fill,
+      stroke: this.stroke,
+      lineWidth: this.strokeWidth,
+      ...(this.ry != undefined || this.rx != undefined
+        ? { radius: this.ry ?? this.rx }
+        : {})
+    } as RectNodeFields, children);
   }
 
 }
@@ -48,4 +67,6 @@ export class _RectElement implements RectElement {
 export type InitRectElementFn = (init: RectElementFields) => RectElement;
 
 export const initRectElement: InitRectElementFn
-  = (init: RectElementFields) => new _RectElement(init);
+  = (init: RectElementFields) => new _RectElement({
+    initMotionCanvasRectNodeFn: initRectNode
+  }, init);
