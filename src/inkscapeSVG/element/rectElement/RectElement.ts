@@ -1,6 +1,7 @@
 import { Node as MotionCanvasNode } from "../../../motionCanvasNodeTree/node/Node";
 import { initRectNode, InitRectNode, RectNodeFields } from "../../../motionCanvasNodeTree/node/RectNode";
 import { StyleAttributes } from "../../styleAttribute/StyleAttributeParser";
+import { Element } from "../Element";
 
 export interface RectElementFields extends StyleAttributes {
   label: string;
@@ -14,9 +15,7 @@ export interface RectElementFields extends StyleAttributes {
 }
 
 export interface RectElement
-  extends RectElementFields {
-
-  toMotionCanvasComponentNode(children: MotionCanvasNode[]): MotionCanvasNode;
+  extends Element, RectElementFields {
 }
 
 export class _RectElement implements RectElement {
@@ -47,7 +46,7 @@ export class _RectElement implements RectElement {
     Object.assign(this, init);
   }
 
-  toMotionCanvasComponentNode(children: MotionCanvasNode[]): MotionCanvasNode {
+  toMotionCanvasNode(children: MotionCanvasNode[]): MotionCanvasNode {
     return this.deps.initMotionCanvasRectNodeFn({
       refName: this.label,
       width: this.width,
