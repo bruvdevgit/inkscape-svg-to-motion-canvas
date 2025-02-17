@@ -6,10 +6,12 @@ import { PropFactory as JSXComponentPropFactory } from './jsxComponent/prop/Prop
 import { JSXComponent } from './jsxComponent/JSXComponent';
 import { Prop as JSXComponentProp } from './jsxComponent/prop/Prop';
 import { PropField as JSXComponentPropField } from './jsxComponent/prop/Prop';
+import { CamelCaseWrapper } from '../../wrappers/CamelCaseWrapper';
 
 t.test('toJSXComponent correctly builds JSXComponent with no children', t => {
   const jsxComponentFactory = Substitute.for<JSXComponentFactory>();
   const jsxComponentPropFactory = Substitute.for<JSXComponentPropFactory>();
+  const camelCaseWrapper = Substitute.for<CamelCaseWrapper>();
 
   const items: {
     field: JSXComponentPropField,
@@ -87,6 +89,7 @@ t.test('toJSXComponent correctly builds JSXComponent with no children', t => {
     props: items.map(item => item.prop),
     children: [],
     toFileContentString: () => 'return',
+    getReferenceVariableName: () => 'return2',
   } as JSXComponent;
 
   jsxComponentFactory
@@ -100,6 +103,7 @@ t.test('toJSXComponent correctly builds JSXComponent with no children', t => {
 
   const rectNode = new _RectNode(
     {
+      camelCaseWrapper,
       jsxComponentFactory,
       jsxComponentPropFactory,
     },
@@ -141,3 +145,46 @@ t.test('toJSXComponent correctly builds JSXComponent with no children', t => {
   t.end();
 });
 
+t.test('getReferenceVariableName correctly gives the variable name', t => {
+  const jsxComponentFactory = Substitute.for<JSXComponentFactory>();
+  const jsxComponentPropFactory = Substitute.for<JSXComponentPropFactory>();
+  const camelCaseWrapper = Substitute.for<CamelCaseWrapper>();
+
+  camelCaseWrapper
+    .parse('brown-fill-and-stroke-rect-square-circular')
+    .returns('brownFillAndStrokeRectSquareCircular');
+
+  const rectNode = new _RectNode(
+    {
+      camelCaseWrapper,
+      jsxComponentFactory,
+      jsxComponentPropFactory,
+    },
+    {
+      refName: 'brown-fill-and-stroke-rect-square-circular',
+      width: 44.620049,
+      height: 44.620049,
+      topLeft: [7.3198218, 218.05432],
+      fill: '#c87137',
+      stroke: '#1300ff',
+      lineWidth: 0.942981,
+      radius: 22.310024,
+    } as RectNodeFields,
+    [] as RectNode[]
+  );
+
+  const found = rectNode.getReferenceVariableName();
+  const wanted = 'brownFillAndStrokeRectSquareCircular'
+
+
+  // start call tests
+
+  camelCaseWrapper
+    .received()
+    .parse('brown-fill-and-stroke-rect-square-circular');
+
+  // stop call tests
+
+  t.equal(found, wanted);
+  t.end();
+});

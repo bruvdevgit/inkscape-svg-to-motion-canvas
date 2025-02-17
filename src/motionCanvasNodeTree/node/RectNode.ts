@@ -1,13 +1,11 @@
 import { JSXComponent, JSXComponentFields } from "./jsxComponent/JSXComponent";
 import { initJSXComponentFactoryFn, JSXComponentFactory } from "./jsxComponent/JSXComponentFactory";
 import { initJSXComponentPropFactoryFn, PropFactory as JSXComponentPropFactory } from "./jsxComponent/prop/PropFactory";
-import { Node as MotionCanvasNode } from "./Node";
+import { Node as MotionCanvasNode, NodeFields } from "./Node";
 import { PropField as JSXComponentPropField } from "./jsxComponent/prop/Prop";
+import { CamelCaseWrapper, initCamelCaseWrapper } from "../../wrappers/CamelCaseWrapper";
 
-export interface RectNodeFields {
-  //ref={greenFillAndStrokeRectXLongSharpCorners}
-  refName: string;
-
+export interface RectNodeFields extends NodeFields {
   width: number;
   height: number;
   topLeft: [number, number];
@@ -36,6 +34,7 @@ export class _RectNode implements RectNode {
 
   constructor(
     public deps: {
+      camelCaseWrapper: CamelCaseWrapper,
       jsxComponentFactory: JSXComponentFactory,
       jsxComponentPropFactory: JSXComponentPropFactory,
     },
@@ -89,6 +88,10 @@ export class _RectNode implements RectNode {
       children: this.children.map(child => child.toJSXComponent()),
     } as JSXComponentFields);
   }
+
+  getReferenceVariableName(): string {
+    return this.deps.camelCaseWrapper.parse(this.refName);
+  }
 }
 
 export type InitRectNode = (
@@ -100,6 +103,7 @@ export const initRectNode: InitRectNode = (
   init: RectNodeFields,
   children: MotionCanvasNode[],
 ) => new _RectNode({
+  camelCaseWrapper: initCamelCaseWrapper(),
   jsxComponentFactory: initJSXComponentFactoryFn(),
   jsxComponentPropFactory: initJSXComponentPropFactoryFn(),
 }, init, children);

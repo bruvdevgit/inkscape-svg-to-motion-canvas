@@ -1,5 +1,9 @@
 import { JSXComponent } from "./jsxComponent/JSXComponent";
 
+export interface NodeFields {
+  refName: string;
+}
+
 // avoid using this because it causes annoying problems
 //export interface NodeProps {
 //}
@@ -10,4 +14,5 @@ import { JSXComponent } from "./jsxComponent/JSXComponent";
 
 export interface Node {
   toJSXComponent(): JSXComponent;
+  getReferenceVariableName(): string;
 }
