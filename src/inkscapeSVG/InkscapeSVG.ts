@@ -32,8 +32,7 @@ export class _InkscapeSVG implements InkscapeSVG {
   };
 
   constructor(
-    init: InkscapeSVGFields,
-    public children: Element[] = []) {
+    init: InkscapeSVGFields) {
     Object.assign(this, init);
   }
 
@@ -43,11 +42,11 @@ export class _InkscapeSVG implements InkscapeSVG {
 }
 
 export type InitInkscapeSVGFn = (
-  init: InkscapeSVGFields, children?: Element[]) => InkscapeSVG;
+  init: InkscapeSVGFields) => InkscapeSVG;
 
 export const initInkscapeSVG: InitInkscapeSVGFn
-  = (init: InkscapeSVGFields, children: Element[] = []) =>
-    new _InkscapeSVG(init, children);
+  = (init: InkscapeSVGFields) =>
+    new _InkscapeSVG(init);
 
 /* c8 ignore start */
 export function parseToInkscapeSVG(
