@@ -1,6 +1,6 @@
 import t from 'tap';
 import Substitute from '@fluffy-spoon/substitute';
-import { _MotionCanvasNodeTree } from './MotionCanvasNodeTree';
+import { _MotionCanvasNodeTree, MotionCanvasNodeTreeFields } from './MotionCanvasNodeTree';
 import { _RectNode } from './node/RectNode';
 import { Node as MotionCanvasNode } from './node/Node';
 import { JSXComponent } from './node/jsxComponent/JSXComponent';
@@ -34,8 +34,11 @@ t.test('toFileContentString correctly stringifies', t => {
     .toJSXComponent()
     .returns(jsxComponent3);
 
-  const motionCanvasNodeTree = new _MotionCanvasNodeTree(
-    [node1, node2, node3]);
+  const motionCanvasNodeTree = new _MotionCanvasNodeTree({
+    nodes: [node1, node2, node3],
+    canvasHeight: 1080,
+    canvasWidth: 1920,
+  } as MotionCanvasNodeTreeFields);
 
   const found = motionCanvasNodeTree.toFileContentString();
   const wanted = `<JSXComponenet1></JSXComponent1>
