@@ -1,4 +1,5 @@
-import { Element as InkscapeSVGElement } from "./element/Element";
+import { MotionCanvasNodeTree } from "../motionCanvasNodeTree/MotionCanvasNodeTree";
+import { Element, Element as InkscapeSVGElement } from "./element/Element";
 import { initInkscapeSVGParser } from "./InkscapeSVGParser";
 
 export interface ViewBox {
@@ -16,6 +17,7 @@ export interface InkscapeSVGFields {
 }
 
 export interface InkscapeSVG extends InkscapeSVGFields {
+  //toMotionCanvasNodeTree(): MotionCanvasNodeTree;
 }
 
 export class _InkscapeSVG implements InkscapeSVG {
@@ -29,19 +31,27 @@ export class _InkscapeSVG implements InkscapeSVG {
     height: 0, width: 0,
   };
 
-  constructor(init: InkscapeSVGFields) {
+  constructor(
+    init: InkscapeSVGFields,
+    public children: Element[] = []) {
     Object.assign(this, init);
   }
+
+  //toMotionCanvasNodeTree(): MotionCanvasNodeTree {
+  //  // TODO
+  //}
 }
 
-export type InitInkscapeSVGFn = (init: InkscapeSVGFields) => InkscapeSVG;
+export type InitInkscapeSVGFn = (
+  init: InkscapeSVGFields, children?: Element[]) => InkscapeSVG;
 
 export const initInkscapeSVG: InitInkscapeSVGFn
-  = (init: InkscapeSVGFields) => new _InkscapeSVG(init);
+  = (init: InkscapeSVGFields, children: Element[] = []) =>
+    new _InkscapeSVG(init, children);
 
 /* c8 ignore start */
 export function parseToInkscapeSVG(
-  svgStr: string): InkscapeSVG {
+  svgStr: string,): InkscapeSVG {
   const inkscapeSVGParser = initInkscapeSVGParser();
   return inkscapeSVGParser.parse(svgStr);
 }
