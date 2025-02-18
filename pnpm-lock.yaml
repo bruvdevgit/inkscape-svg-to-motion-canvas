@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      camelcase:
-        specifier: ^8.0.0
-        version: 8.0.0
       change-case:
         specifier: ^5.4.4
         version: 5.4.4
@@ -583,10 +580,6 @@ packages:
   cacache@18.0.4:
     resolution: {integrity: sha512-B+L5iIa9mgcjLbliir2th36yEwPftrzteHYujzsx3dFP/31GCHcIeS8f5MGd80odLOjaOvSpU3EEAmRQptkxLQ==}
     engines: {node: ^16.14.0 || >=18.0.0}
-
-  camelcase@8.0.0:
-    resolution: {integrity: sha512-8WB3Jcas3swSvjIeA2yvCJ+Miyz5l1ZmB6HFb9R1317dt9LCQoswg/BGrmAmkWVEszSrrg4RwmO46qIm2OEnSA==}
-    engines: {node: '>=16'}
 
   chalk@5.4.1:
     resolution: {integrity: sha512-zgVZuo2WcZgfUEmsn6eO3kINexW8RAE4maiQ8QNs8CtpPCSyMiYsULR3HQYkm3w8FIA3SberyMJMSldGsW+U3w==}
@@ -2208,8 +2201,6 @@ snapshots:
       ssri: 10.0.6
       tar: 6.2.1
       unique-filename: 3.0.0
-
-  camelcase@8.0.0: {}
 
   chalk@5.4.1: {}
 

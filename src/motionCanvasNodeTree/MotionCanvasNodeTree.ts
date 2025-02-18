@@ -63,9 +63,11 @@ export class _MotionCanvasNodeTree
 	}
 }
 
-export function initMotionCanvasNodeTree(
-	fields: MotionCanvasNodeTreeFields): MotionCanvasNodeTree {
-	return new _MotionCanvasNodeTree({
+export type InitMotionCanvasNodeTreeFn = (
+	fields: MotionCanvasNodeTreeFields) => MotionCanvasNodeTree;
+
+export const initMotionCanvasNodeTree = (
+	fields: MotionCanvasNodeTreeFields) =>
+	new _MotionCanvasNodeTree({
 		codeRenderer: initMotionCanvasCodeRenderer(),
 	}, fields);
-}
