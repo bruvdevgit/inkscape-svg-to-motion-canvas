@@ -1,6 +1,7 @@
-import { INode } from "svgson";
-import { _RectElement } from "./element/rectElement/RectElement";
-import { InkscapeSVG, InkscapeSVGFields, ViewBox } from "./InkscapeSVG";
+import Substitute from "@fluffy-spoon/substitute";
+import { InitRectNode, RectNode } from "../motionCanvasNodeTree/node/RectNode";
+import { _RectElement, RectElementFields } from "./element/rectElement/RectElement";
+import { InkscapeSVG, ViewBox } from "./InkscapeSVG";
 
 export const rectSVGString = `
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -208,7 +209,7 @@ export const rectSVGString = `
 </svg>
 `;
 
-export const rectSVGSvgson: INode = {
+export const rectSVGSvgson = {
   "name": "svg",
   "type": "element",
   "value": "",
@@ -585,7 +586,28 @@ export const rectSVGSvgson: INode = {
   ]
 };
 
-export const rectInkscapeSVG: InkscapeSVGFields = {
+export const producedMotionCanvasRectNodes = [
+  Substitute.for<RectNode>(),
+  Substitute.for<RectNode>(),
+  Substitute.for<RectNode>(),
+  Substitute.for<RectNode>(),
+  Substitute.for<RectNode>(),
+  Substitute.for<RectNode>(),
+  Substitute.for<RectNode>(),
+  Substitute.for<RectNode>(),
+  Substitute.for<RectNode>(),
+  Substitute.for<RectNode>(),
+  Substitute.for<RectNode>(),
+  Substitute.for<RectNode>(),
+  Substitute.for<RectNode>(),
+  Substitute.for<RectNode>(),
+  Substitute.for<RectNode>(),
+  Substitute.for<RectNode>(),
+  Substitute.for<RectNode>(),
+  Substitute.for<RectNode>(),
+];
+
+export const rectInkscapeSVG: InkscapeSVG = {
   width: 1920,
   height: 1080,
   viewBox: {
@@ -596,6 +618,8 @@ export const rectInkscapeSVG: InkscapeSVGFields = {
   } as ViewBox,
   elements: [
     new _RectElement({
+      initMotionCanvasRectNodeFn: ((_) => producedMotionCanvasRectNodes[0]) as InitRectNode,
+    }, {
       "id": "rect1",
       "width": 82.803673,
       "height": 25.728548,
@@ -612,8 +636,10 @@ export const rectInkscapeSVG: InkscapeSVGFields = {
       "strokeDasharray": "none",
       "strokeOpacity": 1,
       "paintOrder": "fill markers stroke"
-    }),
+    } as RectElementFields),
     new _RectElement({
+      initMotionCanvasRectNodeFn: ((_) => producedMotionCanvasRectNodes[1]) as InitRectNode,
+    }, {
       "id": "rect2",
       label: "red-fill-and-stroke-rect-square-sharp-corners",
       "width": 81.960045,
@@ -631,8 +657,10 @@ export const rectInkscapeSVG: InkscapeSVGFields = {
       "strokeDasharray": "none",
       "strokeOpacity": 1,
       "paintOrder": "fill markers stroke"
-    }),
+    } as RectElementFields),
     new _RectElement({
+      initMotionCanvasRectNodeFn: ((_) => producedMotionCanvasRectNodes[2]) as InitRectNode,
+    }, {
       "id": "rect3",
       "width": 44.620049,
       "height": 44.620049,
@@ -650,8 +678,10 @@ export const rectInkscapeSVG: InkscapeSVGFields = {
       "strokeDasharray": "none",
       "strokeOpacity": 1,
       "paintOrder": "fill markers stroke"
-    }),
+    } as RectElementFields),
     new _RectElement({
+      initMotionCanvasRectNodeFn: ((_) => producedMotionCanvasRectNodes[3]) as InitRectNode,
+    }, {
       "id": "rect4",
       "width": 44.620049,
       "height": 44.620049,
@@ -669,8 +699,10 @@ export const rectInkscapeSVG: InkscapeSVGFields = {
       "strokeDasharray": "none",
       "strokeOpacity": 1,
       "paintOrder": "fill markers stroke"
-    }),
+    } as RectElementFields),
     new _RectElement({
+      initMotionCanvasRectNodeFn: ((_) => producedMotionCanvasRectNodes[4]) as InitRectNode,
+    }, {
       "id": "rect5",
       "width": 84.983978,
       "height": 20.706318,
@@ -688,8 +720,10 @@ export const rectInkscapeSVG: InkscapeSVGFields = {
       "strokeDasharray": "none",
       "strokeOpacity": 1,
       "paintOrder": "fill markers stroke"
-    }),
+    } as RectElementFields),
     new _RectElement({
+      initMotionCanvasRectNodeFn: ((_) => producedMotionCanvasRectNodes[5]) as InitRectNode,
+    }, {
       "id": "rect6",
       "width": 33.072918,
       "height": 93.430992,
@@ -707,8 +741,10 @@ export const rectInkscapeSVG: InkscapeSVGFields = {
       "strokeDasharray": "none",
       "strokeOpacity": 1,
       "paintOrder": "fill markers stroke"
-    }),
+    } as RectElementFields),
     new _RectElement({
+      initMotionCanvasRectNodeFn: ((_) => producedMotionCanvasRectNodes[6]) as InitRectNode,
+    }, {
       "id": "rect7",
       "width": 85.706055,
       "height": 25.70767,
@@ -725,8 +761,10 @@ export const rectInkscapeSVG: InkscapeSVGFields = {
       "strokeDasharray": "none",
       "strokeOpacity": 1,
       "paintOrder": "fill markers stroke"
-    }),
+    } as RectElementFields),
     new _RectElement({
+      initMotionCanvasRectNodeFn: ((_) => producedMotionCanvasRectNodes[7]) as InitRectNode,
+    }, {
       "id": "rect8",
       "width": 56.121857,
       "height": 56.121857,
@@ -744,8 +782,10 @@ export const rectInkscapeSVG: InkscapeSVGFields = {
       "strokeDasharray": "none",
       "strokeOpacity": 1,
       "paintOrder": "fill markers stroke"
-    }),
+    } as RectElementFields),
     new _RectElement({
+      initMotionCanvasRectNodeFn: ((_) => producedMotionCanvasRectNodes[8]) as InitRectNode,
+    }, {
       "id": "rect9",
       "width": 31.228392,
       "height": 31.228392,
@@ -763,8 +803,10 @@ export const rectInkscapeSVG: InkscapeSVGFields = {
       "strokeDasharray": "none",
       "strokeOpacity": 1,
       "paintOrder": "fill markers stroke"
-    }),
+    } as RectElementFields),
     new _RectElement({
+      initMotionCanvasRectNodeFn: ((_) => producedMotionCanvasRectNodes[9]) as InitRectNode,
+    }, {
       "id": "rect10",
       "width": 26.646238,
       "height": 26.646238,
@@ -783,8 +825,10 @@ export const rectInkscapeSVG: InkscapeSVGFields = {
       "strokeDasharray": "none",
       "strokeOpacity": 1,
       "paintOrder": "fill markers stroke"
-    }),
+    } as RectElementFields),
     new _RectElement({
+      initMotionCanvasRectNodeFn: ((_) => producedMotionCanvasRectNodes[10]) as InitRectNode,
+    }, {
       "id": "rect11",
       "width": 83.472107,
       "height": 21.465435,
@@ -802,8 +846,10 @@ export const rectInkscapeSVG: InkscapeSVGFields = {
       "strokeDasharray": "none",
       "strokeOpacity": 1,
       "paintOrder": "fill markers stroke"
-    }),
+    } as RectElementFields),
     new _RectElement({
+      initMotionCanvasRectNodeFn: ((_) => producedMotionCanvasRectNodes[11]) as InitRectNode,
+    }, {
       "id": "rect12",
       "width": 17.821806,
       "height": 75.46225,
@@ -821,8 +867,10 @@ export const rectInkscapeSVG: InkscapeSVGFields = {
       "strokeDasharray": "none",
       "strokeOpacity": 1,
       "paintOrder": "fill markers stroke"
-    }),
+    } as RectElementFields),
     new _RectElement({
+      initMotionCanvasRectNodeFn: ((_) => producedMotionCanvasRectNodes[12]) as InitRectNode,
+    }, {
       "id": "rect18",
       "width": 82.803673,
       "height": 25.728548,
@@ -839,8 +887,10 @@ export const rectInkscapeSVG: InkscapeSVGFields = {
       "strokeDasharray": "none",
       "strokeOpacity": 1,
       "paintOrder": "fill markers stroke"
-    }),
+    } as RectElementFields),
     new _RectElement({
+      initMotionCanvasRectNodeFn: ((_) => producedMotionCanvasRectNodes[13]) as InitRectNode,
+    }, {
       "id": "rect19",
       "width": 81.960045,
       "height": 81.960045,
@@ -858,8 +908,10 @@ export const rectInkscapeSVG: InkscapeSVGFields = {
       "strokeDasharray": "none",
       "strokeOpacity": 1,
       "paintOrder": "fill markers stroke"
-    }),
+    } as RectElementFields),
     new _RectElement({
+      initMotionCanvasRectNodeFn: ((_) => producedMotionCanvasRectNodes[14]) as InitRectNode,
+    }, {
       "id": "rect20",
       "width": 44.620049,
       "height": 44.620049,
@@ -877,8 +929,10 @@ export const rectInkscapeSVG: InkscapeSVGFields = {
       "strokeDasharray": "none",
       "strokeOpacity": 1,
       "paintOrder": "fill markers stroke"
-    }),
+    } as RectElementFields),
     new _RectElement({
+      initMotionCanvasRectNodeFn: ((_) => producedMotionCanvasRectNodes[15]) as InitRectNode,
+    }, {
       "id": "rect21",
       "width": 44.620049,
       "height": 44.620049,
@@ -896,8 +950,10 @@ export const rectInkscapeSVG: InkscapeSVGFields = {
       "strokeDasharray": "none",
       "strokeOpacity": 1,
       "paintOrder": "fill markers stroke"
-    }),
+    } as RectElementFields),
     new _RectElement({
+      initMotionCanvasRectNodeFn: ((_) => producedMotionCanvasRectNodes[16]) as InitRectNode,
+    }, {
       "id": "rect22",
       "width": 84.983978,
       "height": 20.706318,
@@ -915,8 +971,10 @@ export const rectInkscapeSVG: InkscapeSVGFields = {
       "strokeDasharray": "none",
       "strokeOpacity": 1,
       "paintOrder": "fill markers stroke"
-    }),
+    } as RectElementFields),
     new _RectElement({
+      initMotionCanvasRectNodeFn: ((_) => producedMotionCanvasRectNodes[17]) as InitRectNode,
+    }, {
       "id": "rect23",
       "width": 33.072918,
       "height": 93.430992,
@@ -934,6 +992,6 @@ export const rectInkscapeSVG: InkscapeSVGFields = {
       "strokeDasharray": "none",
       "strokeOpacity": 1,
       "paintOrder": "fill markers stroke"
-    }),
+    } as RectElementFields),
   ],
 };
