@@ -188,3 +188,34 @@ t.test('getReferenceVariableName correctly gives the variable name', t => {
   t.equal(found, wanted);
   t.end();
 });
+
+
+t.test('getType returns expected string', t => {
+  const jsxComponentFactory = Substitute.for<JSXComponentFactory>();
+  const jsxComponentPropFactory = Substitute.for<JSXComponentPropFactory>();
+  const camelCaseWrapper = Substitute.for<CamelCaseWrapper>();
+
+  const rectNode = new _RectNode(
+    {
+      camelCaseWrapper,
+      jsxComponentFactory,
+      jsxComponentPropFactory,
+    },
+    {
+      refName: 'brown-fill-and-stroke-rect-square-circular',
+      width: 44.620049,
+      height: 44.620049,
+      topLeft: [7.3198218, 218.05432],
+      fill: '#c87137',
+      stroke: '#1300ff',
+      lineWidth: 0.942981,
+      radius: 22.310024,
+    } as RectNodeFields,
+    [] as RectNode[]
+  );
+  const found = rectNode.getType();
+  const wanted = 'Rect';
+
+  t.equal(found, wanted);
+  t.end();
+});

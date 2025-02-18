@@ -4,15 +4,8 @@ export interface NodeFields {
   refName: string;
 }
 
-// avoid using this because it causes annoying problems
-//export interface NodeProps {
-//}
-
-//export interface Node
-//  extends NodeProps {
-
-
 export interface Node {
+  getType(): string;
   toJSXComponent(): JSXComponent;
   getReferenceVariableName(): string;
 }
