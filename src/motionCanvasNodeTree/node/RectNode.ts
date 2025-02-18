@@ -13,11 +13,11 @@ export interface RectNodeFields extends NodeFields {
   stroke: string;
   lineWidth: number;
   radius?: number;
+  children?: MotionCanvasNode[];
 }
 
 export interface RectNode
   extends MotionCanvasNode, RectNodeFields {
-  children: MotionCanvasNode[];
 }
 
 export class _RectNode implements RectNode {
@@ -31,6 +31,7 @@ export class _RectNode implements RectNode {
   stroke: string = '';
   lineWidth: number = 0;
   radius?: number;
+  children: MotionCanvasNode[] = [];
 
   constructor(
     public deps: {
@@ -38,8 +39,7 @@ export class _RectNode implements RectNode {
       jsxComponentFactory: JSXComponentFactory,
       jsxComponentPropFactory: JSXComponentPropFactory,
     },
-    init: RectNodeFields,
-    public children: MotionCanvasNode[]) {
+    init: RectNodeFields,) {
     Object.assign(this, init);
   }
 
@@ -100,14 +100,12 @@ export class _RectNode implements RectNode {
 
 export type InitRectNode = (
   init: RectNodeFields,
-  children: MotionCanvasNode[],
 ) => RectNode;
 
 export const initRectNode: InitRectNode = (
   init: RectNodeFields,
-  children: MotionCanvasNode[],
 ) => new _RectNode({
   camelCaseWrapper: initCamelCaseWrapper(),
   jsxComponentFactory: initJSXComponentFactoryFn(),
   jsxComponentPropFactory: initJSXComponentPropFactoryFn(),
-}, init, children);
+}, init);

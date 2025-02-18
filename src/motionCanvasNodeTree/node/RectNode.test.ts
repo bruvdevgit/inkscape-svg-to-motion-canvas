@@ -116,8 +116,8 @@ t.test('toJSXComponent correctly builds JSXComponent with no children', t => {
       stroke: '#1300ff',
       lineWidth: 0.942981,
       radius: 22.310024,
+      children: [] as RectNode[]
     } as RectNodeFields,
-    [] as RectNode[]
   );
 
   const found = rectNode.toJSXComponent();
@@ -169,8 +169,8 @@ t.test('getReferenceVariableName correctly gives the variable name', t => {
       stroke: '#1300ff',
       lineWidth: 0.942981,
       radius: 22.310024,
+      children: [] as RectNode[],
     } as RectNodeFields,
-    [] as RectNode[]
   );
 
   const found = rectNode.getReferenceVariableName();
@@ -210,8 +210,8 @@ t.test('getType returns expected string', t => {
       stroke: '#1300ff',
       lineWidth: 0.942981,
       radius: 22.310024,
+      children: [] as RectNode[],
     } as RectNodeFields,
-    [] as RectNode[]
   );
   const found = rectNode.getType();
   const wanted = 'Rect';
