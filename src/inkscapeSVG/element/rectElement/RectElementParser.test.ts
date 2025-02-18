@@ -5,6 +5,7 @@ import { RectElementAttributesSchema } from './RectElementAttributesSchema';
 import { StyleAttributeParser } from '../../styleAttribute/StyleAttributeParser';
 import { InitRectElementFn, RectElement, RectElementFields } from './RectElement';
 import { rects } from './testData';
+import { Node as MotionCanvasNode } from "../../../motionCanvasNodeTree/node/Node";
 
 t.test('parse correctly parses', t => {
   for (let i = 0; i < rects.length; i++) {
@@ -12,6 +13,8 @@ t.test('parse correctly parses', t => {
     svgRectElementSchema
       .parse(rects[i].svgsonNode.attributes)
       .returns(rects[i].attributes);
+
+    const rectElement = Substitute.for<RectElement>();
 
     // A "Jacket" is a concept I made up:
     // It's an object that's made just to have the function
@@ -25,7 +28,7 @@ t.test('parse correctly parses', t => {
     const initRectElementFnJacket = Substitute.for<InitRectElementFnJacket>();
     initRectElementFnJacket
       .fn(rects[i].props)
-      .returns(rects[i].props as RectElementFields);
+      .returns(rectElement);
 
     const svgElementStyleAttributeParser = Substitute.for<StyleAttributeParser>();
     svgElementStyleAttributeParser
@@ -39,7 +42,7 @@ t.test('parse correctly parses', t => {
     });
 
     const found: RectElement = rectElementParser.parse(rects[i].svgsonNode);
-    const wanted: RectElement = rects[i].props;
+    const wanted: RectElement = rectElement;
 
     // - start verify internal function calls -
     initRectElementFnJacket.received()

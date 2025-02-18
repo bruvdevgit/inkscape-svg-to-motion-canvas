@@ -12,6 +12,7 @@ export interface RectElementFields extends StyleAttributes {
   ry?: number;
   width: number;
   height: number;
+  children: Element[];
 }
 
 export interface RectElement
@@ -27,8 +28,8 @@ export class _RectElement implements RectElement {
   height: number = 0;
   x: number = 0;
   y: number = 0;
-  rx: number = 0;
-  ry: number = 0;
+  rx?: number;
+  ry?: number;
   fill: string = '';
   fillOpacity: number = 0;
   stroke: string = '';
@@ -39,6 +40,7 @@ export class _RectElement implements RectElement {
   strokeDasharray?: string = '';
   strokeOpacity?: number = 0;
   paintOrder: string = '';
+  children: Element[] = [];
 
   constructor(public deps: {
     initMotionCanvasRectNodeFn: InitRectNode,
@@ -46,7 +48,7 @@ export class _RectElement implements RectElement {
     Object.assign(this, init);
   }
 
-  toMotionCanvasNode(children: MotionCanvasNode[]): MotionCanvasNode {
+  toMotionCanvasNode(): MotionCanvasNode {
     return this.deps.initMotionCanvasRectNodeFn({
       refName: this.label,
       width: this.width,
@@ -57,8 +59,10 @@ export class _RectElement implements RectElement {
       lineWidth: this.strokeWidth,
       ...(this.ry != undefined || this.rx != undefined
         ? { radius: this.ry ?? this.rx }
-        : {})
-    } as RectNodeFields, children);
+        : {}),
+      children: this.children.map(child => child.toMotionCanvasNode()),
+    } as RectNodeFields,
+    );
   }
 
 }

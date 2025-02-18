@@ -2,6 +2,8 @@ import { INode } from "svgson";
 import { RectElementAttributes } from "./RectElementAttributesSchema";
 import { StyleAttributes } from "../../styleAttribute/StyleAttributeParser";
 import { RectElementFields } from "./RectElement";
+import { RectNodeFields } from "../../../motionCanvasNodeTree/node/RectNode";
+import { Node as MotionCanvasNode } from "../../../motionCanvasNodeTree/node/Node";
 
 export const rects: {
   svgsonNode: INode,
@@ -41,7 +43,8 @@ export const rects: {
         "strokeMiterlimit": 0,
         "strokeDasharray": "none",
         "strokeOpacity": 1,
-        "paintOrder": "fill markers stroke"
+        "paintOrder": "fill markers stroke",
+        "children": [],
       },
       styleAttributes: {
         "fill": "#2ca02c",
@@ -63,7 +66,7 @@ export const rects: {
         "x": "9.0465326",
         "y": "10.700179",
         "inkscape:label": "green-fill-and-stroke-rect-x-long-sharp-corners"
-      }
+      },
     },
     {
       svgsonNode: {
@@ -99,7 +102,8 @@ export const rects: {
         "strokeMiterlimit": 0,
         "strokeDasharray": "none",
         "strokeOpacity": 1,
-        "paintOrder": "fill markers stroke"
+        "paintOrder": "fill markers stroke",
+        children: [],
       },
       styleAttributes: {
         "fill": "#d40000",
@@ -158,7 +162,8 @@ export const rects: {
         "strokeMiterlimit": 0,
         "strokeDasharray": "none",
         "strokeOpacity": 1,
-        "paintOrder": "fill markers stroke"
+        "paintOrder": "fill markers stroke",
+        "children": []
       },
       styleAttributes: {
         "fill": "#ffcc00",
@@ -217,7 +222,8 @@ export const rects: {
         "strokeMiterlimit": 0,
         "strokeDasharray": "none",
         "strokeOpacity": 1,
-        "paintOrder": "fill markers stroke"
+        "paintOrder": "fill markers stroke",
+        "children": []
       },
       styleAttributes: {
         "fill": "#c87137",
@@ -276,7 +282,8 @@ export const rects: {
         "strokeMiterlimit": 0,
         "strokeDasharray": "none",
         "strokeOpacity": 1,
-        "paintOrder": "fill markers stroke"
+        "paintOrder": "fill markers stroke",
+        "children": []
       },
       styleAttributes: {
         "fill": "#c83782",
@@ -335,7 +342,8 @@ export const rects: {
         "strokeMiterlimit": 0,
         "strokeDasharray": "none",
         "strokeOpacity": 1,
-        "paintOrder": "fill markers stroke"
+        "paintOrder": "fill markers stroke",
+        "children": []
       },
       styleAttributes: {
         "fill": "#37bbc8",
@@ -392,7 +400,8 @@ export const rects: {
         "strokeMiterlimit": 0,
         "strokeDasharray": "none",
         "strokeOpacity": 1,
-        "paintOrder": "fill markers stroke"
+        "paintOrder": "fill markers stroke",
+        "children": []
       },
       styleAttributes: {
         "fill": "none",
@@ -450,7 +459,8 @@ export const rects: {
         "strokeMiterlimit": 0,
         "strokeDasharray": "none",
         "strokeOpacity": 1,
-        "paintOrder": "fill markers stroke"
+        "paintOrder": "fill markers stroke",
+        "children": []
       },
       styleAttributes: {
         "fill": "none",
@@ -509,7 +519,8 @@ export const rects: {
         "strokeMiterlimit": 0,
         "strokeDasharray": "none",
         "strokeOpacity": 1,
-        "paintOrder": "fill markers stroke"
+        "paintOrder": "fill markers stroke",
+        "children": []
       },
       styleAttributes: {
         "fill": "none",
@@ -570,7 +581,8 @@ export const rects: {
         "strokeMiterlimit": 0,
         "strokeDasharray": "none",
         "strokeOpacity": 1,
-        "paintOrder": "fill markers stroke"
+        "paintOrder": "fill markers stroke",
+        "children": []
       },
       styleAttributes: {
         "fill": "none",
@@ -630,7 +642,8 @@ export const rects: {
         "strokeMiterlimit": 0,
         "strokeDasharray": "none",
         "strokeOpacity": 1,
-        "paintOrder": "fill markers stroke"
+        "paintOrder": "fill markers stroke",
+        "children": []
       },
       styleAttributes: {
         "fill": "none",
@@ -689,7 +702,8 @@ export const rects: {
         "strokeMiterlimit": 0,
         "strokeDasharray": "none",
         "strokeOpacity": 1,
-        "paintOrder": "fill markers stroke"
+        "paintOrder": "fill markers stroke",
+        "children": []
       },
       styleAttributes: {
         "fill": "none",
@@ -746,7 +760,8 @@ export const rects: {
         "strokeMiterlimit": 0,
         "strokeDasharray": "none",
         "strokeOpacity": 1,
-        "paintOrder": "fill markers stroke"
+        "paintOrder": "fill markers stroke",
+        "children": []
       },
       styleAttributes: {
         "fill": "#2ca02c",
@@ -804,7 +819,8 @@ export const rects: {
         "strokeMiterlimit": 0,
         "strokeDasharray": "none",
         "strokeOpacity": 1,
-        "paintOrder": "fill markers stroke"
+        "paintOrder": "fill markers stroke",
+        "children": []
       },
       styleAttributes: {
         "fill": "#d40000",
@@ -863,7 +879,8 @@ export const rects: {
         "strokeMiterlimit": 0,
         "strokeDasharray": "none",
         "strokeOpacity": 1,
-        "paintOrder": "fill markers stroke"
+        "paintOrder": "fill markers stroke",
+        "children": []
       },
       styleAttributes: {
         "fill": "#ffcc00",
@@ -922,7 +939,8 @@ export const rects: {
         "strokeMiterlimit": 0,
         "strokeDasharray": "none",
         "strokeOpacity": 1,
-        "paintOrder": "fill markers stroke"
+        "paintOrder": "fill markers stroke",
+        "children": []
       },
       styleAttributes: {
         "fill": "#c87137",
@@ -981,7 +999,8 @@ export const rects: {
         "strokeMiterlimit": 0,
         "strokeDasharray": "none",
         "strokeOpacity": 1,
-        "paintOrder": "fill markers stroke"
+        "paintOrder": "fill markers stroke",
+        "children": []
       },
       styleAttributes: {
         "fill": "#c83782",
@@ -1040,7 +1059,8 @@ export const rects: {
         "strokeMiterlimit": 0,
         "strokeDasharray": "none",
         "strokeOpacity": 1,
-        "paintOrder": "fill markers stroke"
+        "paintOrder": "fill markers stroke",
+        "children": []
       },
       styleAttributes: {
         "fill": "#37bbc8",

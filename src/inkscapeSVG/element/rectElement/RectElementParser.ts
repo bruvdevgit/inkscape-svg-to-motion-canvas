@@ -59,6 +59,8 @@ export class _RectElementParser implements ElementParser {
       strokeDasharray,
       strokeOpacity,
       paintOrder,
+      // TODO: actually implement this
+      children: [],
     };
 
     return this.deps.initRectElementFn(props);
