@@ -5,12 +5,15 @@ import { ElementParser } from "../ElementParser";
 import { initRectElementAttributesSchema } from "./RectElementAttributesSchema";
 import { InitElementParserFn } from "../ElementParser";
 import { initStyleAttributeParser, StyleAttributeParser } from "../../styleAttribute/StyleAttributeParser";
+import { Element as InkscapeSVGElement } from "../Element";
+import { ElementParserFactory, initElementParserFactory } from "../ElementParserFactory";
 
 export class _RectElementParser implements ElementParser {
   constructor(public deps: {
     svgRectElementSchema: RectElementAttributesSchema,
     initRectElementFn: InitRectElementFn,
     svgElementStyleAttributeParser: StyleAttributeParser,
+    elementParserFactory: ElementParserFactory,
   }) {
   }
 
@@ -40,6 +43,12 @@ export class _RectElementParser implements ElementParser {
       paintOrder,
     } = this.deps.svgElementStyleAttributeParser.parse(style);
 
+    let children: InkscapeSVGElement[] = iNode.children
+      .map((node: INode) => {
+        const parser = this.deps.elementParserFactory.init(node);
+        return parser.parse(node);
+      });
+
     let props: RectElementFields = {
       id,
       label,
@@ -59,8 +68,7 @@ export class _RectElementParser implements ElementParser {
       strokeDasharray,
       strokeOpacity,
       paintOrder,
-      // TODO: actually implement this
-      children: [],
+      children,
     };
 
     return this.deps.initRectElementFn(props);
@@ -73,6 +81,7 @@ export const initRectElementParser: InitElementParserFn
     svgRectElementSchema: initRectElementAttributesSchema(),
     initRectElementFn: initRectElement,
     svgElementStyleAttributeParser: initStyleAttributeParser(),
+    elementParserFactory: initElementParserFactory(),
   });
 /* c8 ignore stop */
 
