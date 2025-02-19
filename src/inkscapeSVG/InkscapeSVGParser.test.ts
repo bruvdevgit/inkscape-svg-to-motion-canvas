@@ -40,7 +40,7 @@ t.test('parse correctly parses', t => {
 
   const rectSVGSvgsonElements: INode[] = rectSVGSvgson
     .children[2]
-    .children;
+    .children as INode[];
 
   let rectElementParser = Substitute.for<ElementParser>();
   let elementParsers = rectSVGSvgsonElements

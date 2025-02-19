@@ -2,6 +2,7 @@ import Substitute from "@fluffy-spoon/substitute";
 import { InitRectNode, RectNode } from "../motionCanvasNodeTree/node/RectNode";
 import { _RectElement, RectElementFields } from "./element/rectElement/RectElement";
 import { InkscapeSVG, ViewBox } from "./InkscapeSVG";
+import { INode } from "svgson";
 
 export const rectSVGString = `
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -209,7 +210,7 @@ export const rectSVGString = `
 </svg>
 `;
 
-export const rectSVGSvgson = {
+export const rectSVGSvgson: INode = {
   "name": "svg",
   "type": "element",
   "value": "",
