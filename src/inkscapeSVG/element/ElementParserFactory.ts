@@ -1,6 +1,6 @@
 import { INode } from "svgson";
-import { ElementParser, InitElementParserFn } from './ElementParser';
-import { initRectElementParser, } from "./rectElement/RectElementParser";
+import { ElementParser, InitElementParserFn } from './ElementParser.ts';
+import { initRectElementParser, } from './rectElement/RectElementParser.ts';
 
 export interface ElementParserFactory {
   init(iNode: INode): ElementParser;

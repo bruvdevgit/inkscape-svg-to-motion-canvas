@@ -1,9 +1,9 @@
 import t from 'tap'
-import { _StyleAttributeParser } from './StyleAttributeParser';
+import { _StyleAttributeParser } from './StyleAttributeParser.ts';
 import { Substitute } from '@fluffy-spoon/substitute';
-import { StyleAttributesSchema } from './StyleAttributesSchema';
-import { testData } from './testData';
-import { InlineStyleParserWrapper } from '../../wrappers/InlineStyleParserWrapper';
+import { StyleAttributesSchema } from './StyleAttributesSchema.ts';
+import { testData } from './testData.ts';
+import { InlineStyleParserWrapper } from '../../wrappers/InlineStyleParserWrapper.ts';
 
 t.test('parse correctly parses', t => {
   for (let i = 0; i < 31; i++) {

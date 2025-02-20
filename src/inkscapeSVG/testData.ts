@@ -1,7 +1,7 @@
 import Substitute from "@fluffy-spoon/substitute";
-import { InitRectNode, RectNode } from "../motionCanvasNodeTree/node/RectNode";
-import { _RectElement, RectElementFields } from "./element/rectElement/RectElement";
-import { InkscapeSVG, ViewBox } from "./InkscapeSVG";
+import { InitRectNode, RectNode } from '../motionCanvasNodeTree/node/RectNode.ts';
+import { _RectElement, RectElementFields } from './element/rectElement/RectElement.ts';
+import { InkscapeSVG, ViewBox } from './InkscapeSVG.ts';
 import { INode } from "svgson";
 
 export const rectSVGString = `

@@ -1,4 +1,4 @@
-var camelCase = require('lodash.camelcase');
+import camelCase from 'lodash.camelcase';
 
 export interface CamelCaseWrapper {
   parse(str: string): string;

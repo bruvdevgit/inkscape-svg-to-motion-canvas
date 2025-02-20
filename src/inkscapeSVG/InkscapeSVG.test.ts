@@ -1,9 +1,9 @@
 import t from 'tap';
-import { _InkscapeSVG } from './InkscapeSVG';
-import { producedMotionCanvasRectNodes, rectInkscapeSVG } from './testData';
-import { InitMotionCanvasNodeTreeFn, MotionCanvasNodeTree, MotionCanvasNodeTreeFields } from '../motionCanvasNodeTree/MotionCanvasNodeTree';
+import { _InkscapeSVG } from './InkscapeSVG.ts';
+import { producedMotionCanvasRectNodes, rectInkscapeSVG } from './testData.ts';
+import { InitMotionCanvasNodeTreeFn, MotionCanvasNodeTree, MotionCanvasNodeTreeFields } from '../motionCanvasNodeTree/MotionCanvasNodeTree.ts';
 import Substitute from '@fluffy-spoon/substitute';
-import { _RectElement } from './element/rectElement/RectElement';
+import { _RectElement } from './element/rectElement/RectElement.ts';
 
 t.test('constructor correctly assigns props to same-name fields', t => {
 

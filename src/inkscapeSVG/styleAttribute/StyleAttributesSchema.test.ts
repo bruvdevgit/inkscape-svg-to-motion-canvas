@@ -1,6 +1,6 @@
 import t from 'tap';
-import { _StyleAttributesSchema } from './StyleAttributesSchema';
-import { testData } from './testData';
+import { _StyleAttributesSchema } from './StyleAttributesSchema.ts';
+import { testData } from './testData.ts';
 
 t.test('parse correctly processes valid data', t => {
   const styleAttributesSchema = new _StyleAttributesSchema();

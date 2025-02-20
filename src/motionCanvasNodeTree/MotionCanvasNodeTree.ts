@@ -1,6 +1,6 @@
-import { initMotionCanvasCodeRenderer, MotionCanvasCodeRenderer, OutputFileFields } from "./MotionCanvasCodeRenderer";
-import { JSXComponent } from "./node/jsxComponent/JSXComponent";
-import { Node as MotionCanvasNode } from "./node/Node";
+import { initMotionCanvasCodeRenderer, MotionCanvasCodeRenderer, OutputFileFields } from './MotionCanvasCodeRenderer.ts';
+import { JSXComponent } from './node/jsxComponent/JSXComponent.ts';
+import { Node as MotionCanvasNode } from './node/Node.ts';
 
 // antecedent : consequent
 //

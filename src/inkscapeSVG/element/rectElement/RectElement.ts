@@ -1,7 +1,7 @@
-import { Node as MotionCanvasNode } from "../../../motionCanvasNodeTree/node/Node";
-import { initRectNode, InitRectNode, RectNodeFields } from "../../../motionCanvasNodeTree/node/RectNode";
-import { StyleAttributes } from "../../styleAttribute/StyleAttributeParser";
-import { Element } from "../Element";
+import { Node as MotionCanvasNode } from '../../../motionCanvasNodeTree/node/Node.ts';
+import { initRectNode, InitRectNode, RectNodeFields } from '../../../motionCanvasNodeTree/node/RectNode.ts';
+import { StyleAttributes } from '../../styleAttribute/StyleAttributeParser.ts';
+import { Element } from '../Element.ts';
 
 export interface RectElementFields extends StyleAttributes {
   label: string;

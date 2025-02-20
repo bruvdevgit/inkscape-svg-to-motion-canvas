@@ -1,4 +1,4 @@
-import { JSXComponent } from "./jsxComponent/JSXComponent";
+import { JSXComponent } from './jsxComponent/JSXComponent.ts';
 
 export interface NodeFields {
   refName: string;

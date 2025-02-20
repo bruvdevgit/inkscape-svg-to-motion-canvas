@@ -1,15 +1,15 @@
 import t from 'tap'
-import { _RectElementParser } from './RectElementParser';
+import { _RectElementParser } from './RectElementParser.ts';
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
-import { RectElementAttributesSchema } from './RectElementAttributesSchema';
-import { StyleAttributeParser } from '../../styleAttribute/StyleAttributeParser';
-import { InitRectElementFn, RectElement, RectElementFields } from './RectElement';
-import { rects } from './testData';
-import { Node as MotionCanvasNode } from "../../../motionCanvasNodeTree/node/Node";
-import { ElementParserFactory } from '../ElementParserFactory';
+import { RectElementAttributesSchema } from './RectElementAttributesSchema.ts';
+import { StyleAttributeParser } from '../../styleAttribute/StyleAttributeParser.ts';
+import { InitRectElementFn, RectElement, RectElementFields } from './RectElement.ts';
+import { rects } from './testData.ts';
+import { Node as MotionCanvasNode } from '../../../motionCanvasNodeTree/node/Node.ts';
+import { ElementParserFactory } from '../ElementParserFactory.ts';
 import { INode } from 'svgson';
-import { ElementParser } from '../ElementParser';
-import { Element } from '../Element';
+import { ElementParser } from '../ElementParser.ts';
+import { Element } from '../Element.ts';
 
 t.test('parse correctly parses', t => {
   for (let i = 0; i < rects.length; i++) {

@@ -1,12 +1,12 @@
 import t from 'tap';
 import Substitute, { SubstituteOf } from '@fluffy-spoon/substitute';
-import { RectNode, RectNodeFields, _RectNode } from './RectNode';
-import { JSXComponentFactory } from './jsxComponent/JSXComponentFactory';
-import { PropFactory as JSXComponentPropFactory } from './jsxComponent/prop/PropFactory';
-import { JSXComponent } from './jsxComponent/JSXComponent';
-import { Prop as JSXComponentProp } from './jsxComponent/prop/Prop';
-import { PropField as JSXComponentPropField } from './jsxComponent/prop/Prop';
-import { CamelCaseWrapper } from '../../wrappers/CamelCaseWrapper';
+import { RectNode, RectNodeFields, _RectNode } from './RectNode.ts';
+import { JSXComponentFactory } from './jsxComponent/JSXComponentFactory.ts';
+import { PropFactory as JSXComponentPropFactory } from './jsxComponent/prop/PropFactory.ts';
+import { JSXComponent } from './jsxComponent/JSXComponent.ts';
+import { Prop as JSXComponentProp } from './jsxComponent/prop/Prop.ts';
+import { PropField as JSXComponentPropField } from './jsxComponent/prop/Prop.ts';
+import { CamelCaseWrapper } from '../../wrappers/CamelCaseWrapper.ts';
 
 t.test('toJSXComponent correctly builds JSXComponent with no children', t => {
   const jsxComponentFactory = Substitute.for<JSXComponentFactory>();

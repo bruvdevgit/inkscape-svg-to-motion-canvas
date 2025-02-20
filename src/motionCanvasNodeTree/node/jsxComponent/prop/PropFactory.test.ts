@@ -1,6 +1,6 @@
 import t from 'tap';
-import { _PropFactory } from './PropFactory';
-import { _Prop, InitPropFn, PropField } from './Prop';
+import { _PropFactory } from './PropFactory.ts';
+import { _Prop, InitPropFn, PropField } from './Prop.ts';
 import Substitute from '@fluffy-spoon/substitute';
 
 t.test('constructor correctly constructs a Prop instance', t => {

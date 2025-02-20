@@ -1,4 +1,4 @@
-import { JSXComponent } from "./node/jsxComponent/JSXComponent";
+import { JSXComponent } from './node/jsxComponent/JSXComponent.ts';
 
 export interface OutputFileFields {
 	viewAdderFunctionName: string,

@@ -1,8 +1,8 @@
 import t from 'tap';
-import { InitJSXComponentFn, JSXComponent, JSXComponentFields } from './JSXComponent';
+import { InitJSXComponentFn, JSXComponent, JSXComponentFields } from './JSXComponent.ts';
 import Substitute from '@fluffy-spoon/substitute';
-import { _JSXComponentFactory } from './JSXComponentFactory';
-import { Prop } from './prop/Prop';
+import { _JSXComponentFactory } from './JSXComponentFactory.ts';
+import { Prop } from './prop/Prop.ts';
 
 t.test('init correctly initializes a JSXComponent', t => {
   interface InitJSXComponentFnJacket {

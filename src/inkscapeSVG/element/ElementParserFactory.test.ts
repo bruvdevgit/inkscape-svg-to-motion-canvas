@@ -1,8 +1,8 @@
 import t from 'tap';
-import { _ElementParserFactory } from './ElementParserFactory';
-import { ElementParser, InitElementParserFn } from './ElementParser';
+import { _ElementParserFactory } from './ElementParserFactory.ts';
+import { ElementParser, InitElementParserFn } from './ElementParser.ts';
 import Substitute from '@fluffy-spoon/substitute';
-import { rectSVGSvgson } from '../testData';
+import { rectSVGSvgson } from '../testData.ts';
 
 //function removeUndefinedFields(obj: Object) {
 //  return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != undefined));

@@ -1,6 +1,6 @@
 import { Comment, Declaration } from "inline-style-parser";
-import { initInlineStyleParserWrapper, InlineStyleParserWrapper } from "../../wrappers/InlineStyleParserWrapper";
-import { initStyleAttributesSchema, StyleAttributesSchema } from "./StyleAttributesSchema";
+import { initInlineStyleParserWrapper, InlineStyleParserWrapper } from '../../wrappers/InlineStyleParserWrapper.ts';
+import { initStyleAttributesSchema, StyleAttributesSchema } from './StyleAttributesSchema.ts';
 
 // These fields match StyleAttributesFromSchema but with
 // some fields being here number type instead of string type

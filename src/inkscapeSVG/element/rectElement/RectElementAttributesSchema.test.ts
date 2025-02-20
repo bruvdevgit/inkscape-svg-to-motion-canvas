@@ -1,6 +1,6 @@
 import t from 'tap';
-import { _RectElementAttributesSchema } from './RectElementAttributesSchema';
-import { rects } from './testData';
+import { _RectElementAttributesSchema } from './RectElementAttributesSchema.ts';
+import { rects } from './testData.ts';
 
 function removeUndefinedFields(obj: Object) {
   return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != undefined));
