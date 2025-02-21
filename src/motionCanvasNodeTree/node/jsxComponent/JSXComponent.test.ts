@@ -1,6 +1,6 @@
 import t from 'tap';
 import { _JSXComponent, JSXComponent, JSXComponentFields } from './JSXComponent.ts';
-import Substitute from '@fluffy-spoon/substitute';
+import { Arg, Substitute } from '@fluffy-spoon/substitute';
 import { Prop } from './prop/Prop.ts';
 
 t.test('toFileContentString correctly produces a code representation when there\'s no children', t => {

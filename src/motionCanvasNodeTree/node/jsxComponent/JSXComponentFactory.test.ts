@@ -1,6 +1,6 @@
 import t from 'tap';
 import { InitJSXComponentFn, JSXComponent, JSXComponentFields } from './JSXComponent.ts';
-import Substitute from '@fluffy-spoon/substitute';
+import { Arg, Substitute } from '@fluffy-spoon/substitute';
 import { _JSXComponentFactory } from './JSXComponentFactory.ts';
 import { Prop } from './prop/Prop.ts';
 

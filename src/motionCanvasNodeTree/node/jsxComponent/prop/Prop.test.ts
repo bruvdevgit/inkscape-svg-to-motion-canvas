@@ -1,7 +1,7 @@
 import t from 'tap';
 import { _Prop as _Prop } from './Prop.ts';
 import { data } from './testData.ts';
-import Substitute from '@fluffy-spoon/substitute';
+import { Arg, Substitute } from '@fluffy-spoon/substitute';
 import { CamelCaseWrapper } from '../../../../wrappers/CamelCaseWrapper.ts';
 
 t.test('toStringLines correctly creates strings for lines of props', t => {

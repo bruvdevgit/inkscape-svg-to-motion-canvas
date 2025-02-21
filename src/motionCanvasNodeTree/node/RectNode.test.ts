@@ -1,5 +1,5 @@
 import t from 'tap';
-import Substitute, { SubstituteOf } from '@fluffy-spoon/substitute';
+import { Arg, Substitute, SubstituteOf } from '@fluffy-spoon/substitute';
 import { RectNode, RectNodeFields, _RectNode } from './RectNode.ts';
 import { JSXComponentFactory } from './jsxComponent/JSXComponentFactory.ts';
 import { PropFactory as JSXComponentPropFactory } from './jsxComponent/prop/PropFactory.ts';

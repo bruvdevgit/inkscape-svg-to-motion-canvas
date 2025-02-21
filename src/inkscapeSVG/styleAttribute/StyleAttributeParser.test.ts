@@ -1,6 +1,6 @@
 import t from 'tap'
 import { _StyleAttributeParser } from './StyleAttributeParser.ts';
-import { Substitute } from '@fluffy-spoon/substitute';
+import { Arg, Substitute } from '@fluffy-spoon/substitute';
 import { StyleAttributesSchema } from './StyleAttributesSchema.ts';
 import { testData } from './testData.ts';
 import { InlineStyleParserWrapper } from '../../wrappers/InlineStyleParserWrapper.ts';

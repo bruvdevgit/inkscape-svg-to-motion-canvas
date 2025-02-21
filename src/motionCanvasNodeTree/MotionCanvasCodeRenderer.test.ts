@@ -1,5 +1,5 @@
 import t from 'tap';
-import Substitute from '@fluffy-spoon/substitute';
+import { Arg, Substitute } from '@fluffy-spoon/substitute';
 import { _MotionCanvasCodeRenderer, OutputFileFields } from './MotionCanvasCodeRenderer.ts';
 import { JSXComponent } from './node/jsxComponent/JSXComponent.ts';
 

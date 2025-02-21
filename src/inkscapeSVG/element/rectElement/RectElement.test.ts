@@ -1,5 +1,5 @@
 import t from 'tap';
-import Substitute from '@fluffy-spoon/substitute';
+import { Arg, Substitute } from '@fluffy-spoon/substitute';
 import { _RectElement, RectElementFields } from './RectElement.ts';
 import { rects } from './testData.ts';
 import { InitRectNode, RectNode, RectNodeFields } from '../../../motionCanvasNodeTree/node/RectNode.ts';

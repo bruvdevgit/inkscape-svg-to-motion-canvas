@@ -1,4 +1,4 @@
-import Substitute from "@fluffy-spoon/substitute";
+import {Arg, Substitute} from "@fluffy-spoon/substitute";
 import { InitRectNode, RectNode } from '../motionCanvasNodeTree/node/RectNode.ts';
 import { _RectElement, RectElementFields } from './element/rectElement/RectElement.ts';
 import { InkscapeSVG, ViewBox } from './InkscapeSVG.ts';
