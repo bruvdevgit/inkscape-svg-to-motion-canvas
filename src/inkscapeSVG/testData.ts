@@ -214,7 +214,6 @@ export const rectSVGSvgson: INode = {
   "name": "svg",
   "type": "element",
   "value": "",
-  "parent": null,
   "attributes": {
     "width": "1920",
     "height": "1080",
@@ -233,7 +232,6 @@ export const rectSVGSvgson: INode = {
       "name": "sodipodi:namedview",
       "type": "element",
       "value": "",
-      "parent": null,
       "attributes": {
         "id": "namedview1",
         "pagecolor": "#ffffff",
@@ -260,7 +258,6 @@ export const rectSVGSvgson: INode = {
       "name": "defs",
       "type": "element",
       "value": "",
-      "parent": null,
       "attributes": {
         "id": "defs1"
       },
@@ -270,7 +267,6 @@ export const rectSVGSvgson: INode = {
       "name": "g",
       "type": "element",
       "value": "",
-      "parent": null,
       "attributes": {
         "inkscape:label": "Layer 1",
         "inkscape:groupmode": "layer",
@@ -282,7 +278,6 @@ export const rectSVGSvgson: INode = {
           "name": "rect",
           "type": "element",
           "value": "",
-          "parent": null,
           "attributes": {
             "style": "fill:#2ca02c;fill-opacity:1;stroke:#1300ff;stroke-width:1.23096;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke",
             "id": "rect1",
@@ -298,7 +293,6 @@ export const rectSVGSvgson: INode = {
           "name": "rect",
           "type": "element",
           "value": "",
-          "parent": null,
           "attributes": {
             "style": "fill:#d40000;fill-opacity:1;stroke:#1300ff;stroke-width:1.73211;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke",
             "id": "rect2",
@@ -315,7 +309,6 @@ export const rectSVGSvgson: INode = {
           "name": "rect",
           "type": "element",
           "value": "",
-          "parent": null,
           "attributes": {
             "style": "fill:#ffcc00;fill-opacity:1;stroke:#1300ff;stroke-width:0.942981;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke",
             "id": "rect3",
@@ -332,7 +325,6 @@ export const rectSVGSvgson: INode = {
           "name": "rect",
           "type": "element",
           "value": "",
-          "parent": null,
           "attributes": {
             "style": "fill:#c87137;fill-opacity:1;stroke:#1300ff;stroke-width:0.942981;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke",
             "id": "rect4",
@@ -349,7 +341,6 @@ export const rectSVGSvgson: INode = {
           "name": "rect",
           "type": "element",
           "value": "",
-          "parent": null,
           "attributes": {
             "style": "fill:#c83782;fill-opacity:1;stroke:#1300ff;stroke-width:1.18864;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke",
             "id": "rect5",
@@ -366,7 +357,6 @@ export const rectSVGSvgson: INode = {
           "name": "rect",
           "type": "element",
           "value": "",
-          "parent": null,
           "attributes": {
             "style": "fill:#37bbc8;fill-opacity:1;stroke:#1300ff;stroke-width:1.328;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke",
             "id": "rect6",
@@ -383,7 +373,6 @@ export const rectSVGSvgson: INode = {
           "name": "rect",
           "type": "element",
           "value": "",
-          "parent": null,
           "attributes": {
             "style": "fill:none;fill-opacity:1;stroke:#2ca02c;stroke-width:1.25184;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke",
             "id": "rect7",
@@ -399,7 +388,6 @@ export const rectSVGSvgson: INode = {
           "name": "rect",
           "type": "element",
           "value": "",
-          "parent": null,
           "attributes": {
             "style": "fill:none;fill-opacity:1;stroke:#d40000;stroke-width:10.55608125;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke",
             "id": "rect8",
@@ -416,7 +404,6 @@ export const rectSVGSvgson: INode = {
           "name": "rect",
           "type": "element",
           "value": "",
-          "parent": null,
           "attributes": {
             "style": "fill:none;fill-opacity:1;stroke:#ffcc00;stroke-width:13.1177;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke",
             "id": "rect9",
@@ -433,7 +420,6 @@ export const rectSVGSvgson: INode = {
           "name": "rect",
           "type": "element",
           "value": "",
-          "parent": null,
           "attributes": {
             "style": "fill:none;fill-opacity:1;stroke:#c87137;stroke-width:19.5042;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke",
             "id": "rect10",
@@ -451,7 +437,6 @@ export const rectSVGSvgson: INode = {
           "name": "rect",
           "type": "element",
           "value": "",
-          "parent": null,
           "attributes": {
             "style": "fill:none;fill-opacity:1;stroke:#c83782;stroke-width:4.14621;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke",
             "id": "rect11",
@@ -468,7 +453,6 @@ export const rectSVGSvgson: INode = {
           "name": "rect",
           "type": "element",
           "value": "",
-          "parent": null,
           "attributes": {
             "style": "fill:none;fill-opacity:1;stroke:#37bbc8;stroke-width:22.449;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke",
             "id": "rect12",
@@ -485,7 +469,6 @@ export const rectSVGSvgson: INode = {
           "name": "rect",
           "type": "element",
           "value": "",
-          "parent": null,
           "attributes": {
             "style": "fill:#2ca02c;fill-opacity:1;stroke:none;stroke-width:1.23096;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke",
             "id": "rect18",
@@ -501,7 +484,6 @@ export const rectSVGSvgson: INode = {
           "name": "rect",
           "type": "element",
           "value": "",
-          "parent": null,
           "attributes": {
             "style": "fill:#d40000;fill-opacity:1;stroke:none;stroke-width:1.73211;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke",
             "id": "rect19",
@@ -518,7 +500,6 @@ export const rectSVGSvgson: INode = {
           "name": "rect",
           "type": "element",
           "value": "",
-          "parent": null,
           "attributes": {
             "style": "fill:#ffcc00;fill-opacity:1;stroke:none;stroke-width:0.942981;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke",
             "id": "rect20",
@@ -535,7 +516,6 @@ export const rectSVGSvgson: INode = {
           "name": "rect",
           "type": "element",
           "value": "",
-          "parent": null,
           "attributes": {
             "style": "fill:#c87137;fill-opacity:1;stroke:none;stroke-width:0.942981;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke",
             "id": "rect21",
@@ -552,7 +532,6 @@ export const rectSVGSvgson: INode = {
           "name": "rect",
           "type": "element",
           "value": "",
-          "parent": null,
           "attributes": {
             "style": "fill:#c83782;fill-opacity:1;stroke:none;stroke-width:1.18864;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke",
             "id": "rect22",
@@ -569,7 +548,6 @@ export const rectSVGSvgson: INode = {
           "name": "rect",
           "type": "element",
           "value": "",
-          "parent": null,
           "attributes": {
             "style": "fill:#37bbc8;fill-opacity:1;stroke:none;stroke-width:1.328;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke",
             "id": "rect23",
