@@ -1,4 +1,4 @@
-import { makeDirectory, Options as MakeDirectoryOptions } from 'make-dir';
+import { Options as MakeDirectoryOptions } from 'make-dir';
 import { PathLike } from 'node:fs';
 import * as fsImport from 'node:fs/promises';
 import { cwd } from 'node:process';
@@ -19,6 +19,7 @@ class _FsWrapper implements FsWrapper {
   }
 
   async makeDirectory(path: string, options?: MakeDirectoryOptions): Promise<string> {
+    const { makeDirectory } = await import('make-dir');
     return await makeDirectory(path, options);
   }
 

@@ -2,3 +2,4 @@ node_modules
 output
 dist
 .tap
+.nyc_output
