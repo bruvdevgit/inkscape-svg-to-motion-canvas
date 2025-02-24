@@ -4,11 +4,7 @@ import { ElementParser, InitElementParserFn } from './ElementParser.ts';
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
 import { rectSVGSvgson } from '../testData.ts';
 
-//function removeUndefinedFields(obj: Object) {
-//  return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != undefined));
-//}
-
-t.test('constructor correctly returns a rect element parser', t => {
+t.test('init correctly returns a rect element parser', t => {
   const rectElements = rectSVGSvgson.children[2].children;
   const rectElementParser = Substitute.for<ElementParser>();
   interface InitElementParserFnJacket {
@@ -36,8 +32,4 @@ t.test('constructor correctly returns a rect element parser', t => {
 
   }
   t.end();
-});
-
-t.test('init', t => {
-  //TODO
 });
