@@ -6,7 +6,7 @@ import { initRectElementAttributesSchema } from './RectElementAttributesSchema.t
 import { InitElementParserFn } from '../ElementParser.ts';
 import { initStyleAttributeParser, StyleAttributeParser } from '../../styleAttribute/StyleAttributeParser.ts';
 import { Element as InkscapeSVGElement } from '../Element.ts';
-import { ElementParserFactory, initElementParserFactory } from '../ElementParserFactory.ts';
+import { ElementParserFactory } from '../ElementParserFactory.ts';
 
 export class _RectElementParser implements ElementParser {
   constructor(public deps: {
@@ -77,11 +77,11 @@ export class _RectElementParser implements ElementParser {
 
 /* c8 ignore start */
 export const initRectElementParser: InitElementParserFn
-  = () => new _RectElementParser({
+  = (elementParserFactory: ElementParserFactory) => new _RectElementParser({
     svgRectElementSchema: initRectElementAttributesSchema(),
     initRectElementFn: initRectElement,
     svgElementStyleAttributeParser: initStyleAttributeParser(),
-    elementParserFactory: initElementParserFactory(),
+    elementParserFactory,
   });
 /* c8 ignore stop */
 

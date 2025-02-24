@@ -22,7 +22,7 @@ export class _ElementParserFactory {
   init(iNode: INode): ElementParser {
     if (iNode.name == 'rect') {
       if (this.rectElementParser == null)
-        this.rectElementParser = this.deps.initRectElementParserFn();
+        this.rectElementParser = this.deps.initRectElementParserFn(this);
 
       return this.rectElementParser;
     }

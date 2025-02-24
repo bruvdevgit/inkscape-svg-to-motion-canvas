@@ -15,11 +15,12 @@ t.test('constructor correctly returns a rect element parser', t => {
     fn: InitElementParserFn
   }
   const initRectElementParserFnJacket = Substitute.for<InitElementParserFnJacket>();
-  initRectElementParserFnJacket.fn().returns(rectElementParser);
 
   const rectElement = new _ElementParserFactory({
     initRectElementParserFn: initRectElementParserFnJacket.fn,
   });
+
+  initRectElementParserFnJacket.fn(rectElement).returns(rectElementParser);
 
   t.equal(rectElement.rectElementParser, null);
   for (let i = 0; i < rectElements.length; i++) {
@@ -37,3 +38,6 @@ t.test('constructor correctly returns a rect element parser', t => {
   t.end();
 });
 
+t.test('init', () => {
+  //TODO
+});
