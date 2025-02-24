@@ -1,4 +1,3 @@
-Codegen method inspired by Apollo GraphQL's code-generation technique.
+**Note: this library is not ready for use yet!**
 
-For reference I used the code for **Intro to GraphQL with TypeScript**. You can find the [course lessons and instructions](https://apollographql.com/tutorials/intro-typescript) on Odyssey, [Apollo](https://apollographql.com)'s learning platform.
-
+But if you insist on using it anyway then please email `thehaxwell@proton.me`
