@@ -60,15 +60,18 @@ export class _RectNode implements RectNode {
         } as JSXComponentPropField),
         this.deps.jsxComponentPropFactory.init({
           key: 'width',
-          value: this.width,
+          value: `scaleCoord(${this.width})`,
+          removeQuotesFromValue: true,
         } as JSXComponentPropField),
         this.deps.jsxComponentPropFactory.init({
           key: 'height',
-          value: this.height,
+          value: `scaleCoord(${this.height})`,
+          removeQuotesFromValue: true,
         } as JSXComponentPropField),
         this.deps.jsxComponentPropFactory.init({
           key: 'topLeft',
-          value: [...this.topLeft],
+          value: [`coordX(${this.topLeft[0]})`, `coordY(${this.topLeft[1]})`],
+          removeQuotesFromValue: true,
         } as JSXComponentPropField),
         this.deps.jsxComponentPropFactory.init({
           key: 'fill',
@@ -80,12 +83,14 @@ export class _RectNode implements RectNode {
         } as JSXComponentPropField),
         this.deps.jsxComponentPropFactory.init({
           key: 'lineWidth',
-          value: this.lineWidth,
+          value: `scaleCoord(${this.lineWidth})`,
+          removeQuotesFromValue: true,
         } as JSXComponentPropField),
         ...(this.radius != undefined ?
           [this.deps.jsxComponentPropFactory.init({
             key: 'radius',
-            value: this.radius,
+            value: `scaleCoord(${this.radius})`,
+            removeQuotesFromValue: true,
           } as JSXComponentPropField)] : [])
       ]
       ,
