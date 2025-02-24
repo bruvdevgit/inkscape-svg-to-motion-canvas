@@ -1,6 +1,5 @@
 import { initMotionCanvasNodeTree, InitMotionCanvasNodeTreeFn, MotionCanvasNodeTree, MotionCanvasNodeTreeFields } from '../motionCanvasNodeTree/MotionCanvasNodeTree.ts';
 import { Element, Element as InkscapeSVGElement } from './element/Element.ts';
-import { initInkscapeSVGParser } from './InkscapeSVGParser.ts';
 
 export interface ViewBox {
   minX: number;
@@ -60,9 +59,9 @@ export const initInkscapeSVG: InitInkscapeSVGFn
     }, init);
 
 /* c8 ignore start */
-export function parseToInkscapeSVG(
-  svgStr: string,): InkscapeSVG {
-  const inkscapeSVGParser = initInkscapeSVGParser();
-  return inkscapeSVGParser.parse(svgStr);
-}
+//export function parseToInkscapeSVG(
+//  svgStr: string,): InkscapeSVG {
+//  const inkscapeSVGParser = initInkscapeSVGParser();
+//  return inkscapeSVGParser.parse(svgStr);
+//}
 /* c8 ignore stop */
