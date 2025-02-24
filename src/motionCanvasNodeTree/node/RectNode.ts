@@ -73,14 +73,18 @@ export class _RectNode implements RectNode {
           value: [`coordX(${this.topLeft[0]})`, `coordY(${this.topLeft[1]})`],
           removeQuotesFromValue: true,
         } as JSXComponentPropField),
-        this.deps.jsxComponentPropFactory.init({
-          key: 'fill',
-          value: this.fill,
-        } as JSXComponentPropField),
-        this.deps.jsxComponentPropFactory.init({
-          key: 'stroke',
-          value: this.stroke,
-        } as JSXComponentPropField),
+        // only mention fill if it's not set to "none"
+        ...(this.fill != 'none' ?
+          [this.deps.jsxComponentPropFactory.init({
+            key: 'fill',
+            value: this.fill,
+          } as JSXComponentPropField)] : []),
+        // only mention stroke if it's not set to "none"
+        ...(this.stroke != 'none' ?
+          [this.deps.jsxComponentPropFactory.init({
+            key: 'stroke',
+            value: this.stroke,
+          } as JSXComponentPropField)] : []),
         this.deps.jsxComponentPropFactory.init({
           key: 'lineWidth',
           value: `scaleCoord(${this.lineWidth})`,

@@ -59,13 +59,6 @@ t.test('toJSXComponent correctly builds JSXComponent with no children', t => {
       },
       {
         field: {
-          key: 'stroke',
-          value: '#1300ff',
-        } as JSXComponentPropField,
-        prop: Substitute.for<JSXComponentProp>(),
-      },
-      {
-        field: {
           key: 'lineWidth',
           value: 'scaleCoord(0.942981)',
           removeQuotesFromValue: true,
@@ -118,7 +111,7 @@ t.test('toJSXComponent correctly builds JSXComponent with no children', t => {
       height: 44.620049,
       topLeft: [7.3198218, 218.05432],
       fill: '#c87137',
-      stroke: '#1300ff',
+      stroke: 'none',
       lineWidth: 0.942981,
       radius: 22.310024,
       children: [] as RectNode[]
