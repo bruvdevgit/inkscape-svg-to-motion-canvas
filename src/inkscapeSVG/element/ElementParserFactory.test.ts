@@ -38,6 +38,6 @@ t.test('constructor correctly returns a rect element parser', t => {
   t.end();
 });
 
-t.test('init', () => {
+t.test('init', t => {
   //TODO
 });
