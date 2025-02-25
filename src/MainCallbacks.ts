@@ -21,8 +21,7 @@ export class _MainCallbacks implements MainCallbacks {
       const matchingConfig = svgConfigs
         .find(svg => {
           console.log(`${svg.input.filePath} == ${path}`);
-          return pathWrapper.relative(pathWrapper.normalize(svg.input.filePath),
-            pathWrapper.normalize(path)) == '';
+          return pathWrapper.relative(svg.input.filePath, path) == '';
         });
       console.log('in getOnChangeCallback matchingConfig = ', matchingConfig);
 
