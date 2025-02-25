@@ -1,5 +1,5 @@
 import { Node as MotionCanvasNode } from '../../../motionCanvasNodeTree/node/Node.ts';
-import { initRectNode, InitRectNode, RectNodeFields } from '../../../motionCanvasNodeTree/node/RectNode.ts';
+import { initRectNode, InitRectNode, RectNodeFields } from '../../../motionCanvasNodeTree/node/rectNode/RectNode.ts';
 import { StyleAttributes } from '../../styleAttribute/StyleAttributeParser.ts';
 import { Element } from '../Element.ts';
 
