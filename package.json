@@ -1,6 +1,6 @@
 {
   "name": "svg-to-motion-canvas",
-  "version": "0.0.39",
+  "version": "0.0.40",
   "description": "Translate Inkscape SVGs to Motion Canvas layout of components",
   "main": "dist/index.js",
   "types": "dist/index.d.js",
