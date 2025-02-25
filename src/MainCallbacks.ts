@@ -17,10 +17,12 @@ export class _MainCallbacks implements MainCallbacks {
     return async (path: string) => {
       const matchingConfig = svgConfigs
         .find(svg => svg.input.filePath == path);
+      console.log('in getOnChangeCallback matchingConfig = ', matchingConfig);
 
-      console.log('in getOnChangeCallback result-callback');
-      if (matchingConfig == null)
+      if (matchingConfig == null) {
+        console.log('in getOnChangeCallback: aborting because no matchingConfig');
         return;
+      }
 
       await this.deps.inkscapeSVGToMotionCanvasIO
         .generate(matchingConfig);
