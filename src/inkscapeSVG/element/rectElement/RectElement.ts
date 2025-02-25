@@ -48,8 +48,8 @@ export class _RectElement implements RectElement {
     Object.assign(this, init);
   }
 
-  toMotionCanvasNode(): MotionCanvasNode {
-    return this.deps.initMotionCanvasRectNodeFn({
+  toMotionCanvasNodes(): MotionCanvasNode[] {
+    return [this.deps.initMotionCanvasRectNodeFn({
       refName: this.label,
       width: this.width,
       height: this.height,
@@ -60,9 +60,9 @@ export class _RectElement implements RectElement {
       ...(this.ry != undefined || this.rx != undefined
         ? { radius: this.ry ?? this.rx }
         : {}),
-      children: this.children.map(child => child.toMotionCanvasNode()),
+      children: this.children.map(child => child.toMotionCanvasNodes()).flat(),
     } as RectNodeFields,
-    );
+    )];
   }
 
 }

@@ -40,7 +40,7 @@ export class _InkscapeSVG implements InkscapeSVG {
 
   toMotionCanvasNodeTree(): MotionCanvasNodeTree {
     return this.deps.initMotionCanvasNodeTreeFn({
-      nodes: this.elements.map(elem => elem.toMotionCanvasNode()),
+      nodes: this.elements.map(elem => elem.toMotionCanvasNodes()).flat(),
       canvasHeight: this.height,
       canvasWidth: this.width,
       heightAntecedent: this.viewBox.height,

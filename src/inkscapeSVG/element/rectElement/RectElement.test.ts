@@ -37,15 +37,16 @@ t.test('toMotionCanvasComponentNode correctly translates to MotionCanvasComponen
 
   const childElement1 = Substitute.for<Element>();
   const childElement1MotionCanvasNode = Substitute.for<MotionCanvasNode>();
-  childElement1.toMotionCanvasNode().returns(childElement1MotionCanvasNode);
+  childElement1.toMotionCanvasNodes().returns([childElement1MotionCanvasNode]);
 
   const childElement2 = Substitute.for<Element>();
-  const childElement2MotionCanvasNode = Substitute.for<MotionCanvasNode>();
-  childElement2.toMotionCanvasNode().returns(childElement2MotionCanvasNode);
+  const childElement2MotionCanvasNode1 = Substitute.for<MotionCanvasNode>();
+  const childElement2MotionCanvasNode2 = Substitute.for<MotionCanvasNode>();
+  childElement2.toMotionCanvasNodes().returns([childElement2MotionCanvasNode1, childElement2MotionCanvasNode2]);
 
   const childElement3 = Substitute.for<Element>();
   const childElement3MotionCanvasNode = Substitute.for<MotionCanvasNode>();
-  childElement3.toMotionCanvasNode().returns(childElement3MotionCanvasNode);
+  childElement3.toMotionCanvasNodes().returns([childElement3MotionCanvasNode]);
 
   const rectNodeFields = {
     refName: "green-fill-and-stroke-rect-x-long-sharp-corners",
@@ -56,7 +57,8 @@ t.test('toMotionCanvasComponentNode correctly translates to MotionCanvasComponen
     stroke: "#1300ff",
     lineWidth: 1.23096,
     children: [childElement1MotionCanvasNode,
-      childElement2MotionCanvasNode,
+      childElement2MotionCanvasNode1,
+      childElement2MotionCanvasNode2,
       childElement3MotionCanvasNode] as MotionCanvasNode[],
   } as RectNodeFields;
 
@@ -87,8 +89,8 @@ t.test('toMotionCanvasComponentNode correctly translates to MotionCanvasComponen
     "children": [childElement1, childElement2, childElement3],
   } as RectElementFields);
 
-  const found = rectElement.toMotionCanvasNode();
-  const wanted = { ...rectNodeFields } as RectNode;
+  const found = rectElement.toMotionCanvasNodes();
+  const wanted = [{ ...rectNodeFields } as RectNode];
 
   // start internal test
 
