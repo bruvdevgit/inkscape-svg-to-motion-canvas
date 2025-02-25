@@ -19,6 +19,8 @@ class _FsWrapper implements FsWrapper {
   }
 
   async makeDirectory(path: string, options?: MakeDirectoryOptions): Promise<string> {
+    // TODO: save makeDirectory on `this` to 
+    // avoid dynamically importing it each time
     const { makeDirectory } = await import('make-dir');
     return await makeDirectory(path, options);
   }

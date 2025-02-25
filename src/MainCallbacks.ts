@@ -1,5 +1,6 @@
 import { initInkscapeSVGToMotionCanvasIO, InkscapeSVGToMotionCanvasIO } from "./InkscapeSVGToMotionCanvasIO.ts";
 import { InkscapeSVGConfig } from "./mainConfig/MainConfigSchema";
+import { initPathWrapper } from "./wrappers/PathWrapper.ts";
 
 export type CallbackFn = (path: string) => Promise<void>;
 
@@ -14,12 +15,14 @@ export class _MainCallbacks implements MainCallbacks {
 
   getOnChangeCallback(svgConfigs: InkscapeSVGConfig[]): CallbackFn {
     console.log('in getOnChangeCallback');
+    const pathWrapper = initPathWrapper();
     return async (path: string) => {
       console.log('in getOnChangeCallback');
       const matchingConfig = svgConfigs
         .find(svg => {
           console.log(`${svg.input.filePath} == ${path}`);
-          return svg.input.filePath == path;
+          return pathWrapper.relative(pathWrapper.normalize(svg.input.filePath),
+            pathWrapper.normalize(path)) == '';
         });
       console.log('in getOnChangeCallback matchingConfig = ', matchingConfig);
 
