@@ -34,6 +34,7 @@ export class _InkscapeSVGToMotionCanvasIO
     const outputFilePath = `${outputDirectoryPath}/${viewAdderFunctionName}.tsx`;
 
     await this.deps.fs.writeFile(outputFilePath, motionCanvasCodeContent);
+    console.log('generated...');
   }
 }
 

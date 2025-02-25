@@ -13,10 +13,12 @@ export class _MainCallbacks implements MainCallbacks {
   }) { }
 
   getOnChangeCallback(svgConfigs: InkscapeSVGConfig[]): CallbackFn {
+    console.log('in getOnChangeCallback');
     return async (path: string) => {
       const matchingConfig = svgConfigs
         .find(svg => svg.input.filePath == path);
 
+      console.log('in getOnChangeCallback result-callback');
       if (matchingConfig == null)
         return;
 
