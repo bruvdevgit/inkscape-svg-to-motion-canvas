@@ -34,7 +34,6 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
-    "change-case": "^5.4.4",
     "chokidar": "^4.0.3",
     "inline-style-parser": "^0.2.4",
     "lodash.camelcase": "^4.3.0",
