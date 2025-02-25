@@ -2,7 +2,7 @@ import t from 'tap';
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
 import { _RectElement, RectElementFields } from './RectElement.ts';
 import { rects } from './testData.ts';
-import { InitRectNode, RectNode, RectNodeFields } from '../../../motionCanvasNodeTree/node/RectNode.ts';
+import { InitRectNode, RectNode, RectNodeFields } from '../../../motionCanvasNodeTree/node/rectNode/RectNode.ts';
 import { Node as MotionCanvasNode } from '../../../motionCanvasNodeTree/node/Node.ts';
 import { Element } from '../Element.ts';
 
