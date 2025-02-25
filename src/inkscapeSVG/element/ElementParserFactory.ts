@@ -29,12 +29,12 @@ export class _ElementParserFactory {
 
       return this.rectElementParser;
     }
-    //else if (iNode.name == 'g') {
-    //  if (this.groupElementParser == null)
-    //    this.groupElementParser = this.deps.initGroupElementParserFn(this);
-    //
-    //  return this.groupElementParser;
-    //}
+    else if (iNode.name == 'g') {
+      if (this.groupElementParser == null)
+        this.groupElementParser = this.deps.initGroupElementParserFn(this);
+
+      return this.groupElementParser;
+    }
     else throw RangeError(`Encountered an SVG Element that wasn't accounted for: ${iNode.name}`);
   }
 }
