@@ -3,6 +3,7 @@ import { Arg, Substitute } from '@fluffy-spoon/substitute';
 import { _MainCallbacks } from './MainCallbacks.ts';
 import { InkscapeSVGToMotionCanvasIO } from './InkscapeSVGToMotionCanvasIO.ts';
 import { InkscapeSVGConfig } from './mainConfig/MainConfigSchema.ts';
+import { PathWrapper } from './wrappers/PathWrapper.ts';
 
 t.test('getOnChangeCallback gives a function with the right behaviour', async t => {
   const svgConfigs: InkscapeSVGConfig[] = [
@@ -35,6 +36,20 @@ t.test('getOnChangeCallback gives a function with the right behaviour', async t 
     },
   ];
 
+  const pathWrapper = Substitute.for<PathWrapper>();
+
+  pathWrapper
+    .relative(
+      './circles_1920_by_1080.svg',
+      'rects_1920_by_1080.svg')
+    .returns('not-empty');
+
+  pathWrapper
+    .relative(
+      './rects_1920_by_1080.svg',
+      'rects_1920_by_1080.svg')
+    .returns('');
+
   const inkscapeSVGToMotionCanvasIO = Substitute.for<InkscapeSVGToMotionCanvasIO>();
 
   inkscapeSVGToMotionCanvasIO
@@ -43,12 +58,25 @@ t.test('getOnChangeCallback gives a function with the right behaviour', async t 
 
   const mainCallbacks = new _MainCallbacks({
     inkscapeSVGToMotionCanvasIO,
+    pathWrapper,
   });
 
   const callback = mainCallbacks.getOnChangeCallback([...svgConfigs]);
-  await callback('./rects_1920_by_1080.svg');
+  await callback('rects_1920_by_1080.svg');
 
   // start testing internal calls
+
+  pathWrapper
+    .received()
+    .relative(
+      './circles_1920_by_1080.svg',
+      'rects_1920_by_1080.svg');
+
+  pathWrapper
+    .received()
+    .relative(
+      './rects_1920_by_1080.svg',
+      'rects_1920_by_1080.svg');
 
   inkscapeSVGToMotionCanvasIO
     .received()
