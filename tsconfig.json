@@ -1,16 +1,12 @@
 {
   "extends": "@tsconfig/node22/tsconfig.json",
   "compilerOptions": {
-    // Include DOM types like Path2d which
-    // is expected to be imported in browser
-    "lib": ["ES6", "DOM"],
-    "experimentalDecorators": true,
     "declaration": true,
     "declarationDir": "./dist",
     "module": "esnext",
     "moduleResolution": "bundler",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true
   },
     "exclude": ["**/__tests__", "**/*.test.ts", "**/*.test.tsx", "**/*.stories.tsx"]
 }

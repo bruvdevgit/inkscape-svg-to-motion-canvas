@@ -1,5 +1,3 @@
-export { CustomCircle } from './CustomCircle';
-
 type InkscapeSVGOptions = {
   input: {
     filePath: string

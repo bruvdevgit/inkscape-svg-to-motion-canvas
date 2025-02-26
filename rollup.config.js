@@ -2,7 +2,6 @@ import typescript from '@rollup/plugin-typescript';
 import { preserveShebangs } from 'rollup-plugin-preserve-shebangs';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import sucrase from '@rollup/plugin-sucrase';
 
 export default {
 	input: ['src/index.ts', 'src/bin.ts'],
@@ -17,8 +16,5 @@ export default {
 		}),
 		typescript(),
 		preserveShebangs(),
-		sucrase({
-			transforms: ['typescript', 'jsx'],
-		}),
 	]
 };
