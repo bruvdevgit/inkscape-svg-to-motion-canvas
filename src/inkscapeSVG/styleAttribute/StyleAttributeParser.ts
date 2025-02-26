@@ -36,7 +36,7 @@ export class _StyleAttributeParser implements StyleAttributeParser {
     const styleObjEntries = parsed
       .filter(o => o.type === 'declaration')
       .map(o => {
-        const dec = o as Declaration;
+        const dec = o satisfies Declaration;
         return [dec.property, dec.value]
       });
 

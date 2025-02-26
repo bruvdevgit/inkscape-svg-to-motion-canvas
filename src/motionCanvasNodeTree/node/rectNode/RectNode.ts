@@ -54,53 +54,53 @@ export class _RectNode implements RectNode {
           value: this.refName,
           removeQuotesFromValue: true,
           turnValueToCamelCase: true,
-        } as JSXComponentPropField),
+        } satisfies JSXComponentPropField),
         ...(this.width != null ?
           [this.deps.jsxComponentPropFactory.init({
             key: 'width',
             value: `scaleCoord(${this.width})`,
             removeQuotesFromValue: true,
-          } as JSXComponentPropField)] : []),
+          } satisfies JSXComponentPropField)] : []),
         ...(this.height != null ?
           [this.deps.jsxComponentPropFactory.init({
             key: 'height',
             value: `scaleCoord(${this.height})`,
             removeQuotesFromValue: true,
-          } as JSXComponentPropField)] : []),
+          } satisfies JSXComponentPropField)] : []),
         ...(this.topLeft != null ?
           [this.deps.jsxComponentPropFactory.init({
             key: 'topLeft',
             value: [`coordX(${this.topLeft[0]})`, `coordY(${this.topLeft[1]})`],
             removeQuotesFromValue: true,
-          } as JSXComponentPropField)] : []),
+          } satisfies JSXComponentPropField)] : []),
         // only mention fill if it's not set to "none"
         ...(this.fill != null && this.fill != 'none' ?
           [this.deps.jsxComponentPropFactory.init({
             key: 'fill',
             value: this.fill,
-          } as JSXComponentPropField)] : []),
+          } satisfies JSXComponentPropField)] : []),
         // only mention stroke if it's not set to "none"
         ...(this.stroke != null && this.stroke != 'none' ?
           [this.deps.jsxComponentPropFactory.init({
             key: 'stroke',
             value: this.stroke,
-          } as JSXComponentPropField)] : []),
+          } satisfies JSXComponentPropField)] : []),
         ...(this.lineWidth != null ?
           [this.deps.jsxComponentPropFactory.init({
             key: 'lineWidth',
             value: `scaleCoord(${this.lineWidth})`,
             removeQuotesFromValue: true,
-          } as JSXComponentPropField)] : []),
+          } satisfies JSXComponentPropField)] : []),
         ...(this.radius != undefined ?
           [this.deps.jsxComponentPropFactory.init({
             key: 'radius',
             value: `scaleCoord(${this.radius})`,
             removeQuotesFromValue: true,
-          } as JSXComponentPropField)] : [])
+          } satisfies JSXComponentPropField)] : [])
       ]
       ,
       children: this.children.map(child => child.toJSXComponent()),
-    } as JSXComponentFields);
+    } satisfies JSXComponentFields);
   }
 
   getReferences(): NodeReference[] {

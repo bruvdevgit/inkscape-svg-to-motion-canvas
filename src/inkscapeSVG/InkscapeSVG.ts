@@ -45,7 +45,7 @@ export class _InkscapeSVG implements InkscapeSVG {
       canvasWidth: this.width,
       heightAntecedent: this.viewBox.height,
       widthAntecedent: this.viewBox.width,
-    } as MotionCanvasNodeTreeFields);
+    } satisfies MotionCanvasNodeTreeFields);
   }
 }
 

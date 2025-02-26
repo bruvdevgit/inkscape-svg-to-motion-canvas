@@ -40,12 +40,12 @@ t.test('parse correctly parses', t => {
 
   const rectSVGSvgsonElements: INode[] = rectSVGSvgson
     .children[2]
-    .children as INode[];
+    .children satisfies INode[];
 
   let rectElementParser = Substitute.for<ElementParser>();
   let elementParsers = rectSVGSvgsonElements
     .map((element, i) => {
-      rectElementParser.parse(element as INode)
+      rectElementParser.parse(element satisfies INode)
         .returns(rectInkscapeSVG.elements[i]);
       return rectElementParser;
     });
