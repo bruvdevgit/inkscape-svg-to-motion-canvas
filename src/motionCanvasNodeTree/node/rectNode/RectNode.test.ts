@@ -10,6 +10,7 @@ import { CamelCaseWrapper } from '../../../wrappers/CamelCaseWrapper';
 import { NodeReference } from '../../MotionCanvasCodeRenderer';
 import { Node } from '../Node';
 
+//TODO: write a spec like this but with different fields excluded
 t.test('toJSXComponent correctly builds JSXComponent with no children', t => {
   const jsxComponentFactory = Substitute.for<JSXComponentFactory>();
   const jsxComponentPropFactory = Substitute.for<JSXComponentPropFactory>();

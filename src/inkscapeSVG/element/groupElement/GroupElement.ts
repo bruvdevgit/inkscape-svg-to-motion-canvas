@@ -27,10 +27,7 @@ export class _GroupElement implements GroupElement {
     return [this.deps.initMotionCanvasRectNodeFn({
       refName: this.id,
       children: this.children.map(child => child.toMotionCanvasNodes()).flat(),
-      // TODO: figure out why this isn't giving me issues
-      // when I haven't specified some non-nullable fields,
-      // and fix that
-    } as RectNodeFields,
+    } satisfies RectNodeFields,
     )];
   }
 

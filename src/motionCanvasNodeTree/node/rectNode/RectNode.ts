@@ -7,14 +7,14 @@ import { CamelCaseWrapper, initCamelCaseWrapper } from '../../../wrappers/CamelC
 import { NodeReference } from '../../MotionCanvasCodeRenderer';
 
 export interface RectNodeFields extends NodeFields {
-  width: number;
-  height: number;
-  topLeft: [number, number];
-  fill: string;
-  stroke: string;
-  lineWidth: number;
+  width?: number;
+  height?: number;
+  topLeft?: [number, number];
+  fill?: string;
+  stroke?: string;
+  lineWidth?: number;
   radius?: number;
-  children?: MotionCanvasNode[];
+  children: MotionCanvasNode[];
 }
 
 export interface RectNode
@@ -25,12 +25,12 @@ export class _RectNode implements RectNode {
   // these defaults are necessary because typescript
   // doesn't play nice with Object.assign
   refName: string = '';
-  width: number = 0;
-  height: number = 0;
-  topLeft: [number, number] = [0, 0];
-  fill: string = '';
-  stroke: string = '';
-  lineWidth: number = 0;
+  width?: number;
+  height?: number;
+  topLeft?: [number, number];
+  fill?: string;
+  stroke?: string;
+  lineWidth?: number;
   radius?: number;
   children: MotionCanvasNode[] = [];
 
@@ -55,38 +55,42 @@ export class _RectNode implements RectNode {
           removeQuotesFromValue: true,
           turnValueToCamelCase: true,
         } as JSXComponentPropField),
-        this.deps.jsxComponentPropFactory.init({
-          key: 'width',
-          value: `scaleCoord(${this.width})`,
-          removeQuotesFromValue: true,
-        } as JSXComponentPropField),
-        this.deps.jsxComponentPropFactory.init({
-          key: 'height',
-          value: `scaleCoord(${this.height})`,
-          removeQuotesFromValue: true,
-        } as JSXComponentPropField),
-        this.deps.jsxComponentPropFactory.init({
-          key: 'topLeft',
-          value: [`coordX(${this.topLeft[0]})`, `coordY(${this.topLeft[1]})`],
-          removeQuotesFromValue: true,
-        } as JSXComponentPropField),
+        ...(this.width != null ?
+          [this.deps.jsxComponentPropFactory.init({
+            key: 'width',
+            value: `scaleCoord(${this.width})`,
+            removeQuotesFromValue: true,
+          } as JSXComponentPropField)] : []),
+        ...(this.height != null ?
+          [this.deps.jsxComponentPropFactory.init({
+            key: 'height',
+            value: `scaleCoord(${this.height})`,
+            removeQuotesFromValue: true,
+          } as JSXComponentPropField)] : []),
+        ...(this.topLeft != null ?
+          [this.deps.jsxComponentPropFactory.init({
+            key: 'topLeft',
+            value: [`coordX(${this.topLeft[0]})`, `coordY(${this.topLeft[1]})`],
+            removeQuotesFromValue: true,
+          } as JSXComponentPropField)] : []),
         // only mention fill if it's not set to "none"
-        ...(this.fill != 'none' ?
+        ...(this.fill != null && this.fill != 'none' ?
           [this.deps.jsxComponentPropFactory.init({
             key: 'fill',
             value: this.fill,
           } as JSXComponentPropField)] : []),
         // only mention stroke if it's not set to "none"
-        ...(this.stroke != 'none' ?
+        ...(this.stroke != null && this.stroke != 'none' ?
           [this.deps.jsxComponentPropFactory.init({
             key: 'stroke',
             value: this.stroke,
           } as JSXComponentPropField)] : []),
-        this.deps.jsxComponentPropFactory.init({
-          key: 'lineWidth',
-          value: `scaleCoord(${this.lineWidth})`,
-          removeQuotesFromValue: true,
-        } as JSXComponentPropField),
+        ...(this.lineWidth != null ?
+          [this.deps.jsxComponentPropFactory.init({
+            key: 'lineWidth',
+            value: `scaleCoord(${this.lineWidth})`,
+            removeQuotesFromValue: true,
+          } as JSXComponentPropField)] : []),
         ...(this.radius != undefined ?
           [this.deps.jsxComponentPropFactory.init({
             key: 'radius',
