@@ -1,7 +1,7 @@
 import t from 'tap';
-import { _JSXComponent, JSXComponent, JSXComponentFields } from './JSXComponent.ts';
+import { _JSXComponent, JSXComponent, JSXComponentFields } from './JSXComponent';
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
-import { Prop } from './prop/Prop.ts';
+import { Prop } from './prop/Prop';
 
 t.test('toFileContentString correctly produces a code representation when there\'s no children', t => {
   const fieldsProp1 = Substitute.for<Prop>();

@@ -1,4 +1,4 @@
-import { CamelCaseWrapper, initCamelCaseWrapper } from '../../../../wrappers/CamelCaseWrapper.ts';
+import { CamelCaseWrapper, initCamelCaseWrapper } from '../../../../wrappers/CamelCaseWrapper';
 
 export type PropFieldValue = string | string[]
   | number | number[]

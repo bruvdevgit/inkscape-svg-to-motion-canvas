@@ -1,6 +1,6 @@
-import { initInkscapeSVGToMotionCanvasIO, InkscapeSVGToMotionCanvasIO } from "./InkscapeSVGToMotionCanvasIO.ts";
+import { initInkscapeSVGToMotionCanvasIO, InkscapeSVGToMotionCanvasIO } from "./InkscapeSVGToMotionCanvasIO";
 import { InkscapeSVGConfig } from "./mainConfig/MainConfigSchema";
-import { initPathWrapper, PathWrapper } from "./wrappers/PathWrapper.ts";
+import { initPathWrapper, PathWrapper } from "./wrappers/PathWrapper";
 
 export type CallbackFn = (path: string) => Promise<void>;
 

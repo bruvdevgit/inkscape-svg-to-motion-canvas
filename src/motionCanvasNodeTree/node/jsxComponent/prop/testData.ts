@@ -1,4 +1,4 @@
-import { PropField } from './Prop.ts';
+import { PropField } from './Prop';
 
 export const data: { fields: PropField, indentPrefix: string, stringified: string }[] = [
   {

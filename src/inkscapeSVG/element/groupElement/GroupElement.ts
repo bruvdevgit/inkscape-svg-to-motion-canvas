@@ -1,6 +1,6 @@
-import { Node as MotionCanvasNode } from '../../../motionCanvasNodeTree/node/Node.ts';
-import { initRectNode, InitRectNode, RectNodeFields } from '../../../motionCanvasNodeTree/node/rectNode/RectNode.ts';
-import { Element } from '../Element.ts';
+import { Node as MotionCanvasNode } from '../../../motionCanvasNodeTree/node/Node';
+import { initRectNode, InitRectNode, RectNodeFields } from '../../../motionCanvasNodeTree/node/rectNode/RectNode';
+import { Element } from '../Element';
 
 export interface GroupElementFields {
   id: string;

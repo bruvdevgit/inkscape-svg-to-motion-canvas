@@ -1,4 +1,4 @@
-import { JSXComponentFields, JSXComponent, InitJSXComponentFn, initJSXComponent } from './JSXComponent.ts';
+import { JSXComponentFields, JSXComponent, InitJSXComponentFn, initJSXComponent } from './JSXComponent';
 
 export interface JSXComponentFactory {
   init(

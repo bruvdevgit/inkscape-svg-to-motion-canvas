@@ -1,9 +1,9 @@
 import t from 'tap';
-import { _InkscapeSVGToMotionCanvasCodeConverter } from './InkscapeSVGToMotionCanvasCodeConverter.ts';
+import { _InkscapeSVGToMotionCanvasCodeConverter } from './InkscapeSVGToMotionCanvasCodeConverter';
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
-import { InkscapeSVGParser } from './inkscapeSVG/InkscapeSVGParser.ts';
-import { InkscapeSVG } from './inkscapeSVG/InkscapeSVG.ts';
-import { MotionCanvasNodeTree } from './motionCanvasNodeTree/MotionCanvasNodeTree.ts';
+import { InkscapeSVGParser } from './inkscapeSVG/InkscapeSVGParser';
+import { InkscapeSVG } from './inkscapeSVG/InkscapeSVG';
+import { MotionCanvasNodeTree } from './motionCanvasNodeTree/MotionCanvasNodeTree';
 
 t.test('convert correctly turns inkscape SVG code to Motion Canvas code', t => {
   const inkscapeSVGParser = Substitute.for<InkscapeSVGParser>();

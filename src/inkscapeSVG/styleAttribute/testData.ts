@@ -1,6 +1,6 @@
 import { Declaration } from "inline-style-parser";
-import { StyleAttributes } from './StyleAttributeParser.ts';
-import { StyleAttributesFromSchema } from './StyleAttributesSchema.ts';
+import { StyleAttributes } from './StyleAttributeParser';
+import { StyleAttributesFromSchema } from './StyleAttributesSchema';
 
 export const testData: {
   source: string,

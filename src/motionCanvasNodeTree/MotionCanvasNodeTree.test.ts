@@ -1,10 +1,10 @@
 import t from 'tap';
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
-import { _MotionCanvasNodeTree, MotionCanvasNodeTreeFields } from './MotionCanvasNodeTree.ts';
-import { _RectNode } from './node/RectNode.ts';
-import { Node as MotionCanvasNode } from './node/Node.ts';
-import { JSXComponent } from './node/jsxComponent/JSXComponent.ts';
-import { MotionCanvasCodeRenderer, NodeReference, OutputFileFields } from './MotionCanvasCodeRenderer.ts';
+import { _MotionCanvasNodeTree, MotionCanvasNodeTreeFields } from './MotionCanvasNodeTree';
+import { _RectNode } from './node/RectNode';
+import { Node as MotionCanvasNode } from './node/Node';
+import { JSXComponent } from './node/jsxComponent/JSXComponent';
+import { MotionCanvasCodeRenderer, NodeReference, OutputFileFields } from './MotionCanvasCodeRenderer';
 
 t.test('toFileContentString correctly stringifies', t => {
 	const node1 = Substitute.for<MotionCanvasNode>();

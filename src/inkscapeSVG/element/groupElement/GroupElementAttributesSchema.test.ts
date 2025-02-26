@@ -1,6 +1,6 @@
 import t from 'tap';
-import { _GroupElementAttributesSchema, GroupElementAttributes } from './GroupElementAttributesSchema.ts';
-import { GroupElementFields } from './GroupElement.ts';
+import { _GroupElementAttributesSchema, GroupElementAttributes } from './GroupElementAttributesSchema';
+import { GroupElementFields } from './GroupElement';
 import { INode } from 'svgson';
 
 function removeUndefinedFields(obj: Object) {

@@ -3,7 +3,7 @@ import {
   PropField as JSXComponentPropField,
   Prop as JSXComponentProp,
   initPropFn as initJSXComponentPropFn,
-} from './Prop.ts';
+} from './Prop';
 
 export interface PropFactory {
   init(

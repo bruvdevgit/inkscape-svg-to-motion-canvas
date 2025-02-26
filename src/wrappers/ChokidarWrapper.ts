@@ -1,5 +1,5 @@
 import chokidar, { ChokidarOptions } from "chokidar";
-import { FSWatcherWrapper, initFSWatcherWrapper } from './FSWatcherWrapper.ts';
+import { FSWatcherWrapper, initFSWatcherWrapper } from './FSWatcherWrapper';
 
 export interface ChokidarWrapper {
   watch(paths: string | string[], options?: ChokidarOptions): FSWatcherWrapper;

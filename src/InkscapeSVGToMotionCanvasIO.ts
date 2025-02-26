@@ -1,9 +1,9 @@
-import { FsWrapper, initFsWrapper } from "./wrappers/FsWrapper.ts";
+import { FsWrapper, initFsWrapper } from "./wrappers/FsWrapper";
 import {
   initInkscapeSVGToMotionCanvasCodeConverter,
   InkscapeSVGToMotionCanvasCodeConverter
-} from "./InkscapeSVGToMotionCanvasCodeConverter.ts";
-import { InkscapeSVGConfig } from "./mainConfig/MainConfigSchema.ts";
+} from "./InkscapeSVGToMotionCanvasCodeConverter";
+import { InkscapeSVGConfig } from "./mainConfig/MainConfigSchema";
 
 export interface InkscapeSVGToMotionCanvasIO {
   generate(config: InkscapeSVGConfig): Promise<void>;

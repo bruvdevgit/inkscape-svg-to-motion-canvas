@@ -1,9 +1,9 @@
 import { INode } from "svgson";
-import { RectElementAttributes } from './RectElementAttributesSchema.ts';
-import { StyleAttributes } from '../../styleAttribute/StyleAttributeParser.ts';
-import { RectElementFields } from './RectElement.ts';
-import { RectNodeFields } from '../../../motionCanvasNodeTree/node/rectNode/RectNode.ts';
-import { Node as MotionCanvasNode } from '../../../motionCanvasNodeTree/node/Node.ts';
+import { RectElementAttributes } from './RectElementAttributesSchema';
+import { StyleAttributes } from '../../styleAttribute/StyleAttributeParser';
+import { RectElementFields } from './RectElement';
+import { RectNodeFields } from '../../../motionCanvasNodeTree/node/rectNode/RectNode';
+import { Node as MotionCanvasNode } from '../../../motionCanvasNodeTree/node/Node';
 
 export const rects: {
   svgsonNode: INode,

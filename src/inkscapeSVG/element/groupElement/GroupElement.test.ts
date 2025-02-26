@@ -1,11 +1,11 @@
 import t from 'tap';
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
-import { _GroupElement, GroupElementFields } from './GroupElement.ts';
-import { InitRectNode, RectNode, RectNodeFields } from '../../../motionCanvasNodeTree/node/rectNode/RectNode.ts';
-import { Node as MotionCanvasNode } from '../../../motionCanvasNodeTree/node/Node.ts';
-import { Element } from '../Element.ts';
+import { _GroupElement, GroupElementFields } from './GroupElement';
+import { InitRectNode, RectNode, RectNodeFields } from '../../../motionCanvasNodeTree/node/rectNode/RectNode';
+import { Node as MotionCanvasNode } from '../../../motionCanvasNodeTree/node/Node';
+import { Element } from '../Element';
 import { INode } from 'svgson';
-import { GroupElementAttributes } from './GroupElementAttributesSchema.ts';
+import { GroupElementAttributes } from './GroupElementAttributesSchema';
 
 t.test('constructor correctly assigns props to same-name fields', t => {
   const props: GroupElementFields[] = [

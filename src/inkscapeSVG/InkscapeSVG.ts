@@ -1,5 +1,5 @@
-import { initMotionCanvasNodeTree, InitMotionCanvasNodeTreeFn, MotionCanvasNodeTree, MotionCanvasNodeTreeFields } from '../motionCanvasNodeTree/MotionCanvasNodeTree.ts';
-import { Element, Element as InkscapeSVGElement } from './element/Element.ts';
+import { initMotionCanvasNodeTree, InitMotionCanvasNodeTreeFn, MotionCanvasNodeTree, MotionCanvasNodeTreeFields } from '../motionCanvasNodeTree/MotionCanvasNodeTree';
+import { Element, Element as InkscapeSVGElement } from './element/Element';
 
 export interface ViewBox {
   minX: number;

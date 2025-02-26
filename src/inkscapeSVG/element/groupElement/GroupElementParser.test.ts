@@ -1,12 +1,12 @@
 import t from 'tap'
-import { _GroupElementParser } from './GroupElementParser.ts';
+import { _GroupElementParser } from './GroupElementParser';
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
-import { GroupElementAttributes, GroupElementAttributesSchema } from './GroupElementAttributesSchema.ts';
-import { InitGroupElementFn, GroupElement, GroupElementFields } from './GroupElement.ts';
-import { ElementParserFactory } from '../ElementParserFactory.ts';
+import { GroupElementAttributes, GroupElementAttributesSchema } from './GroupElementAttributesSchema';
+import { InitGroupElementFn, GroupElement, GroupElementFields } from './GroupElement';
+import { ElementParserFactory } from '../ElementParserFactory';
 import { INode } from 'svgson';
-import { ElementParser } from '../ElementParser.ts';
-import { Element } from '../Element.ts';
+import { ElementParser } from '../ElementParser';
+import { Element } from '../Element';
 
 t.test('parse correctly parses', t => {
   const nodes: {

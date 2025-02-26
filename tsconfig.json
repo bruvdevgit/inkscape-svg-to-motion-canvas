@@ -6,8 +6,7 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "allowImportingTsExtensions": true
+    "allowSyntheticDefaultImports": true
   },
     "exclude": ["**/__tests__", "**/*.test.ts", "**/*.test.tsx", "**/*.stories.tsx"]
 }

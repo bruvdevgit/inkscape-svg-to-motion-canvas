@@ -1,8 +1,8 @@
 import t from 'tap';
-import { _Prop as _Prop } from './Prop.ts';
-import { data } from './testData.ts';
+import { _Prop as _Prop } from './Prop';
+import { data } from './testData';
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
-import { CamelCaseWrapper } from '../../../../wrappers/CamelCaseWrapper.ts';
+import { CamelCaseWrapper } from '../../../../wrappers/CamelCaseWrapper';
 
 t.test('toStringLines correctly creates strings for lines of props', t => {
 

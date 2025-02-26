@@ -1,8 +1,8 @@
 import t from 'tap';
-import { _ElementParserFactory } from './ElementParserFactory.ts';
-import { ElementParser, InitElementParserFn } from './ElementParser.ts';
+import { _ElementParserFactory } from './ElementParserFactory';
+import { ElementParser, InitElementParserFn } from './ElementParser';
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
-import { rectSVGSvgson } from '../testData.ts';
+import { rectSVGSvgson } from '../testData';
 
 t.test('init correctly returns a rect element parser', t => {
   const rectElements = rectSVGSvgson.children[2].children;

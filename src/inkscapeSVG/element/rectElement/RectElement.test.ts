@@ -1,10 +1,10 @@
 import t from 'tap';
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
-import { _RectElement, RectElementFields } from './RectElement.ts';
-import { rects } from './testData.ts';
-import { InitRectNode, RectNode, RectNodeFields } from '../../../motionCanvasNodeTree/node/rectNode/RectNode.ts';
-import { Node as MotionCanvasNode } from '../../../motionCanvasNodeTree/node/Node.ts';
-import { Element } from '../Element.ts';
+import { _RectElement, RectElementFields } from './RectElement';
+import { rects } from './testData';
+import { InitRectNode, RectNode, RectNodeFields } from '../../../motionCanvasNodeTree/node/rectNode/RectNode';
+import { Node as MotionCanvasNode } from '../../../motionCanvasNodeTree/node/Node';
+import { Element } from '../Element';
 
 t.test('constructor correctly assigns props to same-name fields', t => {
   for (let i = 0; i < rects.length; i++) {

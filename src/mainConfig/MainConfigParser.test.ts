@@ -1,8 +1,8 @@
 import t from 'tap';
-import { _MainConfigParser } from './MainConfigParser.ts';
+import { _MainConfigParser } from './MainConfigParser';
 import { Substitute } from '@fluffy-spoon/substitute';
-import { TOMLWrapper } from '../wrappers/TOMLWrapper.ts';
-import { MainConfig, MainConfigSchema } from './MainConfigSchema.ts';
+import { TOMLWrapper } from '../wrappers/TOMLWrapper';
+import { MainConfig, MainConfigSchema } from './MainConfigSchema';
 
 t.test('parse correctly parses a MainConfig', t => {
   const tomlParser = Substitute.for<TOMLWrapper>();

@@ -1,7 +1,7 @@
-import { ChokidarWrapper, initChokidarWrapper } from "./wrappers/ChokidarWrapper.ts";
-import { initInkscapeSVGToMotionCanvasIO, InkscapeSVGToMotionCanvasIO } from "./InkscapeSVGToMotionCanvasIO.ts";
-import { initMainCallbacks, MainCallbacks } from "./MainCallbacks.ts";
-import { initMainConfigLoader, MainConfigLoader } from "./mainConfig/MainConfigLoader.ts";
+import { ChokidarWrapper, initChokidarWrapper } from "./wrappers/ChokidarWrapper";
+import { initInkscapeSVGToMotionCanvasIO, InkscapeSVGToMotionCanvasIO } from "./InkscapeSVGToMotionCanvasIO";
+import { initMainCallbacks, MainCallbacks } from "./MainCallbacks";
+import { initMainConfigLoader, MainConfigLoader } from "./mainConfig/MainConfigLoader";
 
 export interface Main {
   run(): Promise<void>;

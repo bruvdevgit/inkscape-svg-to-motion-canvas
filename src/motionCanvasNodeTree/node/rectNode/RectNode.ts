@@ -1,10 +1,10 @@
-import { JSXComponent, JSXComponentFields } from '../jsxComponent/JSXComponent.ts';
-import { initJSXComponentFactoryFn, JSXComponentFactory } from '../jsxComponent/JSXComponentFactory.ts';
-import { initJSXComponentPropFactoryFn, PropFactory as JSXComponentPropFactory } from '../jsxComponent/prop/PropFactory.ts';
-import { Node as MotionCanvasNode, NodeFields } from '../Node.ts';
-import { PropField as JSXComponentPropField } from '../jsxComponent/prop/Prop.ts';
-import { CamelCaseWrapper, initCamelCaseWrapper } from '../../../wrappers/CamelCaseWrapper.ts';
-import { NodeReference } from '../../MotionCanvasCodeRenderer.ts';
+import { JSXComponent, JSXComponentFields } from '../jsxComponent/JSXComponent';
+import { initJSXComponentFactoryFn, JSXComponentFactory } from '../jsxComponent/JSXComponentFactory';
+import { initJSXComponentPropFactoryFn, PropFactory as JSXComponentPropFactory } from '../jsxComponent/prop/PropFactory';
+import { Node as MotionCanvasNode, NodeFields } from '../Node';
+import { PropField as JSXComponentPropField } from '../jsxComponent/prop/Prop';
+import { CamelCaseWrapper, initCamelCaseWrapper } from '../../../wrappers/CamelCaseWrapper';
+import { NodeReference } from '../../MotionCanvasCodeRenderer';
 
 export interface RectNodeFields extends NodeFields {
   width: number;

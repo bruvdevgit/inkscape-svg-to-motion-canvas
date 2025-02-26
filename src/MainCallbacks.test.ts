@@ -1,9 +1,9 @@
 import t from 'tap';
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
-import { _MainCallbacks } from './MainCallbacks.ts';
-import { InkscapeSVGToMotionCanvasIO } from './InkscapeSVGToMotionCanvasIO.ts';
-import { InkscapeSVGConfig } from './mainConfig/MainConfigSchema.ts';
-import { PathWrapper } from './wrappers/PathWrapper.ts';
+import { _MainCallbacks } from './MainCallbacks';
+import { InkscapeSVGToMotionCanvasIO } from './InkscapeSVGToMotionCanvasIO';
+import { InkscapeSVGConfig } from './mainConfig/MainConfigSchema';
+import { PathWrapper } from './wrappers/PathWrapper';
 
 t.test('getOnChangeCallback gives a function with the right behaviour', async t => {
   const svgConfigs: InkscapeSVGConfig[] = [

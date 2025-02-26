@@ -1,13 +1,13 @@
 import t from 'tap'
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
-import { rectSVGString, rectSVGSvgson, rectInkscapeSVG } from './testData.ts';
-import { SvgsonWrapper } from '../wrappers/SvgsonWrapper.ts';
-import { InitInkscapeSVGFn, InkscapeSVGFields } from './InkscapeSVG.ts';
-import { InkscapeSVGAttributesSchema } from './InkscapeSVGAttributesSchema.ts';
-import { ElementParserFactory } from './element/ElementParserFactory.ts';
-import { _InkscapeSVGParser } from './InkscapeSVGParser.ts';
+import { rectSVGString, rectSVGSvgson, rectInkscapeSVG } from './testData';
+import { SvgsonWrapper } from '../wrappers/SvgsonWrapper';
+import { InitInkscapeSVGFn, InkscapeSVGFields } from './InkscapeSVG';
+import { InkscapeSVGAttributesSchema } from './InkscapeSVGAttributesSchema';
+import { ElementParserFactory } from './element/ElementParserFactory';
+import { _InkscapeSVGParser } from './InkscapeSVGParser';
 import { INode } from 'svgson';
-import { ElementParser } from './element/ElementParser.ts';
+import { ElementParser } from './element/ElementParser';
 
 t.test('parse correctly parses', t => {
   const svgson = Substitute.for<SvgsonWrapper>();

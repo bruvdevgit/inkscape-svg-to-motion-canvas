@@ -1,7 +1,7 @@
 import t from 'tap';
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
-import { _MotionCanvasCodeRenderer, OutputFileFields } from './MotionCanvasCodeRenderer.ts';
-import { JSXComponent } from './node/jsxComponent/JSXComponent.ts';
+import { _MotionCanvasCodeRenderer, OutputFileFields } from './MotionCanvasCodeRenderer';
+import { JSXComponent } from './node/jsxComponent/JSXComponent';
 
 t.test('render gives correctly constructed string', t => {
 	const jsxComponent1 = Substitute.for<JSXComponent>();

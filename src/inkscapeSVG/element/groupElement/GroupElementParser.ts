@@ -1,11 +1,11 @@
 import { INode } from "svgson";
-import { GroupElementAttributesSchema } from './GroupElementAttributesSchema.ts';
-import { initGroupElement, InitGroupElementFn, GroupElement, GroupElementFields } from './GroupElement.ts';
-import { ElementParser } from '../ElementParser.ts';
-import { initGroupElementAttributesSchema } from './GroupElementAttributesSchema.ts';
-import { InitElementParserFn } from '../ElementParser.ts';
-import { Element as InkscapeSVGElement } from '../Element.ts';
-import { ElementParserFactory } from '../ElementParserFactory.ts';
+import { GroupElementAttributesSchema } from './GroupElementAttributesSchema';
+import { initGroupElement, InitGroupElementFn, GroupElement, GroupElementFields } from './GroupElement';
+import { ElementParser } from '../ElementParser';
+import { initGroupElementAttributesSchema } from './GroupElementAttributesSchema';
+import { InitElementParserFn } from '../ElementParser';
+import { Element as InkscapeSVGElement } from '../Element';
+import { ElementParserFactory } from '../ElementParserFactory';
 
 export class _GroupElementParser implements ElementParser {
   constructor(public deps: {

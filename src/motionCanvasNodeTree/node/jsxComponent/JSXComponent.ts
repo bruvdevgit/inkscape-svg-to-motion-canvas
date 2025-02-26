@@ -1,4 +1,4 @@
-import { Prop as JSXComponentProp } from './prop/Prop.ts';
+import { Prop as JSXComponentProp } from './prop/Prop';
 
 export interface JSXComponentFields {
   commentLabel?: string;

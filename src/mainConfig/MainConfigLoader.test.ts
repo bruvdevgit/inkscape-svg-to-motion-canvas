@@ -1,9 +1,9 @@
 import t from 'tap';
 import {Arg, Substitute} from '@fluffy-spoon/substitute';
-import { _MainConfigLoader, MainConfigLoader } from './MainConfigLoader.ts';
-import { MainConfig } from './MainConfigSchema.ts';
-import { FsWrapper } from '../../wrappers/FsWrapper.ts';
-import { MainConfigParser } from './MainConfigParser.ts';
+import { _MainConfigLoader, MainConfigLoader } from './MainConfigLoader';
+import { MainConfig } from './MainConfigSchema';
+import { FsWrapper } from '../../wrappers/FsWrapper';
+import { MainConfigParser } from './MainConfigParser';
 
 t.test('load loads the main config correctly', async t => {
   const fs = Substitute.for<FsWrapper>();

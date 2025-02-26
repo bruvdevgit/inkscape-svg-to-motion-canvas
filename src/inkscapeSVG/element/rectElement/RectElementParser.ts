@@ -1,12 +1,12 @@
 import { INode } from "svgson";
-import { RectElementAttributesSchema } from './RectElementAttributesSchema.ts';
-import { initRectElement, InitRectElementFn, RectElement, RectElementFields } from './RectElement.ts';
-import { ElementParser } from '../ElementParser.ts';
-import { initRectElementAttributesSchema } from './RectElementAttributesSchema.ts';
-import { InitElementParserFn } from '../ElementParser.ts';
-import { initStyleAttributeParser, StyleAttributeParser } from '../../styleAttribute/StyleAttributeParser.ts';
-import { Element as InkscapeSVGElement } from '../Element.ts';
-import { ElementParserFactory } from '../ElementParserFactory.ts';
+import { RectElementAttributesSchema } from './RectElementAttributesSchema';
+import { initRectElement, InitRectElementFn, RectElement, RectElementFields } from './RectElement';
+import { ElementParser } from '../ElementParser';
+import { initRectElementAttributesSchema } from './RectElementAttributesSchema';
+import { InitElementParserFn } from '../ElementParser';
+import { initStyleAttributeParser, StyleAttributeParser } from '../../styleAttribute/StyleAttributeParser';
+import { Element as InkscapeSVGElement } from '../Element';
+import { ElementParserFactory } from '../ElementParserFactory';
 
 export class _RectElementParser implements ElementParser {
   constructor(public deps: {

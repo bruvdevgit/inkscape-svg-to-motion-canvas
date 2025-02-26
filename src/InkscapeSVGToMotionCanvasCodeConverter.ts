@@ -1,4 +1,4 @@
-import { initInkscapeSVGParser, InkscapeSVGParser } from "./inkscapeSVG/InkscapeSVGParser.ts";
+import { initInkscapeSVGParser, InkscapeSVGParser } from "./inkscapeSVG/InkscapeSVGParser";
 
 interface ConvertFnArgs {
   inkscapeSVG: string;

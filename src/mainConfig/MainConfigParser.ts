@@ -1,5 +1,5 @@
-import { initTOMLWrapper, TOMLWrapper } from "../wrappers/TOMLWrapper.ts";
-import { initMainConfigSchema, MainConfig, MainConfigSchema } from "./MainConfigSchema.ts";
+import { initTOMLWrapper, TOMLWrapper } from "../wrappers/TOMLWrapper";
+import { initMainConfigSchema, MainConfig, MainConfigSchema } from "./MainConfigSchema";
 
 export interface MainConfigParser {
   parse(content: string): MainConfig;

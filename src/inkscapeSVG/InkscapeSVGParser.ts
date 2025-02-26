@@ -1,8 +1,8 @@
-import { initInkscapeSVG, InkscapeSVG, InitInkscapeSVGFn, ViewBox } from './InkscapeSVG.ts';
-import { Element as InkscapeSVGElement } from './element/Element.ts';
-import { initInkscapeSVGAttributesSchema, InkscapeSVGAttributesSchema } from './InkscapeSVGAttributesSchema.ts';
-import { initSvgsonWrapper, SvgsonWrapper } from '../wrappers/SvgsonWrapper.ts';
-import { ElementParserFactory, initElementParserFactory } from './element/ElementParserFactory.ts';
+import { initInkscapeSVG, InkscapeSVG, InitInkscapeSVGFn, ViewBox } from './InkscapeSVG';
+import { Element as InkscapeSVGElement } from './element/Element';
+import { initInkscapeSVGAttributesSchema, InkscapeSVGAttributesSchema } from './InkscapeSVGAttributesSchema';
+import { initSvgsonWrapper, SvgsonWrapper } from '../wrappers/SvgsonWrapper';
+import { ElementParserFactory, initElementParserFactory } from './element/ElementParserFactory';
 import { INode } from "svgson";
 
 export interface InkscapeSVGParser {

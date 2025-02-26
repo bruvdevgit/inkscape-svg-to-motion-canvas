@@ -1,12 +1,12 @@
 import t from 'tap';
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
-import { MainConfigLoader } from './mainConfig/MainConfigLoader.ts';
-import { InkscapeSVGToMotionCanvasIO } from './InkscapeSVGToMotionCanvasIO.ts';
-import { ChokidarWrapper } from './wrappers/ChokidarWrapper.ts';
-import { CallbackFn, MainCallbacks } from './MainCallbacks.ts';
-import { _Main } from './Main.ts';
-import { MainConfig } from './mainConfig/MainConfigSchema.ts';
-import { FSWatcherWrapper } from './wrappers/FSWatcherWrapper.ts';
+import { MainConfigLoader } from './mainConfig/MainConfigLoader';
+import { InkscapeSVGToMotionCanvasIO } from './InkscapeSVGToMotionCanvasIO';
+import { ChokidarWrapper } from './wrappers/ChokidarWrapper';
+import { CallbackFn, MainCallbacks } from './MainCallbacks';
+import { _Main } from './Main';
+import { MainConfig } from './mainConfig/MainConfigSchema';
+import { FSWatcherWrapper } from './wrappers/FSWatcherWrapper';
 
 t.test('run runs right!', async t => {
   const mainConfigLoader = Substitute.for<MainConfigLoader>();

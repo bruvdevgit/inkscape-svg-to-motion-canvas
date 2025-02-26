@@ -1,8 +1,9 @@
-import {Arg, Substitute} from "@fluffy-spoon/substitute";
-import { InitRectNode, RectNode } from '../motionCanvasNodeTree/node/RectNode.ts';
-import { _RectElement, RectElementFields } from './element/rectElement/RectElement.ts';
-import { InkscapeSVG, ViewBox } from './InkscapeSVG.ts';
+import { Arg, Substitute } from "@fluffy-spoon/substitute";
+import { InitRectNode, RectNode } from '../motionCanvasNodeTree/node/rectNode/RectNode';
+import { _RectElement, RectElementFields } from './element/rectElement/RectElement';
+import { InkscapeSVG, InkscapeSVGFields, ViewBox } from './InkscapeSVG';
 import { INode } from "svgson";
+import { MotionCanvasNodeTree } from "../motionCanvasNodeTree/MotionCanvasNodeTree";
 
 export const rectSVGString = `
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -586,7 +587,7 @@ export const producedMotionCanvasRectNodes = [
   Substitute.for<RectNode>(),
 ];
 
-export const rectInkscapeSVG: InkscapeSVG = {
+export const rectInkscapeSVG: InkscapeSVGFields = {
   width: 1920,
   height: 1080,
   viewBox: {

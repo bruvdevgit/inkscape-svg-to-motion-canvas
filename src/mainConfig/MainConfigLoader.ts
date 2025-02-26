@@ -1,6 +1,6 @@
-import { FsWrapper, initFsWrapper } from "../wrappers/FsWrapper.ts";
-import { initMainConfigParser, MainConfigParser } from "./MainConfigParser.ts";
-import { MainConfig } from "./MainConfigSchema.ts";
+import { FsWrapper, initFsWrapper } from "../wrappers/FsWrapper";
+import { initMainConfigParser, MainConfigParser } from "./MainConfigParser";
+import { MainConfig } from "./MainConfigSchema";
 
 // reads the file and parses it
 export interface MainConfigLoader {

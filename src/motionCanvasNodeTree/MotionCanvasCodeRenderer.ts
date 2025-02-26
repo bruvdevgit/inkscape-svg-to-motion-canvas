@@ -1,4 +1,4 @@
-import { JSXComponent } from './node/jsxComponent/JSXComponent.ts';
+import { JSXComponent } from './node/jsxComponent/JSXComponent';
 
 export interface NodeReference {
 	variableName: string;

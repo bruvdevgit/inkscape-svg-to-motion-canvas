@@ -1,6 +1,6 @@
 import { INode } from "svgson";
-import { Element } from './Element.ts';
-import { ElementParserFactory } from "./ElementParserFactory.ts";
+import { Element } from './Element';
+import { ElementParserFactory } from "./ElementParserFactory";
 
 export interface ElementParser {
   parse(iNode: INode): Element;

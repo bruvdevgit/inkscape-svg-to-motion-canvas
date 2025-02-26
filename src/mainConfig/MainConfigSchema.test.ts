@@ -1,5 +1,5 @@
 import t from 'tap';
-import { _MainConfigSchema, MainConfig } from './MainConfigSchema.ts';
+import { _MainConfigSchema, MainConfig } from './MainConfigSchema';
 
 t.test('parse correctly parses a MainConfig', t => {
   const mainConfigSchema = new _MainConfigSchema();

@@ -1,9 +1,9 @@
 import t from 'tap';
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
-import { _InkscapeSVGToMotionCanvasIO } from './InkscapeSVGToMotionCanvasIO.ts';
-import { InkscapeSVGToMotionCanvasCodeConverter } from './InkscapeSVGToMotionCanvasCodeConverter.ts';
-import { FsWrapper } from './wrappers/FsWrapper.ts';
-import { InkscapeSVGConfig } from './mainConfig/MainConfigSchema.ts';
+import { _InkscapeSVGToMotionCanvasIO } from './InkscapeSVGToMotionCanvasIO';
+import { InkscapeSVGToMotionCanvasCodeConverter } from './InkscapeSVGToMotionCanvasCodeConverter';
+import { FsWrapper } from './wrappers/FsWrapper';
+import { InkscapeSVGConfig } from './mainConfig/MainConfigSchema';
 
 t.test('generate reads InkscapeSVG, translates it and then writes the Motion Canvas result',
   async t => {

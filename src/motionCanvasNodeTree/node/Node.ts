@@ -1,5 +1,5 @@
-import { NodeReference } from '../MotionCanvasCodeRenderer.ts';
-import { JSXComponent } from './jsxComponent/JSXComponent.ts';
+import { NodeReference } from '../MotionCanvasCodeRenderer';
+import { JSXComponent } from './jsxComponent/JSXComponent';
 
 export interface NodeFields {
   refName: string;
