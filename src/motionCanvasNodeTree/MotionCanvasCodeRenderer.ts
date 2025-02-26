@@ -1,5 +1,10 @@
 import { JSXComponent } from './node/jsxComponent/JSXComponent.ts';
 
+export interface NodeReference {
+	variableName: string;
+	type: string;
+}
+
 export interface OutputFileFields {
 	viewAdderFunctionName: string,
 	canvasHeight: number,
@@ -7,10 +12,7 @@ export interface OutputFileFields {
 	heightAntecedent: number,
 	widthAntecedent: number,
 	components: JSXComponent[],
-	references: {
-		variableName: string,
-		type: string,
-	}[],
+	references: NodeReference[],
 }
 
 export interface MotionCanvasCodeRenderer {

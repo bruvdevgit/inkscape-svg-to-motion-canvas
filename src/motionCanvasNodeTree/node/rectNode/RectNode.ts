@@ -4,6 +4,7 @@ import { initJSXComponentPropFactoryFn, PropFactory as JSXComponentPropFactory }
 import { Node as MotionCanvasNode, NodeFields } from '../Node.ts';
 import { PropField as JSXComponentPropField } from '../jsxComponent/prop/Prop.ts';
 import { CamelCaseWrapper, initCamelCaseWrapper } from '../../../wrappers/CamelCaseWrapper.ts';
+import { NodeReference } from '../../MotionCanvasCodeRenderer.ts';
 
 export interface RectNodeFields extends NodeFields {
   width: number;
@@ -43,14 +44,10 @@ export class _RectNode implements RectNode {
     Object.assign(this, init);
   }
 
-  getType() {
-    return 'Rect';
-  }
-
   toJSXComponent(): JSXComponent {
     return this.deps.jsxComponentFactory.init({
       commentLabel: this.refName,
-      name: this.getType(),
+      name: 'Rect',
       props: [
         this.deps.jsxComponentPropFactory.init({
           key: 'ref',
@@ -102,8 +99,12 @@ export class _RectNode implements RectNode {
     } as JSXComponentFields);
   }
 
-  getReferenceVariableName(): string {
-    return this.deps.camelCaseWrapper.parse(this.refName);
+  getReferences(): NodeReference[] {
+    return [{
+      variableName: this.deps.camelCaseWrapper.parse(this.refName),
+      type: 'Rect',
+    },
+    ...this.children.map(child => child.getReferences()).flat()];
   }
 }
 

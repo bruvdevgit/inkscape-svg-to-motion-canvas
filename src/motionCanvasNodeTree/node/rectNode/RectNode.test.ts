@@ -1,12 +1,14 @@
 import t from 'tap';
 import { Arg, Substitute, SubstituteOf } from '@fluffy-spoon/substitute';
 import { RectNode, RectNodeFields, _RectNode } from './RectNode.ts';
-import { JSXComponentFactory } from './jsxComponent/JSXComponentFactory.ts';
-import { PropFactory as JSXComponentPropFactory } from './jsxComponent/prop/PropFactory.ts';
-import { JSXComponent } from './jsxComponent/JSXComponent.ts';
-import { Prop as JSXComponentProp } from './jsxComponent/prop/Prop.ts';
-import { PropField as JSXComponentPropField } from './jsxComponent/prop/Prop.ts';
-import { CamelCaseWrapper } from '../../wrappers/CamelCaseWrapper.ts';
+import { JSXComponentFactory } from '../jsxComponent/JSXComponentFactory.ts';
+import { PropFactory as JSXComponentPropFactory } from '../jsxComponent/prop/PropFactory.ts';
+import { JSXComponent } from '../jsxComponent/JSXComponent.ts';
+import { Prop as JSXComponentProp } from '../jsxComponent/prop/Prop.ts';
+import { PropField as JSXComponentPropField } from '../jsxComponent/prop/Prop.ts';
+import { CamelCaseWrapper } from '../../../wrappers/CamelCaseWrapper.ts';
+import { NodeReference } from '../../MotionCanvasCodeRenderer.ts';
+import { Node } from '../Node.ts';
 
 t.test('toJSXComponent correctly builds JSXComponent with no children', t => {
   const jsxComponentFactory = Substitute.for<JSXComponentFactory>();
@@ -143,7 +145,7 @@ t.test('toJSXComponent correctly builds JSXComponent with no children', t => {
   t.end();
 });
 
-t.test('getReferenceVariableName correctly gives the variable name', t => {
+t.test('getReference correctly gives the reference with no children', t => {
   const jsxComponentFactory = Substitute.for<JSXComponentFactory>();
   const jsxComponentPropFactory = Substitute.for<JSXComponentPropFactory>();
   const camelCaseWrapper = Substitute.for<CamelCaseWrapper>();
@@ -171,8 +173,11 @@ t.test('getReferenceVariableName correctly gives the variable name', t => {
     } as RectNodeFields,
   );
 
-  const found = rectNode.getReferenceVariableName();
-  const wanted = 'brownFillAndStrokeRectSquareCircular'
+  const found = rectNode.getReferences();
+  const wanted = [{
+    variableName: 'brownFillAndStrokeRectSquareCircular',
+    type: 'Rect',
+  } as NodeReference];
 
 
   // start call tests
@@ -183,15 +188,58 @@ t.test('getReferenceVariableName correctly gives the variable name', t => {
 
   // stop call tests
 
-  t.equal(found, wanted);
+  t.same(found, wanted);
   t.end();
 });
 
 
-t.test('getType returns expected string', t => {
+t.test('getReference correctly gives the reference recursively with children', t => {
+  // start preparing children
+
+  const child1 = Substitute.for<Node>();
+  child1.getReferences().returns([
+    {
+      variableName: 'child1Variable',
+      type: 'Child1Type',
+    } as NodeReference,
+  ]);
+
+  const child2 = Substitute.for<Node>();
+  child2.getReferences().returns([
+    {
+      variableName: 'child2Variable',
+      type: 'Child2Type',
+    } as NodeReference,
+    {
+      variableName: 'child2Variable2',
+      type: 'Child2Type2',
+    } as NodeReference,
+  ]);
+
+  const child3 = Substitute.for<Node>();
+  child3.getReferences().returns([
+    {
+      variableName: 'child3Variable',
+      type: 'Child3Type',
+    } as NodeReference,
+    {
+      variableName: 'child3Variable2',
+      type: 'Child3Type2',
+    } as NodeReference,
+    {
+      variableName: 'child3Variable3',
+      type: 'Child3Type3',
+    } as NodeReference,
+  ]);
+
+  // done preparing children
   const jsxComponentFactory = Substitute.for<JSXComponentFactory>();
   const jsxComponentPropFactory = Substitute.for<JSXComponentPropFactory>();
   const camelCaseWrapper = Substitute.for<CamelCaseWrapper>();
+
+  camelCaseWrapper
+    .parse('brown-fill-and-stroke-rect-square-circular')
+    .returns('brownFillAndStrokeRectSquareCircular');
 
   const rectNode = new _RectNode(
     {
@@ -208,12 +256,51 @@ t.test('getType returns expected string', t => {
       stroke: '#1300ff',
       lineWidth: 0.942981,
       radius: 22.310024,
-      children: [] as RectNode[],
+      children: [child1, child2, child3] as Node[],
     } as RectNodeFields,
   );
-  const found = rectNode.getType();
-  const wanted = 'Rect';
 
-  t.equal(found, wanted);
+  const found = rectNode.getReferences();
+  const wanted = [
+    {
+      variableName: 'brownFillAndStrokeRectSquareCircular',
+      type: 'Rect',
+    } as NodeReference,
+    {
+      variableName: 'child1Variable',
+      type: 'Child1Type',
+    } as NodeReference,
+    {
+      variableName: 'child2Variable',
+      type: 'Child2Type',
+    } as NodeReference,
+    {
+      variableName: 'child2Variable2',
+      type: 'Child2Type2',
+    } as NodeReference,
+    {
+      variableName: 'child3Variable',
+      type: 'Child3Type',
+    } as NodeReference,
+    {
+      variableName: 'child3Variable2',
+      type: 'Child3Type2',
+    } as NodeReference,
+    {
+      variableName: 'child3Variable3',
+      type: 'Child3Type3',
+    } as NodeReference,
+  ];
+
+
+  // start call tests
+
+  camelCaseWrapper
+    .received()
+    .parse('brown-fill-and-stroke-rect-square-circular');
+
+  // stop call tests
+
+  t.same(found, wanted);
   t.end();
 });

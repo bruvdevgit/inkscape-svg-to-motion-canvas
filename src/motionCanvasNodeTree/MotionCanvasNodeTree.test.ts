@@ -4,7 +4,7 @@ import { _MotionCanvasNodeTree, MotionCanvasNodeTreeFields } from './MotionCanva
 import { _RectNode } from './node/RectNode.ts';
 import { Node as MotionCanvasNode } from './node/Node.ts';
 import { JSXComponent } from './node/jsxComponent/JSXComponent.ts';
-import { MotionCanvasCodeRenderer, OutputFileFields } from './MotionCanvasCodeRenderer.ts';
+import { MotionCanvasCodeRenderer, NodeReference, OutputFileFields } from './MotionCanvasCodeRenderer.ts';
 
 t.test('toFileContentString correctly stringifies', t => {
 	const node1 = Substitute.for<MotionCanvasNode>();
@@ -16,9 +16,11 @@ t.test('toFileContentString correctly stringifies', t => {
 		.toJSXComponent()
 		.returns(jsxComponent1);
 	node1
-		.getReferenceVariableName()
-		.returns('jsxComponent1VariableName');
-	node1.getType().returns('Type1');
+		.getReferences()
+		.returns([{
+			variableName: 'jsxComponent1VariableName',
+			type: 'Type1'
+		} as NodeReference]);
 
 	const node2 = Substitute.for<MotionCanvasNode>();
 	const jsxComponent2 = Substitute.for<JSXComponent>();
@@ -29,9 +31,11 @@ t.test('toFileContentString correctly stringifies', t => {
 		.toJSXComponent()
 		.returns(jsxComponent2);
 	node2
-		.getReferenceVariableName()
-		.returns('jsxComponent2VariableName');
-	node2.getType().returns('Type2');
+		.getReferences()
+		.returns([{
+			variableName: 'jsxComponent2VariableName',
+			type: 'Type2'
+		} as NodeReference]);
 
 	const node3 = Substitute.for<MotionCanvasNode>();
 	const jsxComponent3 = Substitute.for<JSXComponent>();
@@ -42,9 +46,11 @@ t.test('toFileContentString correctly stringifies', t => {
 		.toJSXComponent()
 		.returns(jsxComponent3);
 	node3
-		.getReferenceVariableName()
-		.returns('jsxComponent3VariableName');
-	node3.getType().returns('Type3');
+		.getReferences()
+		.returns([{
+			variableName: 'jsxComponent3VariableName',
+			type: 'Type3'
+		} as NodeReference]);
 
 	const codeRenderer = Substitute.for<MotionCanvasCodeRenderer>();
 

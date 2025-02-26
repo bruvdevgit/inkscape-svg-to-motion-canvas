@@ -1,3 +1,4 @@
+import { NodeReference } from '../MotionCanvasCodeRenderer.ts';
 import { JSXComponent } from './jsxComponent/JSXComponent.ts';
 
 export interface NodeFields {
@@ -5,7 +6,6 @@ export interface NodeFields {
 }
 
 export interface Node {
-  getType(): string;
   toJSXComponent(): JSXComponent;
-  getReferenceVariableName(): string;
+  getReferences(): NodeReference[];
 }

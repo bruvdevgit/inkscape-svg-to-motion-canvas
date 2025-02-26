@@ -1,4 +1,4 @@
-import { initMotionCanvasCodeRenderer, MotionCanvasCodeRenderer, OutputFileFields } from './MotionCanvasCodeRenderer.ts';
+import { initMotionCanvasCodeRenderer, MotionCanvasCodeRenderer, NodeReference, OutputFileFields } from './MotionCanvasCodeRenderer.ts';
 import { JSXComponent } from './node/jsxComponent/JSXComponent.ts';
 import { Node as MotionCanvasNode } from './node/Node.ts';
 
@@ -40,15 +40,12 @@ export class _MotionCanvasNodeTree
 	toFileContentString(viewAdderFunctionName: string):
 		string {
 		const jsxComponents: JSXComponent[] = [];
-		const references = [];
+		let references: NodeReference[] = [];
 
 		for (let i = 0; i < this.nodes.length; i++) {
 			const node = this.nodes[i];
 			jsxComponents.push(node.toJSXComponent());
-			references.push({
-				variableName: node.getReferenceVariableName(),
-				type: node.getType(),
-			});
+			references = [...references, ...node.getReferences()];
 		}
 
 		return this.deps.codeRenderer.render({
