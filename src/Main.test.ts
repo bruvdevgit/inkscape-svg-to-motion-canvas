@@ -1,12 +1,13 @@
 import t from 'tap';
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
 import { MainConfigLoader } from './mainConfig/MainConfigLoader';
-import { InkscapeSVGToMotionCanvasIO } from './InkscapeSVGToMotionCanvasIO';
+import { InkscapeSVGToMotionCanvasIO, MotionCanvasNodeTreeAndConfig } from './InkscapeSVGToMotionCanvasIO';
 import { ChokidarWrapper } from './wrappers/ChokidarWrapper';
 import { CallbackFn, MainCallbacks } from './MainCallbacks';
 import { _Main } from './Main';
 import { MainConfig } from './mainConfig/MainConfigSchema';
 import { FSWatcherWrapper } from './wrappers/FSWatcherWrapper';
+import { MotionCanvasNodeTree } from './motionCanvasNodeTree/MotionCanvasNodeTree';
 
 t.test('run runs right!', async t => {
   const mainConfigLoader = Substitute.for<MainConfigLoader>();
@@ -50,9 +51,24 @@ t.test('run runs right!', async t => {
     .load('inkscapeSVGToMotionCanvasConfig.toml')
     .returns(Promise.resolve({ ...mainConfig } as MainConfig));
 
+  const treesAndConfigs: MotionCanvasNodeTreeAndConfig[] = [
+    {
+      config: mainConfig[0],
+      motionCanvasNodeTree: Substitute.for<MotionCanvasNodeTree>(),
+    },
+    {
+      config: mainConfig[1],
+      motionCanvasNodeTree: Substitute.for<MotionCanvasNodeTree>(),
+    },
+    {
+      config: mainConfig[2],
+      motionCanvasNodeTree: Substitute.for<MotionCanvasNodeTree>(),
+    },
+  ];
+
   inkscapeSVGToMotionCanvasIO
-    .generate(Arg.any())
-    .returns(Promise.resolve());
+    .readTranslateAndWriteAll({ ...mainConfig } as MainConfig)
+    .returns(Promise.resolve(treesAndConfigs));
 
   const fsWatcher = Substitute.for<FSWatcherWrapper>();
   chokidar.watch([
@@ -67,15 +83,14 @@ t.test('run runs right!', async t => {
 
   const onChangeCallback: CallbackFn = (_) => Promise.resolve();
 
-  callbackFactory
-    .getOnChangeCallback([...mainConfig.inkscapeSVGs])
+  inkscapeSVGToMotionCanvasIO
+    .getOnChangeCallbackFn(treesAndConfigs)
     .returns(onChangeCallback);
 
   const main = new _Main({
     mainConfigLoader,
     inkscapeSVGToMotionCanvasIO,
     chokidar,
-    callbackFactory,
   })
 
   await main.run();
@@ -88,15 +103,7 @@ t.test('run runs right!', async t => {
 
   inkscapeSVGToMotionCanvasIO
     .received()
-    .generate(mainConfig.inkscapeSVGs[0]);
-
-  inkscapeSVGToMotionCanvasIO
-    .received()
-    .generate(mainConfig.inkscapeSVGs[1]);
-
-  inkscapeSVGToMotionCanvasIO
-    .received()
-    .generate(mainConfig.inkscapeSVGs[2]);
+    .readTranslateAndWriteAll({ ...mainConfig } as MainConfig)
 
   chokidar
     .received()

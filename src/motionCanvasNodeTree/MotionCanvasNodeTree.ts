@@ -1,4 +1,7 @@
+import { InkscapeSVGConfig } from '../mainConfig/MainConfigSchema';
+import { FsWrapper, initFsWrapper } from '../wrappers/FsWrapper';
 import { initMotionCanvasCodeRenderer, MotionCanvasCodeRenderer, NodeReference, OutputFileFields } from './MotionCanvasCodeRenderer';
+import { MotionCanvasNodesList } from './MotionCanvasNodesList';
 import { JSXComponent } from './node/jsxComponent/JSXComponent';
 import { Node as MotionCanvasNode } from './node/Node';
 
@@ -12,7 +15,7 @@ import { Node as MotionCanvasNode } from './node/Node';
 //
 
 export interface MotionCanvasNodeTreeFields {
-	nodes: MotionCanvasNode[],
+	nodes: MotionCanvasNodesList;
 	canvasHeight: number,
 	canvasWidth: number,
 	heightAntecedent?: number,
@@ -20,12 +23,12 @@ export interface MotionCanvasNodeTreeFields {
 }
 
 export interface MotionCanvasNodeTree {
-	toFileContentString(viewAdderFunctionName: string): string;
+	generateOutputFiles(config: InkscapeSVGConfig): Promise<void>;
 }
 
 export class _MotionCanvasNodeTree
 	implements MotionCanvasNodeTree, MotionCanvasNodeTreeFields {
-	nodes: MotionCanvasNode[] = [];
+	nodes: MotionCanvasNodesList;
 	canvasHeight: number = 0;
 	canvasWidth: number = 0;
 	heightAntecedent?: number;
@@ -33,22 +36,23 @@ export class _MotionCanvasNodeTree
 
 	constructor(public deps: {
 		codeRenderer: MotionCanvasCodeRenderer,
+		fs: FsWrapper,
 	}, fields: MotionCanvasNodeTreeFields) {
 		Object.assign(this, fields);
+		this.nodes = fields.nodes;
 	}
 
-	toFileContentString(viewAdderFunctionName: string):
-		string {
-		const jsxComponents: JSXComponent[] = [];
-		let references: NodeReference[] = [];
+	//generate(config: InkscapeSVGConfig): Promise<void> {
+	async generateOutputFiles(config: InkscapeSVGConfig): Promise<void> {
+		const viewAdderFunctionName
+			= config.output.viewAdderFunctionName;
 
-		for (let i = 0; i < this.nodes.length; i++) {
-			const node = this.nodes[i];
-			jsxComponents.push(node.toJSXComponent());
-			references = [...references, ...node.getReferences()];
-		}
+		const {
+			jsxComponents,
+			references,
+		} = this.nodes.getRenderInfo();
 
-		return this.deps.codeRenderer.render({
+		const mainFileCodeContent = this.deps.codeRenderer.render({
 			viewAdderFunctionName,
 			canvasHeight: this.canvasHeight,
 			canvasWidth: this.canvasWidth,
@@ -56,7 +60,13 @@ export class _MotionCanvasNodeTree
 			widthAntecedent: this.widthAntecedent,
 			components: jsxComponents,
 			references,
-		} as OutputFileFields);
+		} satisfies OutputFileFields);
+
+		const outputDirectoryPath = config.output.directoryPath;
+
+		const outputFilePath = `${outputDirectoryPath}/${viewAdderFunctionName}.tsx`;
+
+		await this.deps.fs.writeFile(outputFilePath, mainFileCodeContent);
 	}
 }
 
@@ -67,4 +77,5 @@ export const initMotionCanvasNodeTree = (
 	fields: MotionCanvasNodeTreeFields) =>
 	new _MotionCanvasNodeTree({
 		codeRenderer: initMotionCanvasCodeRenderer(),
+		fs: initFsWrapper(),
 	}, fields);

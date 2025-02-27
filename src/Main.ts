@@ -1,7 +1,9 @@
 import { ChokidarWrapper, initChokidarWrapper } from "./wrappers/ChokidarWrapper";
-import { initInkscapeSVGToMotionCanvasIO, InkscapeSVGToMotionCanvasIO } from "./InkscapeSVGToMotionCanvasIO";
-import { initMainCallbacks, MainCallbacks } from "./MainCallbacks";
 import { initMainConfigLoader, MainConfigLoader } from "./mainConfig/MainConfigLoader";
+import { FsWrapper, initFsWrapper } from "./wrappers/FsWrapper";
+import { initInkscapeSVGParser, InkscapeSVGParser } from "./inkscapeSVG/InkscapeSVGParser";
+import { initInkscapeSVGLoader, InkscapeSVGLoader } from "./inkscapeSVG/InkscapeSVGLoader";
+import { initInkscapeSVGToMotionCanvasIO, InkscapeSVGToMotionCanvasIO, MotionCanvasNodeTreeAndConfig } from "./InkscapeSVGToMotionCanvasIO";
 
 export interface Main {
   run(): Promise<void>;
@@ -10,19 +12,18 @@ export interface Main {
 export class _Main implements Main {
   constructor(public deps: {
     mainConfigLoader: MainConfigLoader,
-    inkscapeSVGToMotionCanvasIO: InkscapeSVGToMotionCanvasIO,
     chokidar: ChokidarWrapper,
-    callbackFactory: MainCallbacks,
+    inkscapeSVGToMotionCanvasIO: InkscapeSVGToMotionCanvasIO,
   }) { }
 
   async run(): Promise<void> {
     const config = await this.deps.mainConfigLoader
+      // TODO: change to svgToMotionCanvasConfig.toml
       .load(`inkscapeSVGToMotionCanvasConfig.toml`);
 
-    for (const svgConfig of config.inkscapeSVGs) {
-      await this.deps.inkscapeSVGToMotionCanvasIO
-        .generate(svgConfig);
-    }
+    const treeAndConfig: MotionCanvasNodeTreeAndConfig[]
+      = await this.deps.inkscapeSVGToMotionCanvasIO
+        .readTranslateAndWriteAll(config);
 
     const inputFilePaths = config.inkscapeSVGs
       .map(svg => svg.input.filePath);
@@ -32,8 +33,9 @@ export class _Main implements Main {
         persistent: true
       });
 
-    watcher.on('change', this.deps.callbackFactory
-      .getOnChangeCallback(config.inkscapeSVGs));
+    watcher.on('change',
+      this.deps.inkscapeSVGToMotionCanvasIO
+        .getOnChangeCallbackFn(treeAndConfig));
   }
 }
 
@@ -41,7 +43,6 @@ export type InitMainFn = () => Main;
 
 export const initMain = () => new _Main({
   mainConfigLoader: initMainConfigLoader(),
-  inkscapeSVGToMotionCanvasIO: initInkscapeSVGToMotionCanvasIO(),
   chokidar: initChokidarWrapper(),
-  callbackFactory: initMainCallbacks(),
+  inkscapeSVGToMotionCanvasIO: initInkscapeSVGToMotionCanvasIO(),
 });

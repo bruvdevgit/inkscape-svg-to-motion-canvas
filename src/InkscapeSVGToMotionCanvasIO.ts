@@ -1,39 +1,58 @@
-import { FsWrapper, initFsWrapper } from "./wrappers/FsWrapper";
-import {
-  initInkscapeSVGToMotionCanvasCodeConverter,
-  InkscapeSVGToMotionCanvasCodeConverter
-} from "./InkscapeSVGToMotionCanvasCodeConverter";
-import { InkscapeSVGConfig } from "./mainConfig/MainConfigSchema";
+import { InkscapeSVGConfig, MainConfig } from "./mainConfig/MainConfigSchema";
+import { MotionCanvasNodeTree } from "./motionCanvasNodeTree/MotionCanvasNodeTree";
+import { initInkscapeSVGLoader, InkscapeSVGLoader } from "./inkscapeSVG/InkscapeSVGLoader";
+import { initPathWrapper, PathWrapper } from "./wrappers/PathWrapper";
+
+export interface MotionCanvasNodeTreeAndConfig {
+  config: InkscapeSVGConfig,
+  motionCanvasNodeTree: MotionCanvasNodeTree
+};
+export type OnChangeCallbackFn = (path: string) => Promise<void>;
 
 export interface InkscapeSVGToMotionCanvasIO {
-  generate(config: InkscapeSVGConfig): Promise<void>;
+  readTranslateAndWriteAll(config: MainConfig): Promise<MotionCanvasNodeTreeAndConfig[]>;
+  getOnChangeCallbackFn(svgs: MotionCanvasNodeTreeAndConfig[]): OnChangeCallbackFn;
 }
 
 export class _InkscapeSVGToMotionCanvasIO
   implements InkscapeSVGToMotionCanvasIO {
   constructor(public deps: {
-    converter: InkscapeSVGToMotionCanvasCodeConverter
-    fs: FsWrapper,
+    pathWrapper: PathWrapper,
+    inkscapeSVGLoader: InkscapeSVGLoader,
   },) {
   }
 
-  async generate(config: InkscapeSVGConfig): Promise<void> {
-    const inputFilePath = config.input.filePath;
-    const svgContent = await this.deps.fs.readFile(inputFilePath);
+  async readTranslateAndWriteAll(config: MainConfig):
+    Promise<MotionCanvasNodeTreeAndConfig[]> {
+    const treeAndConfig: MotionCanvasNodeTreeAndConfig[] = [];
+    for (const svgConfig of config.inkscapeSVGs) {
+      const inputFilePath = svgConfig.input.filePath;
 
-    const viewAdderFunctionName = config.output.viewAdderFunctionName;
+      const inkscapeSVG = await this.deps.inkscapeSVGLoader.load(inputFilePath);
 
-    const motionCanvasCodeContent
-      = this.deps.converter.convert({
-        inkscapeSVG: svgContent,
-        viewAdderFunctionName
-      });
+      const motionCanvasNodeTree = inkscapeSVG.toMotionCanvasNodeTree();
 
-    const outputDirectoryPath = config.output.directoryPath;
+      treeAndConfig.push({ motionCanvasNodeTree, config: svgConfig });
 
-    const outputFilePath = `${outputDirectoryPath}/${viewAdderFunctionName}.tsx`;
+      await motionCanvasNodeTree.generateOutputFiles(svgConfig);
+    }
+    return treeAndConfig;
 
-    await this.deps.fs.writeFile(outputFilePath, motionCanvasCodeContent);
+  }
+
+  getOnChangeCallbackFn(svgs: MotionCanvasNodeTreeAndConfig[]): OnChangeCallbackFn {
+    return async (path: string) => {
+      const find = svgs
+        .find(svg => {
+          return this.deps.pathWrapper.relative(svg.config.input.filePath, path) == '';
+        });
+
+      if (find == null) {
+        return;
+      }
+
+      await find.motionCanvasNodeTree.generateOutputFiles(find.config);
+    };
   }
 }
 
@@ -43,6 +62,6 @@ export type InitInkscapeSVGToMotionCanvasIOFn
 export const initInkscapeSVGToMotionCanvasIO:
   InitInkscapeSVGToMotionCanvasIOFn = () =>
     new _InkscapeSVGToMotionCanvasIO({
-      converter: initInkscapeSVGToMotionCanvasCodeConverter(),
-      fs: initFsWrapper(),
+      pathWrapper: initPathWrapper(),
+      inkscapeSVGLoader: initInkscapeSVGLoader(),
     });

@@ -9,8 +9,8 @@ export interface OutputFileFields {
 	viewAdderFunctionName: string,
 	canvasHeight: number,
 	canvasWidth: number,
-	heightAntecedent: number,
-	widthAntecedent: number,
+	heightAntecedent?: number,
+	widthAntecedent?: number,
 	components: JSXComponent[],
 	references: NodeReference[],
 }

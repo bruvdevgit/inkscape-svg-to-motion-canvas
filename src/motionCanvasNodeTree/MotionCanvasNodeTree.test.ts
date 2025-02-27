@@ -1,105 +1,90 @@
 import t from 'tap';
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
 import { _MotionCanvasNodeTree, MotionCanvasNodeTreeFields } from './MotionCanvasNodeTree';
-import { _RectNode } from './node/RectNode';
+import { _RectNode } from './node/rectNode/RectNode';
 import { Node as MotionCanvasNode } from './node/Node';
 import { JSXComponent } from './node/jsxComponent/JSXComponent';
 import { MotionCanvasCodeRenderer, NodeReference, OutputFileFields } from './MotionCanvasCodeRenderer';
+import { MotionCanvasNodesList, RenderInfo } from './MotionCanvasNodesList';
+import { InkscapeSVGConfig } from '../mainConfig/MainConfigSchema';
+import { FsWrapper } from '../wrappers/FsWrapper';
 
-t.test('toFileContentString correctly stringifies', t => {
-	const node1 = Substitute.for<MotionCanvasNode>();
+t.test('toFileContentString correctly stringifies', async t => {
 	const jsxComponent1 = Substitute.for<JSXComponent>();
-	jsxComponent1
-		.toFileContentString()
-		.returns('<JSXComponenet1></JSXComponent1>');
-	node1
-		.toJSXComponent()
-		.returns(jsxComponent1);
-	node1
-		.getReferences()
-		.returns([{
-			variableName: 'jsxComponent1VariableName',
-			type: 'Type1'
-		} as NodeReference]);
+	const reference1 = {
+		variableName: 'jsxComponent1VariableName',
+		type: 'Type1'
+	} as NodeReference;
 
-	const node2 = Substitute.for<MotionCanvasNode>();
 	const jsxComponent2 = Substitute.for<JSXComponent>();
-	jsxComponent2
-		.toFileContentString()
-		.returns('<JSXComponenet2></JSXComponent2>');
-	node2
-		.toJSXComponent()
-		.returns(jsxComponent2);
-	node2
-		.getReferences()
-		.returns([{
-			variableName: 'jsxComponent2VariableName',
-			type: 'Type2'
-		} as NodeReference]);
+	const reference2 = {
+		variableName: 'jsxComponent2VariableName',
+		type: 'Type2'
+	} as NodeReference;
 
-	const node3 = Substitute.for<MotionCanvasNode>();
 	const jsxComponent3 = Substitute.for<JSXComponent>();
-	jsxComponent3
-		.toFileContentString()
-		.returns('<JSXComponenet3></JSXComponent3>');
-	node3
-		.toJSXComponent()
-		.returns(jsxComponent3);
-	node3
-		.getReferences()
-		.returns([{
-			variableName: 'jsxComponent3VariableName',
-			type: 'Type3'
-		} as NodeReference]);
+	const reference3 = {
+		variableName: 'jsxComponent3VariableName',
+		type: 'Type3'
+	} as NodeReference;
+
+	const renderInfo: RenderInfo = {
+		jsxComponents: [jsxComponent1, jsxComponent2, jsxComponent3],
+		references: [reference1, reference2, reference3],
+	};
+
+	const nodesList = Substitute.for<MotionCanvasNodesList>();
+	nodesList.getRenderInfo()
+		.returns(renderInfo);
 
 	const codeRenderer = Substitute.for<MotionCanvasCodeRenderer>();
 
 
-	const renderArgs = {
-		viewAdderFunctionName: 'viewFn',
+	const renderArgs: OutputFileFields = {
+		viewAdderFunctionName: 'landingPageLarge',
 		canvasHeight: 1080,
 		canvasWidth: 1920,
 		heightAntecedent: 287.75,
 		widthAntecedent: 508,
-		components: [jsxComponent1, jsxComponent2, jsxComponent3],
-		references: [
-			{
-				variableName: 'jsxComponent1VariableName',
-				type: 'Type1',
-			},
-			{
-				variableName: 'jsxComponent2VariableName',
-				type: 'Type2',
-			},
-			{
-				variableName: 'jsxComponent3VariableName',
-				type: 'Type3',
-			},
-		],
-	} as OutputFileFields;
+		components: [...renderInfo.jsxComponents],
+		references: [...renderInfo.references],
+	};
 
 	codeRenderer.render(renderArgs)
 		.returns('<FileContentStringPlaceholder>');
 
+	const fsWrapper = Substitute.for<FsWrapper>();
+	fsWrapper.writeFile('./src/pagesOutput/landingPageLarge.tsx', '<FileContentStringPlaceholder>')
+		.returns(Promise.resolve());
+
 	const motionCanvasNodeTree = new _MotionCanvasNodeTree({
 		codeRenderer,
+		fs: fsWrapper,
 	}, {
-		nodes: [node1, node2, node3],
+		nodes: nodesList,
 		canvasHeight: 1080,
 		canvasWidth: 1920,
 		heightAntecedent: 287.75,
 		widthAntecedent: 508,
-	} as MotionCanvasNodeTreeFields);
+	} satisfies MotionCanvasNodeTreeFields);
 
-	const found = motionCanvasNodeTree.toFileContentString('viewFn');
-	const wanted = '<FileContentStringPlaceholder>';
+	await motionCanvasNodeTree.generateOutputFiles({
+		input: {
+			filePath: "./landing_page_lg.svg",
+		},
+		output: {
+			directoryPath: "./src/pagesOutput",
+			viewAdderFunctionName: 'landingPageLarge',
+		}
+	} satisfies InkscapeSVGConfig);
 
 	// start testing internal calls
 
 	codeRenderer.received().render(renderArgs);
+	fsWrapper.received()
+		.writeFile('./src/pagesOutput/landingPageLarge.tsx', '<FileContentStringPlaceholder>');
 
 	// stop testing internal calls
 
-	t.equal(found, wanted);
 	t.end();
 });
