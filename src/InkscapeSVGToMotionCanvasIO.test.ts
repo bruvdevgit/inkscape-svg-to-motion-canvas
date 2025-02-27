@@ -1,7 +1,6 @@
 import t from 'tap';
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
-import { _InkscapeSVGToMotionCanvasIO, MotionCanvasNodeTreeAndConfig } from './InkscapeSVGToMotionCanvasIO';
-import { InkscapeSVGToMotionCanvasCodeConverter } from './InkscapeSVGToMotionCanvasCodeConverter';
+import { _InkscapeSVGToMotionCanvasIO } from './InkscapeSVGToMotionCanvasIO';
 import { FsWrapper } from './wrappers/FsWrapper';
 import { InkscapeSVGConfig, MainConfig } from './mainConfig/MainConfigSchema';
 import { PathWrapper } from './wrappers/PathWrapper';
@@ -103,21 +102,7 @@ t.test('readTranslateAndWriteAll reads InkscapeSVGs, translates, and writes each
       inkscapeSVGLoader,
     });
 
-    const found = await svgToMotionCanvasIO.readTranslateAndWriteAll(mainConfig)
-    const wanted = [
-      {
-        config: config1,
-        motionCanvasNodeTree: motionCanvasNodeTree1,
-      },
-      {
-        config: config2,
-        motionCanvasNodeTree: motionCanvasNodeTree2,
-      },
-      {
-        config: config3,
-        motionCanvasNodeTree: motionCanvasNodeTree3,
-      },
-    ] satisfies MotionCanvasNodeTreeAndConfig[];
+    await svgToMotionCanvasIO.readTranslateAndWriteAll(mainConfig)
 
     // start testing internal
 
@@ -162,7 +147,6 @@ t.test('readTranslateAndWriteAll reads InkscapeSVGs, translates, and writes each
     // end 3
 
     // end testing internal
-    t.same(found, wanted);
     t.end();
   });
 
@@ -176,7 +160,6 @@ t.test('getOnChangeCallback gives a function with the right behaviour', async t 
       viewAdderFunctionName: 'circles1920By1080',
     }
   };
-  const tree1 = Substitute.for<MotionCanvasNodeTree>();
 
   const config2: InkscapeSVGConfig = {
     input: {
@@ -187,7 +170,6 @@ t.test('getOnChangeCallback gives a function with the right behaviour', async t 
       viewAdderFunctionName: 'rects1920By1080',
     }
   }
-  const tree2 = Substitute.for<MotionCanvasNodeTree>();
 
   const config3: InkscapeSVGConfig = {
     input: {
@@ -198,13 +180,8 @@ t.test('getOnChangeCallback gives a function with the right behaviour', async t 
       viewAdderFunctionName: 'landingPageLarge',
     }
   };
-  const tree3 = Substitute.for<MotionCanvasNodeTree>();
 
-  const svgs: MotionCanvasNodeTreeAndConfig[] = [
-    { config: config1, motionCanvasNodeTree: tree1 },
-    { config: config2, motionCanvasNodeTree: tree2 },
-    { config: config3, motionCanvasNodeTree: tree3 },
-  ];
+  const configs = [config1, config2, config3];
 
   const pathWrapper = Substitute.for<PathWrapper>();
 
@@ -220,16 +197,29 @@ t.test('getOnChangeCallback gives a function with the right behaviour', async t 
       'rects_1920_by_1080.svg')
     .returns('');
 
-  tree2
+
+  const inkscapeSVGLoader = Substitute.for<InkscapeSVGLoader>();
+
+  const inkscapeSVG = Substitute.for<InkscapeSVG>();
+  inkscapeSVGLoader
+    .load("./rects_1920_by_1080.svg")
+    .returns(Promise.resolve(inkscapeSVG));
+
+  const newMotionCanvasNodeTree = Substitute.for<MotionCanvasNodeTree>();
+  inkscapeSVG
+    .toMotionCanvasNodeTree()
+    .returns(newMotionCanvasNodeTree);
+
+  newMotionCanvasNodeTree
     .generateOutputFiles(config2)
     .returns(Promise.resolve());
 
   const svgToMotionCanvasIO = new _InkscapeSVGToMotionCanvasIO({
     pathWrapper,
-    inkscapeSVGLoader: Substitute.for<InkscapeSVGLoader>(),
+    inkscapeSVGLoader,
   });
 
-  const callback = svgToMotionCanvasIO.getOnChangeCallbackFn(svgs);
+  const callback = svgToMotionCanvasIO.getOnChangeCallbackFn(configs);
   await callback('rects_1920_by_1080.svg');
 
   // start testing internal calls
@@ -246,10 +236,17 @@ t.test('getOnChangeCallback gives a function with the right behaviour', async t 
       './rects_1920_by_1080.svg',
       'rects_1920_by_1080.svg');
 
-  tree2
+  inkscapeSVGLoader
     .received()
-    .generateOutputFiles(config2)
+    .load("./rects_1920_by_1080.svg");
 
+  inkscapeSVG
+    .received()
+    .toMotionCanvasNodeTree();
+
+  newMotionCanvasNodeTree
+    .received()
+    .generateOutputFiles(config2);
   // end testing internal calls
 
   t.end();

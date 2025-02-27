@@ -1,9 +1,6 @@
 import { ChokidarWrapper, initChokidarWrapper } from "./wrappers/ChokidarWrapper";
 import { initMainConfigLoader, MainConfigLoader } from "./mainConfig/MainConfigLoader";
-import { FsWrapper, initFsWrapper } from "./wrappers/FsWrapper";
-import { initInkscapeSVGParser, InkscapeSVGParser } from "./inkscapeSVG/InkscapeSVGParser";
-import { initInkscapeSVGLoader, InkscapeSVGLoader } from "./inkscapeSVG/InkscapeSVGLoader";
-import { initInkscapeSVGToMotionCanvasIO, InkscapeSVGToMotionCanvasIO, MotionCanvasNodeTreeAndConfig } from "./InkscapeSVGToMotionCanvasIO";
+import { initInkscapeSVGToMotionCanvasIO, InkscapeSVGToMotionCanvasIO, } from "./InkscapeSVGToMotionCanvasIO";
 
 export interface Main {
   run(): Promise<void>;
@@ -21,9 +18,8 @@ export class _Main implements Main {
       // TODO: change to svgToMotionCanvasConfig.toml
       .load(`inkscapeSVGToMotionCanvasConfig.toml`);
 
-    const treeAndConfig: MotionCanvasNodeTreeAndConfig[]
-      = await this.deps.inkscapeSVGToMotionCanvasIO
-        .readTranslateAndWriteAll(config);
+    await this.deps.inkscapeSVGToMotionCanvasIO
+      .readTranslateAndWriteAll(config);
 
     const inputFilePaths = config.inkscapeSVGs
       .map(svg => svg.input.filePath);
@@ -35,7 +31,7 @@ export class _Main implements Main {
 
     watcher.on('change',
       this.deps.inkscapeSVGToMotionCanvasIO
-        .getOnChangeCallbackFn(treeAndConfig));
+        .getOnChangeCallbackFn(config.inkscapeSVGs));
   }
 }
 

@@ -1,19 +1,16 @@
 import t from 'tap';
 import { Arg, Substitute } from '@fluffy-spoon/substitute';
 import { MainConfigLoader } from './mainConfig/MainConfigLoader';
-import { InkscapeSVGToMotionCanvasIO, MotionCanvasNodeTreeAndConfig } from './InkscapeSVGToMotionCanvasIO';
+import { InkscapeSVGToMotionCanvasIO, OnChangeCallbackFn } from './InkscapeSVGToMotionCanvasIO';
 import { ChokidarWrapper } from './wrappers/ChokidarWrapper';
-import { CallbackFn, MainCallbacks } from './MainCallbacks';
 import { _Main } from './Main';
 import { MainConfig } from './mainConfig/MainConfigSchema';
 import { FSWatcherWrapper } from './wrappers/FSWatcherWrapper';
-import { MotionCanvasNodeTree } from './motionCanvasNodeTree/MotionCanvasNodeTree';
 
 t.test('run runs right!', async t => {
   const mainConfigLoader = Substitute.for<MainConfigLoader>();
   const inkscapeSVGToMotionCanvasIO = Substitute.for<InkscapeSVGToMotionCanvasIO>();
   const chokidar = Substitute.for<ChokidarWrapper>();
-  const callbackFactory = Substitute.for<MainCallbacks>();
 
   const mainConfig: MainConfig = {
     inkscapeSVGs: [
@@ -51,24 +48,9 @@ t.test('run runs right!', async t => {
     .load('inkscapeSVGToMotionCanvasConfig.toml')
     .returns(Promise.resolve({ ...mainConfig } as MainConfig));
 
-  const treesAndConfigs: MotionCanvasNodeTreeAndConfig[] = [
-    {
-      config: mainConfig[0],
-      motionCanvasNodeTree: Substitute.for<MotionCanvasNodeTree>(),
-    },
-    {
-      config: mainConfig[1],
-      motionCanvasNodeTree: Substitute.for<MotionCanvasNodeTree>(),
-    },
-    {
-      config: mainConfig[2],
-      motionCanvasNodeTree: Substitute.for<MotionCanvasNodeTree>(),
-    },
-  ];
-
   inkscapeSVGToMotionCanvasIO
     .readTranslateAndWriteAll({ ...mainConfig } as MainConfig)
-    .returns(Promise.resolve(treesAndConfigs));
+    .returns(Promise.resolve());
 
   const fsWatcher = Substitute.for<FSWatcherWrapper>();
   chokidar.watch([
@@ -81,10 +63,10 @@ t.test('run runs right!', async t => {
   })
     .returns(fsWatcher);
 
-  const onChangeCallback: CallbackFn = (_) => Promise.resolve();
+  const onChangeCallback: OnChangeCallbackFn = (_) => Promise.resolve();
 
   inkscapeSVGToMotionCanvasIO
-    .getOnChangeCallbackFn(treesAndConfigs)
+    .getOnChangeCallbackFn(mainConfig.inkscapeSVGs)
     .returns(onChangeCallback);
 
   const main = new _Main({

@@ -1,17 +1,12 @@
 import { InkscapeSVGConfig, MainConfig } from "./mainConfig/MainConfigSchema";
-import { MotionCanvasNodeTree } from "./motionCanvasNodeTree/MotionCanvasNodeTree";
 import { initInkscapeSVGLoader, InkscapeSVGLoader } from "./inkscapeSVG/InkscapeSVGLoader";
 import { initPathWrapper, PathWrapper } from "./wrappers/PathWrapper";
 
-export interface MotionCanvasNodeTreeAndConfig {
-  config: InkscapeSVGConfig,
-  motionCanvasNodeTree: MotionCanvasNodeTree
-};
 export type OnChangeCallbackFn = (path: string) => Promise<void>;
 
 export interface InkscapeSVGToMotionCanvasIO {
-  readTranslateAndWriteAll(config: MainConfig): Promise<MotionCanvasNodeTreeAndConfig[]>;
-  getOnChangeCallbackFn(svgs: MotionCanvasNodeTreeAndConfig[]): OnChangeCallbackFn;
+  readTranslateAndWriteAll(config: MainConfig): Promise<void>;
+  getOnChangeCallbackFn(configs: InkscapeSVGConfig[]): OnChangeCallbackFn;
 }
 
 export class _InkscapeSVGToMotionCanvasIO
@@ -23,8 +18,7 @@ export class _InkscapeSVGToMotionCanvasIO
   }
 
   async readTranslateAndWriteAll(config: MainConfig):
-    Promise<MotionCanvasNodeTreeAndConfig[]> {
-    const treeAndConfig: MotionCanvasNodeTreeAndConfig[] = [];
+    Promise<void> {
     for (const svgConfig of config.inkscapeSVGs) {
       const inputFilePath = svgConfig.input.filePath;
 
@@ -32,26 +26,27 @@ export class _InkscapeSVGToMotionCanvasIO
 
       const motionCanvasNodeTree = inkscapeSVG.toMotionCanvasNodeTree();
 
-      treeAndConfig.push({ motionCanvasNodeTree, config: svgConfig });
-
       await motionCanvasNodeTree.generateOutputFiles(svgConfig);
     }
-    return treeAndConfig;
-
   }
 
-  getOnChangeCallbackFn(svgs: MotionCanvasNodeTreeAndConfig[]): OnChangeCallbackFn {
+  getOnChangeCallbackFn(configs: InkscapeSVGConfig[]): OnChangeCallbackFn {
     return async (path: string) => {
-      const find = svgs
-        .find(svg => {
-          return this.deps.pathWrapper.relative(svg.config.input.filePath, path) == '';
+      const config = configs
+        .find(config => {
+          return this.deps.pathWrapper.relative(config.input.filePath, path) == '';
         });
 
-      if (find == null) {
+      if (config == null) {
         return;
       }
 
-      await find.motionCanvasNodeTree.generateOutputFiles(find.config);
+      const inputFilePath = config.input.filePath;
+      const inkscapeSVG = await this.deps.inkscapeSVGLoader.load(inputFilePath);
+
+      const newMotionCanvasNodeTree = inkscapeSVG.toMotionCanvasNodeTree();
+
+      await newMotionCanvasNodeTree.generateOutputFiles(config);
     };
   }
 }
