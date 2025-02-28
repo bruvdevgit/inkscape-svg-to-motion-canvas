@@ -7,7 +7,7 @@
   "bin": "src/bin.ts",
   "scripts": {
     "test": "tap run",
-    "post": "npm run build && npm version patch && npm publish"
+    "post": "npm version patch && npm publish"
   },
   "keywords": [
     "MotionCanvas",
